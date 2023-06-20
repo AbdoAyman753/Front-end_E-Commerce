@@ -1,17 +1,31 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
 import "./App.css";
-import NewPage from './pages/NewPage';
+import { useEffect, useState } from "react";
+import Store from "./pages/Store";
+import { Routes, Route } from "react-router-dom";
+import axios from "axios";
 
 function App() {
-	return (
-		<>
-			<h1 className="text-3xl font-bold underline">
-				Components Or Pages goes here!
-			</h1>
-			<NewPage/>
-		</>
-	);
+  const [games, setGames] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await axios.get(
+        // "http://localhost:3000/products?_delay=0"
+        " mongodb+srv://gameStore_Admin:0WmYnYLaoRFcq4C9@clusteralfa.boytb2g.mongodb.net/"
+      );
+
+      setGames(data);
+    };
+    fetchData();
+  }, []);
+
+  return (
+    <>
+      <Routes>
+        <Route path="/store" element={<Store games={games} />} />
+      </Routes>
+    </>
+  );
 }
 
 export default App;
