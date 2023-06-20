@@ -3,13 +3,10 @@ import { useState } from "react";
 import "./App.css";
 import NewPage from "./pages/NewPage";
 import AppLayout from "./components/AppLayout";
+import Support from "./pages/Support";
 
 function App() {
-  return (
-    <AppLayout>
-      <h1>hello</h1>
-    </AppLayout>
-  );
+  return <Support />;
 }
 
 export default App;

@@ -64,7 +64,7 @@ const Faq = () => {
   const arrow = isCollapsed ? closed : opened;
 
   return (
-    <div className="bg-cyan-950 text-white mx-2 sm:w-3/4 sm:mx-auto md:w-1/2 px-4 py-3 select-none border-4 border-cyan-900">
+    <div className="bg-cyan-950 text-white mx-2 sm:w-3/4 sm:mx-auto md:w-1/2 px-4 py-3 select-none border-4 border-cyan-900 my-4">
       <h2
         className="text-lg  flex cursor-pointer "
         onClick={() => setIsCollapsed((prev) => !prev)}
