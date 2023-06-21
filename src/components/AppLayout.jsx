@@ -3,11 +3,11 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 
-const AppLayout = ({ children }) => {
+const AppLayout = ({ children, className = "" }) => {
   return (
-    <div className="min-h-screen">
+    <div>
       <Header />
-      {children}
+      <div className={`${className} min-h-[80vh]`}>{children}</div>
       <Footer />
     </div>
   );

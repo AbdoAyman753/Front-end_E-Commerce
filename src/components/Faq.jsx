@@ -64,7 +64,7 @@ const Faq = () => {
   const arrow = isCollapsed ? closed : opened;
 
   return (
-    <div className="bg-cyan-950 text-white mx-2 sm:w-3/4 sm:mx-auto md:w-1/2 px-4 py-3 select-none border-4 border-cyan-900 my-4">
+    <div className="bg-cyan-600 text-white mx-2 sm:w-3/4 sm:mx-auto md:w-1/2 px-4 py-3 select-none border-4 border-cyan-700 mb-8">
       <h2
         className="text-lg  flex cursor-pointer "
         onClick={() => setIsCollapsed((prev) => !prev)}
@@ -76,7 +76,7 @@ const Faq = () => {
           {FAQ.map((el) => (
             <li
               key={el.id}
-              className="w-11/12 mx-auto mb-3 p-2 border-4 border-cyan-900"
+              className="w-11/12 mx-auto mb-3 p-2 border-4 border-cyan-700"
             >
               <p className="flex justify-between">
                 {el.question}{" "}
