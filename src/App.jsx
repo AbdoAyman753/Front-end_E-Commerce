@@ -10,8 +10,8 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await axios.get(
-        // "http://localhost:3000/products?_delay=0"
-        " mongodb+srv://gameStore_Admin:0WmYnYLaoRFcq4C9@clusteralfa.boytb2g.mongodb.net/"
+        "http://localhost:3000/products?_delay=0"
+        // " mongodb+srv://gameStore_Admin:0WmYnYLaoRFcq4C9@clusteralfa.boytb2g.mongodb.net/"
       );
 
       setGames(data);
