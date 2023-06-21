@@ -6,7 +6,7 @@ import { pagination } from "../utils/pagination";
 const pageSize = 3;
 const Store = ({ games, categories }) => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
+  let [currentPage, setCurrentPage] = useState(1);
   // filter
   let filteredGames =
     selectedCategoryId === 0
@@ -192,7 +192,7 @@ const Store = ({ games, categories }) => {
           ))}
         </div>
       </div>
-      {/* pagination */}
+      {/* pagination
       <div className="flex gap-2 mx-96 ">
         {pages.length > 1 &&
           pages.map((page) => (
@@ -206,7 +206,77 @@ const Store = ({ games, categories }) => {
               {page}
             </div>
           ))}
-      </div>
+      </div> */}
+
+      <ol className="flex justify-center gap-1 text-xs font-medium">
+        {/* prevPage */}
+        <li>
+          <span
+            onClick={() =>
+              setCurrentPage(
+                currentPage > 1 ? currentPage - 1 : (currentPage = 1)
+              )
+            }
+            className="inline-flex h-8 w-8 items-center justify-center rounded border cursor-pointer border-gray-100 bg-white text-gray-900 rtl:rotate-180"
+          >
+            <span className="sr-only">Prev Page</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-3 w-3"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </span>
+        </li>
+        {/* pages */}
+        <li className="flex">
+          {pages.length > 1 &&
+            pages.map((page) => (
+              <span
+                onClick={() => setCurrentPage(page)}
+                key={page}
+                className={`${
+                  currentPage === page ? "bg-sky-700" : ""
+                } cursor-pointer block h-8 w-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900  `}
+              >
+                {page}
+              </span>
+            ))}
+        </li>
+
+        <li>
+          <span
+            onClick={() =>
+              setCurrentPage(
+                currentPage < noOfPages
+                  ? currentPage + 1
+                  : (currentPage = noOfPages)
+              )
+            }
+            className="cursor-pointer inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
+          >
+            <span className="sr-only">Next Page</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-3 w-3"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </span>
+        </li>
+      </ol>
     </>
   );
 };
