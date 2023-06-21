@@ -7,8 +7,10 @@ import axios from "axios";
 
 function App() {
   const [games, setGames] = useState([]);
+  const [categories, setCategory] = useState([]);
+
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchGames = async () => {
       const { data } = await axios.get(
         "http://localhost:3000/products?_delay=0"
         // " mongodb+srv://gameStore_Admin:0WmYnYLaoRFcq4C9@clusteralfa.boytb2g.mongodb.net/"
@@ -16,13 +18,24 @@ function App() {
 
       setGames(data);
     };
-    fetchData();
+    const fetchCategory = async () => {
+      const { data } = await axios.get(
+        "  http://localhost:3000/category?_delay=0"
+      );
+
+      setCategory(data);
+    };
+    fetchGames();
+    fetchCategory();
   }, []);
 
   return (
     <>
       <Routes>
-        <Route path="/store" element={<Store games={games} />} />
+        <Route
+          path="/store"
+          element={<Store games={games} categories={categories} />}
+        />
       </Routes>
     </>
   );
