@@ -1,25 +1,31 @@
 import React, { useState } from "react";
+import { Sidebar } from "flowbite-react";
 
 import Loader from "./../components/Loader";
 import { pagination } from "../utils/pagination";
+import GameFilter from "../components/GameFilter";
 // json-server --watch db.json
-const pageSize = 3;
-const Store = ({ games, categories }) => {
-  const [selectedCategoryId, setSelectedCategoryId] = useState(0);
+const pageSize = 6;
+const Store = ({
+  games,
+  categories,
+  handleFilter,
+  selectedCategoryId,
+  setSelectedCategoryId,
+}) => {
+  // const [selectedCategoryId, setSelectedCategoryId] = useState(0);
   let [currentPage, setCurrentPage] = useState(1);
+
   // filter
-  let filteredGames =
-    selectedCategoryId === 0
-      ? games
-      : games?.filter((d) => d.categoryId === selectedCategoryId);
+  // let filteredGames =
+  //   selectedCategoryId === 0
+  //     ? games
+  //     : games?.filter((d) => d.categoryId === selectedCategoryId);
   // pagination
-  const noOfPages = Math.ceil(filteredGames.length / pageSize);
-
-  const pages = pagination(noOfPages);
-
-  const pageStartWith = (currentPage - 1) * pageSize;
-
-  filteredGames = filteredGames.slice(pageStartWith, pageSize + pageStartWith);
+  // const noOfPages = Math.ceil(filteredGames.length / pageSize);
+  // const pages = pagination(noOfPages);
+  // const pageStartWith = (currentPage - 1) * pageSize;
+  // filteredGames = filteredGames.slice(pageStartWith, pageSize + pageStartWith);
   return (
     <>
       {/* loader */}
@@ -28,70 +34,57 @@ const Store = ({ games, categories }) => {
           <Loader />
         </div>
       )}
-      {/* all filter */}
-      <div className="flex flex-row justify-center">
-        {/* filter */}
-        <div className=" px-[5vw] h-10   flex items-center  ">
-          {/* all   */}
-          <div
-            onClick={() => {
-              setSelectedCategoryId(0);
-              setCurrentPage(1);
-            }}
-            className={`${
-              selectedCategoryId === 0 ? "bg-slate-300" : ""
-            } border-2 mt-3 me-1 p-2 text-center font-bold cursor-pointer`}
-          >
-            All
-          </div>
-          {/* others filters */}
-          {categories.map((category) => (
-            <div
-              onClick={() => {
-                setSelectedCategoryId(category.id);
-                setCurrentPage(1);
-              }}
-              key={category.id}
-              className={`${
-                selectedCategoryId === category.id ? "bg-slate-300" : ""
-              } border-2 p-2 mt-3 me-1 text-center font-bold cursor-pointer`}
-            >
-              {category.name}
-            </div>
-          ))}
-        </div>
-        {/* filter arrow */}
-        {/* <div className=" w-6 py-[40vh] ">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6 animate-bounce "
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"
-            />
-          </svg>
-        </div> */}
-      </div>
 
-      <div className="flex   justify-center">
-        {/* store games */}
-        <div className="px-[5vw]  my-10 justify-items-center  grid grid-rows-1 gap-4 md:grid-cols-3">
-          {filteredGames.map((game) => (
+      {/* store games and filter*/}
+      <div className="flex   justify-between">
+        {/* all filter */}
+        <Sidebar
+          aria-label="Sidebar with multi-level dropdown example "
+          className="w-[15vw] "
+        >
+          <Sidebar.Items>
+            <Sidebar.ItemGroup>
+              filter
+              {/* All */}
+              <Sidebar.Collapse label="Categories">
+                <Sidebar.Item
+                  onClick={() => {
+                    setSelectedCategoryId(0);
+                    setCurrentPage(1);
+                  }}
+                  className={`
+                    ${selectedCategoryId === 0 ? "bg-slate-300" : ""} ${
+                    selectedCategoryId === 0 && "hover:bg-slate-300"
+                  } border-2 p-2 mt-1 me-1 w-24 text-center font-bold cursor-pointer m-auto`}
+                >
+                  All
+                </Sidebar.Item>
+                {/* other Categories */}
+                {categories.map((category) => (
+                  <GameFilter
+                    handleFilter={handleFilter}
+                    selectedCategoryId={selectedCategoryId}
+                    category={category}
+                    key={category.id}
+                  />
+                ))}
+              </Sidebar.Collapse>
+            </Sidebar.ItemGroup>
+          </Sidebar.Items>
+        </Sidebar>
+
+        {/* Games cards */}
+        <div className="px-[5vw]  my-10 justify-items-center  grid grid-rows-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {games.map((game) => (
             <div
               className=" w-[40vw] rounded-3xl  flex flex-col justify-between overflow-hidden shadow-lg shadow-black/80  lg:w-[20vw] md:w-[25vw] "
               key={game._id}
             >
               <div className="relative">
-                {/* white circle */}
+                {/* white circle
                 <div className="absolute   text-red mt-6 left-1/2 -translate-x-1/2 -translate-y-1/2  ">
                   <div className="w-[5vh] h-[5vh] bg-white  rounded-full shadow-inner shadow-black/80"></div>
-                </div>
+                </div> */}
                 {/* image */}
                 <img
                   className="object-fit h-[30vh] lg:h-[40vh] w-full  "
@@ -99,12 +92,32 @@ const Store = ({ games, categories }) => {
                   alt={game.product_name}
                 />
               </div>
-              <div className="px-6 py-4 h-[20vh] lg:h-[17vh]">
-                <div className="font-bold text-xl mb-1">
-                  {game.product_name}
+              <div className="px-4 py-1 h-[20vh] lg:h-[17vh]">
+                {/* cardHeader */}
+                <div className="flex justify-between items-center">
+                  <div className="font-bold text-xl mb-1">
+                    {game.product_name}
+                  </div>
+                  {/* new game */}
+                  <span>
+                    {game.recently_added == true ? (
+                      <div className="flex flex-col justify-center items-center">
+                        <span className="">
+                          <img
+                            className="w-9 animate-bounce "
+                            src="fire2.gif"
+                            alt=""
+                          />
+                        </span>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </span>
                 </div>
+                {/* description */}
                 <p className="text-gray-700  text-base italic font-serif">
-                  {game.description}{" "}
+                  {game.description}
                 </p>
               </div>
               {/* price */}
@@ -128,14 +141,15 @@ const Store = ({ games, categories }) => {
               </div>
               {/* card footer  */}
 
-              <div className="flex justify-between  bg-sky-800 border-t-2 items-center">
-                <span className="ps-3 text-gray-300 text-base italic font-serif">
+              <div className="flex justify-between  bg-sky-800 border-t-2 py-2 items-center">
+                <span className="ps-4 text-gray-300 text-base italic font-serif">
                   {categories
                     .filter((category) => category.id === game.categoryId)
                     .map((category) => category.name)}
                 </span>
-                <div className="  flex flex-row justify-end items-center ">
-                  <span className="pe-2 rounded-full  py-1 text-sm font-semibold text-white hover:scale-110  mb-2  ">
+                <div className=" px-4 flex flex-row justify-end items-center gap-2 ">
+                  {/* gift icon*/}
+                  <span className=" rounded-full   text-sm font-semibold text-white hover:scale-110   ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -144,6 +158,7 @@ const Store = ({ games, categories }) => {
                       stroke="currentColor"
                       className="w-6 h-6  hover:stroke-sky-300  "
                     >
+                      <title>Buy Gift</title>
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -152,8 +167,8 @@ const Store = ({ games, categories }) => {
                     </svg>
                   </span>
 
-                  <span className="pe-2 rounded-full   text-sm font-semibold text-white  hover:scale-110 mb-2">
-                    {/* heart */}
+                  {/* heart icon */}
+                  <span className=" rounded-full   text-sm font-semibold text-white  hover:scale-110 ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -162,6 +177,7 @@ const Store = ({ games, categories }) => {
                       stroke="currentColor"
                       className="w-6 h-6  hover:stroke-sky-300  cursor-pointer "
                     >
+                      <title>Add To WishList</title>
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -169,8 +185,9 @@ const Store = ({ games, categories }) => {
                       />
                     </svg>
                   </span>
-                  {/* add to cart */}
-                  <span className="pe-3 rounded-full  py-1 text-sm font-semibold text-white hover:scale-110  mb-2  ">
+
+                  {/* add to cart icon*/}
+                  <span className="rounded-full   text-sm font-semibold text-white hover:scale-110    ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -179,6 +196,7 @@ const Store = ({ games, categories }) => {
                       stroke="currentColor"
                       className="w-6 h-6  hover:stroke-sky-300  "
                     >
+                      <title>Add To Cart</title>
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -192,91 +210,86 @@ const Store = ({ games, categories }) => {
           ))}
         </div>
       </div>
-      {/* pagination
-      <div className="flex gap-2 mx-96 ">
-        {pages.length > 1 &&
-          pages.map((page) => (
-            <div
-              onClick={() => setCurrentPage(page)}
-              key={page}
-              className={`${
-                currentPage === page ? "bg-slate-300" : ""
-              } cursor-pointer border-2 p-2 h-10`}
-            >
-              {page}
-            </div>
-          ))}
-      </div> */}
 
-      <ol className="flex justify-center gap-1 text-xs font-medium">
-        {/* prevPage */}
-        <li>
-          <span
-            onClick={() =>
-              setCurrentPage(
-                currentPage > 1 ? currentPage - 1 : (currentPage = 1)
-              )
-            }
-            className="inline-flex h-8 w-8 items-center justify-center rounded border cursor-pointer border-gray-100 bg-white text-gray-900 rtl:rotate-180"
-          >
-            <span className="sr-only">Prev Page</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-3 w-3"
-              viewBox="0 0 20 20"
-              fill="currentColor"
+      {/* pagination */}
+      {/* <ol className="mb-10 flex justify-center gap-1 text-xs font-medium"> */}
+      {/* prevPage */}
+      {/* <li>
+          {noOfPages > 1 ? (
+            <span
+              onClick={() =>
+                setCurrentPage(
+                  currentPage > 1 ? currentPage - 1 : (currentPage = 1)
+                )
+              }
+              className="inline-flex h-8 w-8 items-center justify-center rounded border cursor-pointer border-gray-100 bg-white text-gray-900 rtl:rotate-180"
             >
-              <path
-                fillRule="evenodd"
-                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </span>
-        </li>
-        {/* pages */}
-        <li className="flex">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-3 w-3"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <title>Previous Page</title>
+                <path
+                  fillRule="evenodd"
+                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </span>
+          ) : (
+            ""
+          )}
+        </li> */}
+      {/* pages */}
+      {/* <li className="flex">
           {pages.length > 1 &&
             pages.map((page) => (
               <span
                 onClick={() => setCurrentPage(page)}
                 key={page}
                 className={`${
-                  currentPage === page ? "bg-sky-700" : ""
+                  currentPage === page ? "bg-sky-500" : ""
                 } cursor-pointer block h-8 w-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900  `}
               >
                 {page}
               </span>
             ))}
-        </li>
-
-        <li>
-          <span
-            onClick={() =>
-              setCurrentPage(
-                currentPage < noOfPages
-                  ? currentPage + 1
-                  : (currentPage = noOfPages)
-              )
-            }
-            className="cursor-pointer inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
-          >
-            <span className="sr-only">Next Page</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-3 w-3"
-              viewBox="0 0 20 20"
-              fill="currentColor"
+        </li> */}
+      {/* nextPage */}
+      {/* <li>
+          {noOfPages > 1 ? (
+            <span
+              onClick={() =>
+                setCurrentPage(
+                  currentPage < noOfPages
+                    ? currentPage + 1
+                    : (currentPage = noOfPages)
+                )
+              }
+              className="cursor-pointer inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
             >
-              <path
-                fillRule="evenodd"
-                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </span>
-        </li>
-      </ol>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-3 w-3"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <title>Next Page</title>
+
+                <path
+                  fillRule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </span>
+          ) : (
+            ""
+          )}
+        </li> 
+      </ol>*/}
     </>
   );
 };

@@ -8,7 +8,16 @@ import axios from "axios";
 function App() {
   const [games, setGames] = useState([]);
   const [categories, setCategory] = useState([]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(0);
 
+  const handleFilter = (categoryId) => {
+    setSelectedCategoryId(categoryId);
+  };
+
+  const filteredGames =
+    selectedCategoryId === 0
+      ? games
+      : games.filter((game) => game.categoryId === selectedCategoryId);
   useEffect(() => {
     const fetchGames = async () => {
       const { data } = await axios.get(
@@ -34,7 +43,15 @@ function App() {
       <Routes>
         <Route
           path="/store"
-          element={<Store games={games} categories={categories} />}
+          element={
+            <Store
+              games={filteredGames}
+              categories={categories}
+              handleFilter={handleFilter}
+              selectedCategoryId={selectedCategoryId}
+              setSelectedCategoryId={setSelectedCategoryId}
+            />
+          }
         />
       </Routes>
     </>
