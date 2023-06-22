@@ -10,6 +10,7 @@ function App() {
   const [categories, setCategory] = useState([]);
   // filteruseState
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
+  const [selectedPrice, setSelectedPrice] = useState(0);
   // pagination useState
   let [currentPage, setCurrentPage] = useState(1);
 
@@ -18,7 +19,15 @@ function App() {
     selectedCategoryId === 0
       ? games
       : games.filter((game) => game.categoryId === selectedCategoryId);
-
+  if (selectedPrice === 1) {
+    filteredGames = filteredGames.filter((game) => game.price <= 10);
+  } else if (selectedPrice === 2) {
+    filteredGames = filteredGames.filter(
+      (game) => game.price > 10 && game.price <= 20
+    );
+  } else if (selectedPrice === 3) {
+    filteredGames = filteredGames.filter((game) => game.price > 20);
+  }
   // pagination
   const pageSize = 6;
   const noOfPages = Math.ceil(filteredGames.length / pageSize);
@@ -41,10 +50,44 @@ function App() {
     setCurrentPage(currentPage > 1 ? currentPage - 1 : 1);
   };
 
-  const handleFilter = (categoryId) => {
+  const handleGategoryFilter = (categoryId) => {
     setSelectedCategoryId(categoryId);
     setCurrentPage(1);
   };
+
+  const handlePriceFilter = (status) => {
+    if (status == 0) {
+      setSelectedPrice(0);
+      setCurrentPage(1);
+    }
+    if (status == 1) {
+      setSelectedPrice(1);
+      setCurrentPage(1);
+    }
+    if (status == 2) {
+      setSelectedPrice(2);
+      setCurrentPage(1);
+    }
+    if (status == 3) {
+      setSelectedPrice(3);
+      setCurrentPage(1);
+    }
+  };
+
+  // const handleFirstPriceFilter = () => {
+  //   setSelectedPrice(1);
+  //   setCurrentPage(1);
+  // };
+
+  // const handle2ndPriceFilter = () => {
+  //   setSelectedPrice(2);
+  //   setCurrentPage(1);
+  // };
+
+  // const handle3rdPriceFilter = () => {
+  //   setSelectedPrice(3);
+  //   setCurrentPage(1);
+  // };
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -75,7 +118,7 @@ function App() {
             <Store
               games={filteredGames}
               categories={categories}
-              handleFilter={handleFilter}
+              handleGategoryFilter={handleGategoryFilter}
               selectedCategoryId={selectedCategoryId}
               setSelectedCategoryId={setSelectedCategoryId}
               handleNextPagination={handleNextPagination}
@@ -85,6 +128,7 @@ function App() {
               pages={pages}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
+              handlePriceFilter={handlePriceFilter}
             />
           }
         />

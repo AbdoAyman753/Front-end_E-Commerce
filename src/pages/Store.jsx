@@ -9,7 +9,7 @@ import GamesPagination from "../components/GamesPagination";
 const Store = ({
   games,
   categories,
-  handleFilter,
+  handleGategoryFilter,
   selectedCategoryId,
   setSelectedCategoryId,
   handleNextPagination,
@@ -19,6 +19,7 @@ const Store = ({
   pages,
   currentPage,
   setCurrentPage,
+  handlePriceFilter,
 }) => {
   return (
     <>
@@ -32,40 +33,14 @@ const Store = ({
       {/* store games and filter*/}
       <div className="flex   justify-between">
         {/* all filter */}
-        <Sidebar
-          aria-label="Sidebar with multi-level dropdown example "
-          className="w-[15vw] "
-        >
-          <Sidebar.Items>
-            <Sidebar.ItemGroup>
-              filter
-              <Sidebar.Collapse label="Categories">
-                {/* All */}
-                <Sidebar.Item
-                  onClick={() => {
-                    setSelectedCategoryId(0);
-                    setCurrentPage(1);
-                  }}
-                  className={`
-                    ${selectedCategoryId === 0 ? "bg-slate-300" : ""} ${
-                    selectedCategoryId === 0 && "hover:bg-slate-300"
-                  } border-2 p-2 mt-1 me-1 w-24 text-center font-bold cursor-pointer m-auto`}
-                >
-                  All
-                </Sidebar.Item>
-                {/* other Categories */}
-                {categories.map((category) => (
-                  <GameFilter
-                    handleFilter={handleFilter}
-                    selectedCategoryId={selectedCategoryId}
-                    category={category}
-                    key={category.id}
-                  />
-                ))}
-              </Sidebar.Collapse>
-            </Sidebar.ItemGroup>
-          </Sidebar.Items>
-        </Sidebar>
+        <GameFilter
+          handleGategoryFilter={handleGategoryFilter}
+          selectedCategoryId={selectedCategoryId}
+          categories={categories}
+          setSelectedCategoryId={setSelectedCategoryId}
+          setCurrentPage={setCurrentPage}
+          handlePriceFilter={handlePriceFilter}
+        />
 
         {/* Games cards */}
         <div className="px-[5vw]  my-10 justify-items-center  grid grid-rows-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -205,7 +180,7 @@ const Store = ({
         </div>
       </div>
 
-      {/* pagination */}
+      {/* pagination component*/}
       <GamesPagination
         handleNextPagination={handleNextPagination}
         handlePagination={handlePagination}
