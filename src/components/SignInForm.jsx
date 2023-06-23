@@ -1,21 +1,29 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import signInSchema from "../models/SignInSchema";
+import { useNavigate } from "react-router";
 const SignInForm = () => {
-  const { register, handleSubmit } = useForm();
+  // react form hook
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(signInSchema),
+  });
 
+  //usenavigate
+  const navigate = useNavigate();
+
+  const onSubmitHandler = (data) => {
+    console.log({ data });
+    navigate("/");
+    reset();
+  };
   return (
-    // <form onSubmit={handleSubmit((data) => console.log(data))}>
-    //   <label>
-    //     First Name
-    //     <input {...register("firstName")} />
-    //   </label>
-    //   <label>
-    //     Last Name
-    //     <input {...register("lastName")} />
-    //   </label>
-    //   <input type="submit" />
-    // </form>
-
     <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-cyan-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
@@ -26,7 +34,7 @@ const SignInForm = () => {
             </div>
 
             <form
-              onSubmit={handleSubmit((data) => console.log(data))}
+              onSubmit={handleSubmit(onSubmitHandler)}
               className="divide-y divide-gray-200"
             >
               <div className="py-8 text-base leading-6 space-y-5 text-gray-700 sm:text-lg sm:leading-7">
@@ -45,6 +53,9 @@ const SignInForm = () => {
                   >
                     Email Address
                   </label>
+                  <p className="text-red-500 mx-auto">
+                    {errors.email?.message}
+                  </p>
                 </div>
                 <div className="relative">
                   <input
@@ -61,6 +72,9 @@ const SignInForm = () => {
                   >
                     Password
                   </label>
+                  <p className="text-red-500 mx-auto ">
+                    {errors.password?.message}
+                  </p>
                 </div>
                 <div className="relative">
                   <button className="bg-blue-500 text-white rounded-md px-2 py-1">
