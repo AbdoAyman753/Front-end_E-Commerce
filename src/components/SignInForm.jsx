@@ -24,9 +24,12 @@ const SignInForm = () => {
     reset();
   };
   return (
+    // bg here for theme
     <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-cyan-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+        // bg here for shadow
+        <div className="absolute inset-0 bg-gradient-to-r from-cyan-300 to-cyan-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+        // bg here for form
         <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
           <div className="max-w-md mx-auto">
             <div>
@@ -38,6 +41,7 @@ const SignInForm = () => {
               className="divide-y divide-gray-200"
             >
               <div className="py-8 text-base leading-6 space-y-5 text-gray-700 sm:text-lg sm:leading-7">
+                {/* email input */}
                 <div className="relative">
                   <input
                     autoComplete="off"
@@ -57,6 +61,7 @@ const SignInForm = () => {
                     {errors.email?.message}
                   </p>
                 </div>
+                {/* password input */}
                 <div className="relative">
                   <input
                     autoComplete="off"
@@ -76,6 +81,7 @@ const SignInForm = () => {
                     {errors.password?.message}
                   </p>
                 </div>
+                {/* submit input */}
                 <div className="relative">
                   <button className="bg-blue-500 text-white rounded-md px-2 py-1">
                     Submit
