@@ -8,6 +8,12 @@ const CartItem = ({ item }) => {
         {item.quantity}x {item.product_name}
       </span>
       <div className="ml-auto">
+        <button className="border rounded-full bg-cyan-600 text-white px-2 mr-2 ">
+          +
+        </button>
+        <button className="border rounded-full bg-cyan-600 text-white px-2 mr-2 ">
+          -
+        </button>
         <span>${item.price}</span>
         <button className="border-2 border-red-700 bg-red-700 text-white text-sm rounded-full px-2 ml-3 hover:scale-105 transition-all">
           Delete
