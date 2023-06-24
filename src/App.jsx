@@ -7,6 +7,7 @@ import Support from "./pages/Support";
 import StorePage from "./pages/StorePage";
 import { Route, Routes } from "react-router-dom";
 import Cart from "./pages/Cart";
+import Wishlist from "./pages/Wishlist";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <Route index element={<h2>Home Page</h2>} />
         <Route path="store" element={<StorePage />} />
         <Route path="about" element={<h2>About Page</h2>} />
-        <Route path="wishlist" element={<h2>Wishlist Page</h2>} />
+        <Route path="wishlist" element={<Wishlist />} />
         <Route path="cart" element={<Cart />} />
         <Route path="support" element={<Support />} />
       </Route>

@@ -7,6 +7,7 @@ import GameFilter from "../components/GameFilter";
 import GamesPagination from "../components/GamesPagination";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../store/slices/cartSlice";
+import { addToWishlist } from "../store/slices/wishlistSlice";
 
 const StorePage = () => {
   const [games, setGames] = useState([]);
@@ -219,7 +220,10 @@ const StorePage = () => {
                     </span>
 
                     {/* heart icon */}
-                    <span className=" rounded-full   text-sm font-semibold text-white  hover:scale-110 ">
+                    <span
+                      onClick={() => dispatch(addToWishlist(game))}
+                      className=" rounded-full   text-sm font-semibold text-white  hover:scale-110 "
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"

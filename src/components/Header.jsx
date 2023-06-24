@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 const Header = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const cartNumber = useSelector((state) => state.cart.cart.length);
-  console.log(cartNumber);
+  const { wishlist } = useSelector((state) => state.wishlist);
   return (
     <nav
       className={`bg-cyan-950 text-cyan-300 ${
@@ -58,7 +58,7 @@ const Header = () => {
                 <Link to="/wishlist">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
+                    fill={`${wishlist.length > 0 ? "#22d3ee" : "none"}`}
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
