@@ -1,19 +1,19 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import signInSchema from "../models/SignInSchema";
+// import * as yup from "yup";
+// import { yupResolver } from "@hookform/resolvers/yup";
+// import signInSchema from "../models/SignInSchema";
 import { useNavigate } from "react-router";
-const SignInForm = () => {
-  // react form hook
+const SignUpForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({
-    resolver: yupResolver(signInSchema),
-  });
+  } = useForm();
+  //     {
+  //     resolver: yupResolver(signInSchema),
+  //   }
 
   //usenavigate
   const navigate = useNavigate();
@@ -41,6 +41,27 @@ const SignInForm = () => {
               className="divide-y divide-gray-200"
             >
               <div className="py-8 text-base leading-6 space-y-5 text-gray-700 sm:text-lg sm:leading-7">
+                {/* userName input */}
+                <div className="relative">
+                  <input
+                    autoComplete="off"
+                    id="userName"
+                    {...register("userName", { required: true })}
+                    type="text"
+                    className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                    placeholder="User Name "
+                  />
+                  <label
+                    htmlFor="userName"
+                    className="absolute left-0 -top-5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-4 peer-focus:text-gray-600 peer-focus:text-sm"
+                  >
+                    User Name
+                  </label>
+                  <p className="text-red-500 mx-auto">
+                    {errors.userName?.message}
+                  </p>
+                </div>
+
                 {/* email input */}
                 <div className="relative">
                   <input
@@ -61,6 +82,7 @@ const SignInForm = () => {
                     {errors.email?.message}
                   </p>
                 </div>
+
                 {/* password input */}
                 <div className="relative">
                   <input
@@ -81,6 +103,27 @@ const SignInForm = () => {
                     {errors.password?.message}
                   </p>
                 </div>
+
+                {/* confirm password input */}
+                <div className="relative">
+                  <input
+                    autoComplete="off"
+                    id="confirmPassword"
+                    {...register("confirmPassword", { required: true })}
+                    type="password"
+                    className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                    placeholder="Confirm Password"
+                  />
+                  <label
+                    htmlFor="confirmPassword"
+                    className="absolute left-0 -top-5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-4 peer-focus:text-gray-600 peer-focus:text-sm"
+                  >
+                    Confirm Password
+                  </label>
+                  <p className="text-red-500 mx-auto ">
+                    {errors.confirmPassword?.message}
+                  </p>
+                </div>
                 {/* submit input */}
                 <div className="relative">
                   <button className="bg-blue-500 text-white rounded-md px-2 py-1">
@@ -96,4 +139,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default SignUpForm;

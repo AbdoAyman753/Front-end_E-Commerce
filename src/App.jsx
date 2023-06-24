@@ -7,6 +7,7 @@ import Support from "./pages/Support";
 import { Route, Routes } from "react-router-dom";
 import StorePage from "./pages/StorePage";
 import SignInPage from "./pages/SignInPage";
+import SignUpPage from "./pages/SignUpPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="cart" element={<h2>Cart Page</h2>} />
         <Route path="support" element={<Support />} />
         <Route path="sign-in" element={<SignInPage />} />
+        <Route path="sign-up" element={<SignUpPage />} />
       </Route>
     </Routes>
   );
