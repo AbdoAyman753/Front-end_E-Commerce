@@ -268,7 +268,7 @@ const StorePage = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            // </div>
             //   ))
             //   filteredGames.length > 0 ? (  ) : (
             //   <div className=" text-red-500 font-bold m-auto w-full md:ms-[25vw] col-span-2">
