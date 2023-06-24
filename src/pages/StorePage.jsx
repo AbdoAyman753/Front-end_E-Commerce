@@ -5,10 +5,13 @@ import axios from "axios";
 import { pagination } from "../utils/Pagination";
 import GameFilter from "../components/GameFilter";
 import GamesPagination from "../components/GamesPagination";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../store/slices/cartSlice";
 
 const StorePage = () => {
   const [games, setGames] = useState([]);
   const [categories, setCategory] = useState([]);
+  const dispatch = useDispatch();
 
   // filteruseState
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
@@ -235,7 +238,12 @@ const StorePage = () => {
                     </span>
 
                     {/* add to cart icon*/}
-                    <span className="rounded-full   text-sm font-semibold text-white hover:scale-110    ">
+                    <span
+                      onClick={() => {
+                        dispatch(addToCart(game));
+                      }}
+                      className="rounded-full   text-sm font-semibold text-white hover:scale-110    "
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
