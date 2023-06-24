@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import Button from "./Button";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const cartNumber = useSelector((state) => state.cart.cart.length);
+  console.log(cartNumber);
   return (
     <nav
       className={`bg-cyan-950 text-cyan-300 ${
-        isCollapsed ? "pb-3" : "pb-48"
+        isCollapsed ? "pb-3" : "pb-52"
       } pt-3 sm:pb-3`}
     >
       <div className="container">
@@ -69,7 +72,7 @@ const Header = () => {
                   </svg>
                 </Link>
               </li>
-              <li className="hover:text-cyan-500 pt-2 sm:pt-0">
+              <li className="hover:text-cyan-500 pt-2 sm:pt-0 relative">
                 <Link to="/cart">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -86,6 +89,9 @@ const Header = () => {
                     />
                   </svg>
                 </Link>
+                <span className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 w-4 h-4 rounded-full dark:bg-blue-900 dark:text-blue-300 absolute  top-[-2px] left-[15px] sm:top-[-11px] text-center">
+                  {cartNumber}
+                </span>
               </li>
             </ul>
           </div>
