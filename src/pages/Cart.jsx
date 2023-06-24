@@ -21,7 +21,6 @@ const ICON = (
   </svg>
 );
 
-
 const Cart = () => {
   const { cart } = useSelector((state) => state.cart);
   const total = useSelector(totalPrice);
@@ -74,4 +73,3 @@ const Cart = () => {
 };
 
 export default Cart;
-

@@ -6,12 +6,12 @@ import AppLayout from "./components/AppLayout";
 import Support from "./pages/Support";
 import StorePage from "./pages/StorePage";
 import { Route, Routes } from "react-router-dom";
-import StorePage from "./pages/StorePage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 
 import Cart from "./pages/Cart";
 import Wishlist from "./pages/Wishlist";
+import GameProfile from "./pages/GameProfile";
 
 function App() {
   return (
@@ -25,6 +25,7 @@ function App() {
         <Route path="support" element={<Support />} />
         <Route path="sign-in" element={<SignInPage />} />
         <Route path="sign-up" element={<SignUpPage />} />
+        <Route path="game/:id" element={<GameProfile />} />
       </Route>
     </Routes>
   );
