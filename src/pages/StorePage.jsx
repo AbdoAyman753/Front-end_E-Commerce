@@ -85,6 +85,7 @@ const StorePage = () => {
     const fetchGames = async () => {
       const { data } = await axios.get(
         "http://localhost:3000/products?_delay=0"
+
       );
 
       setGames(data);

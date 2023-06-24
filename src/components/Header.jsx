@@ -103,6 +103,7 @@ const Header = () => {
             <Link to="/sign-up">
               <Button text="Sign up" />
             </Link>
+
           </div>
         </div>
       </div>

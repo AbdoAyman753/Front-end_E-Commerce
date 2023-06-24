@@ -9,6 +9,7 @@ import { Route, Routes } from "react-router-dom";
 import StorePage from "./pages/StorePage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
+
 import Cart from "./pages/Cart";
 import Wishlist from "./pages/Wishlist";
 
