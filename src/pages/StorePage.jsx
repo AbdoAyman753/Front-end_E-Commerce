@@ -39,12 +39,8 @@ const StorePage = () => {
   // pagination
   const pageSize = 6;
   const noOfPages = Math.ceil(filteredGames.length / pageSize);
-  // console.log(noOfPages);
   const pages = pagination(noOfPages);
-  // console.log(pages);
-
   const pageStartWith = (currentPage - 1) * pageSize;
-  // console.log(pageStartWith);
 
   filteredGames = filteredGames.slice(pageStartWith, pageSize + pageStartWith);
 
@@ -128,6 +124,7 @@ const StorePage = () => {
         {/* Games cards */}
         <GamesCards filteredGames={filteredGames} categories={categories} />
       </div>
+      {/* filter match */}
       {(games.length > 0 && filteredGames.length) == 0 ? (
         <div className=" text-red-500 font-bold w-full md:ms-[25vw] ">
           No games match the selected filter condition.
