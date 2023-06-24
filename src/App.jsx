@@ -6,7 +6,6 @@ import AppLayout from "./components/AppLayout";
 import Support from "./pages/Support";
 import StorePage from "./pages/StorePage";
 import { Route, Routes } from "react-router-dom";
-import StorePage from "./pages/StorePage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 
