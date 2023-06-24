@@ -97,7 +97,9 @@ const Header = () => {
           </div>
           {/* Authentication Buttons  */}
           <div className="ml-auto">
-            <Button text="Login" />
+            <Link to="/sign-in">
+              <Button text="Login" />
+            </Link>
             <Button text="Sign up" />
           </div>
         </div>

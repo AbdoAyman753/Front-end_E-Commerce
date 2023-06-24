@@ -6,6 +6,8 @@ import AppLayout from "./components/AppLayout";
 import Support from "./pages/Support";
 import StorePage from "./pages/StorePage";
 import { Route, Routes } from "react-router-dom";
+import StorePage from "./pages/StorePage";
+import SignInPage from "./pages/SignInPage";
 import Cart from "./pages/Cart";
 import Wishlist from "./pages/Wishlist";
 
@@ -19,6 +21,7 @@ function App() {
         <Route path="wishlist" element={<Wishlist />} />
         <Route path="cart" element={<Cart />} />
         <Route path="support" element={<Support />} />
+        <Route path="sign-in" element={<SignInPage />} />
       </Route>
     </Routes>
   );
