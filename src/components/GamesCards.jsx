@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../store/slices/cartSlice";
 import { addToWishlist } from "../store/slices/wishlistSlice";
+import { Link } from "react-router-dom";
 const GamesCards = ({ categories, filteredGames }) => {
   const dispatch = useDispatch();
   return (
@@ -18,11 +19,13 @@ const GamesCards = ({ categories, filteredGames }) => {
                   <div className="w-[5vh] h-[5vh] bg-white  rounded-full shadow-inner shadow-black/80"></div>
                 </div> */}
               {/* image */}
-              <img
-                className="object-fit h-[30vh] lg:h-[40vh] w-full  "
-                src={game.imgs_links}
-                alt={game.product_name}
-              />
+              <Link to={`/game/${game._id}`}>
+                <img
+                  className="object-fit h-[30vh] lg:h-[40vh] w-full cursor-pointer"
+                  src={game.imgs_links}
+                  alt={game.product_name}
+                />
+              </Link>
             </div>
             <div className="px-4 py-1 h-[20vh] lg:h-[17vh]">
               {/* cardHeader */}
