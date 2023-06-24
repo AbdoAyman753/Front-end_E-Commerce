@@ -8,6 +8,8 @@ import StorePage from "./pages/StorePage";
 import { Route, Routes } from "react-router-dom";
 import StorePage from "./pages/StorePage";
 import SignInPage from "./pages/SignInPage";
+import SignUpPage from "./pages/SignUpPage";
+
 import Cart from "./pages/Cart";
 import Wishlist from "./pages/Wishlist";
 
@@ -22,6 +24,7 @@ function App() {
         <Route path="cart" element={<Cart />} />
         <Route path="support" element={<Support />} />
         <Route path="sign-in" element={<SignInPage />} />
+        <Route path="sign-up" element={<SignUpPage />} />
       </Route>
     </Routes>
   );

@@ -100,7 +100,10 @@ const Header = () => {
             <Link to="/sign-in">
               <Button text="Login" />
             </Link>
-            <Button text="Sign up" />
+            <Link to="/sign-up">
+              <Button text="Sign up" />
+            </Link>
+
           </div>
         </div>
       </div>
