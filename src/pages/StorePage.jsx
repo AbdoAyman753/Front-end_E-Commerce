@@ -122,7 +122,9 @@ const StorePage = () => {
         />
 
         {/* Games cards */}
+
         <GamesCards filteredGames={filteredGames} categories={categories} />
+
       </div>
       {/* filter match */}
       {(games.length > 0 && filteredGames.length) == 0 ? (
