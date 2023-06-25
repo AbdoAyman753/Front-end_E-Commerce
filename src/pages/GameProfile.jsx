@@ -11,24 +11,21 @@ const GameProfile = () => {
 
   useEffect(() => {
     const fetchGame = async () => {
-      // console.log(id);
       const { data } = await axios.get(
         `http://localhost:3000/products?_id=${id}`
       );
       setGame(data);
-      // console.log(data);
-      // console.log(game);
-      setSelectedImage(data[0].imgs_links[0]); // set the default selected image to the first image link
+      setSelectedImage(data[0]?.imgs_links[0]); // use optional chaining to set the default selected image to the first image link
     };
     fetchGame();
   }, [id]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const currentIndex = game[0].imgs_links.indexOf(selectedImage);
+      const currentIndex = game[0]?.imgs_links.indexOf(selectedImage);
       const nextIndex =
-        currentIndex === game[0].imgs_links.length - 1 ? 0 : currentIndex + 1;
-      setSelectedImage(game[0].imgs_links[nextIndex]);
+        currentIndex === game[0]?.imgs_links.length - 1 ? 0 : currentIndex + 1;
+      setSelectedImage(game[0]?.imgs_links[nextIndex]);
     }, 2000);
     return () => clearInterval(interval);
   }, [selectedImage, game]);
@@ -41,8 +38,8 @@ const GameProfile = () => {
     <>
       <div className="mx-[5vw] my-10">
         {game.length > 0 ? (
-          <div className="flex flex-col gap-3 bg-white border border-gray-200 rounded-lg shadow md:flex-row  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-            {/* gameSlider */}
+          <div className="flex flex-col gap-3 bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+            {/* image slider */}
             <div className="p-4">
               <div className="mx-auto">
                 {selectedImage ? (
@@ -55,13 +52,13 @@ const GameProfile = () => {
                   "Select an image"
                 )}
               </div>
-              <div className="flex md:w-[50vw] w-full">
-                {game[0].imgs_links.map((image, index) => (
+              <div className="flex md:w-[50vw] w-full h-24 overflow-x-auto">
+                {game[0]?.imgs_links.map((image, index) => (
                   <img
                     key={index}
                     src={image}
                     alt=""
-                    className={`w-[12.8vw] md:w-[7.16vw] h-14 cursor-pointer ${
+                    className={`w-[12.8vw] md:w-[8vw] h-16 cursor-pointer ${
                       selectedImage === image
                         ? "scale-125 shadow-black shadow-md rounded-lg"
                         : ""
@@ -72,10 +69,10 @@ const GameProfile = () => {
               </div>
             </div>
             {/* card body */}
-            <div className="flex flex-col justify-evenly ">
-              <h3 className="font-bold"> {game[0].product_name}</h3>
-              <p className="">{game[0].description}</p>
-              <p className="text-right">{game[0].price} $</p>
+            <div className="flex flex-col justify-evenly md:w-[50vw]">
+              <h3 className="font-bold"> {game[0]?.product_name}</h3>
+              <p className="">{game[0]?.description}</p>
+              <p className="text-right me-5 text-xl "> {game[0]?.price} $</p>
             </div>
           </div>
         ) : (
