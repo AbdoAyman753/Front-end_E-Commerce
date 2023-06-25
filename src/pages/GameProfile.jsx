@@ -64,10 +64,10 @@ const GameProfile = () => {
         <div className="flex flex-col gap-3 bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
           {/* image slider */}
           <div className="p-4">
-            <div className="mx-auto">
+            <div className="mx-auto ">
               {selectedImage ? (
                 <img
-                  className="md:w-[50vw] w-full h-52"
+                  className="md:w-[50vw] w-full h-52 rounded-md"
                   src={selectedImage}
                   alt=""
                 />
@@ -75,7 +75,7 @@ const GameProfile = () => {
                 "Select an image"
               )}
             </div>
-            <div className="flex md:w-[50vw] w-full h-24 overflow-x-auto">
+            <div className="flex md:w-[50vw] w-full h-24 overflow-x-auto  border-gray-300 border-t-2">
               {game[0]?.imgs_links.map((image, index) => (
                 <img
                   key={index}
@@ -83,7 +83,7 @@ const GameProfile = () => {
                   alt=""
                   className={`w-[12.8vw] md:w-[8vw] h-16 cursor-pointer ${
                     selectedImage === image
-                      ? "scale-125 shadow-black shadow-md rounded-lg"
+                      ? "scale-125 shadow-black shadow-md rounded-md border-gray-300 border-2"
                       : ""
                   }`}
                   onClick={() => handleImageClick(image)}
