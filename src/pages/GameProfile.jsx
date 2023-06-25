@@ -3,11 +3,14 @@ import axios from "axios";
 
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-
+import { useDispatch } from "react-redux";
+import { addToCart } from "../store/slices/cartSlice";
+import { addToWishlist } from "../store/slices/wishlistSlice";
 const GameProfile = () => {
   const { id } = useParams();
   const [game, setGame] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchGame = async () => {
@@ -73,6 +76,74 @@ const GameProfile = () => {
               <h3 className="font-bold"> {game[0]?.product_name}</h3>
               <p className="">{game[0]?.description}</p>
               <p className="text-right me-5 text-xl "> {game[0]?.price} $</p>
+              {/* footer */}
+              <div className="flex   gap-2  justify-end me-5">
+                {/* send gift */}
+                <span className=" rounded-full   text-sm font-semibold text-sky-900 hover:scale-110   ">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6  hover:stroke-sky-300  "
+                  >
+                    <title>Buy Gift</title>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
+                    />
+                  </svg>
+                </span>
+
+                {/* heart icon */}
+                <span
+                  onClick={() => dispatch(addToWishlist(game[0]))}
+                  className=" rounded-full   text-sm font-semibold text-sky-900  hover:scale-110 "
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6  hover:stroke-sky-300  cursor-pointer "
+                  >
+                    <title>Add To WishList</title>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                    />
+                  </svg>
+                </span>
+
+                {/* add to cart icon*/}
+                <span
+                  onClick={() => {
+                    dispatch(addToCart(game[0]));
+                    // console.log(game[0]);
+                  }}
+                  className="rounded-full   text-sm font-semibold text-sky-900 hover:scale-110    "
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6  hover:stroke-sky-300  "
+                  >
+                    <title>Add To Cart</title>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
         ) : (
