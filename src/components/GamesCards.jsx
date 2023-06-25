@@ -21,7 +21,7 @@ const GamesCards = ({ categories, filteredGames }) => {
               {/* image */}
               <Link to={`/game/${game._id}`}>
                 <img
-                  className="object-fit h-[30vh] lg:h-[40vh] w-full cursor-pointer"
+                  className="object-fit h-[30vh] lg:h-[40vh] w-full cursor-pointer hover:scale-105"
                   src={game.imgs_links}
                   alt={game.product_name}
                 />
