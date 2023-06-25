@@ -6,6 +6,7 @@ import AppLayout from "./components/AppLayout";
 import Support from "./pages/Support";
 import StorePage from "./pages/StorePage";
 import { Navigate, Route, Routes } from "react-router-dom";
+
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 
@@ -17,6 +18,9 @@ import UserGames from "./components/UserGames";
 import UserOrders from "./components/UserOrders";
 import EditProfile from "./components/editProfile";
 import EditPassword from "./components/EditPassword";
+import GameProfile from "./pages/GameProfile";
+
+
 function App() {
   return (
     <Routes>
@@ -38,6 +42,7 @@ function App() {
         </Route>
         <Route path="sign-in" element={<SignInPage />} />
         <Route path="sign-up" element={<SignUpPage />} />
+        <Route path="game/:id" element={<GameProfile />} />
       </Route>
     </Routes>
   );
