@@ -1,7 +1,7 @@
 import * as yup from "yup";
 // yup signInSchema
 const signUpSchema = yup.object().shape({
-  userName: yup.string().required("User Name is required"),
+  userName: yup.string().min(4).required("User Name is required"),
   email: yup
     .string()
     .email("Invalid email")
@@ -17,7 +17,7 @@ const signUpSchema = yup.object().shape({
   confirmPassword: yup
     .string()
     .required("Confirm Password is required")
-    .oneOf([yup.ref("password"), null], "Passwords must match"),
+    .oneOf([yup.ref("password"), null], "Password must match"),
 });
 
 export default signUpSchema;
