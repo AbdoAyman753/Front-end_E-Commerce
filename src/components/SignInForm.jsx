@@ -11,6 +11,7 @@ const SignInForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    control,
   } = useForm({
     resolver: yupResolver(signInSchema),
   });
@@ -23,6 +24,7 @@ const SignInForm = () => {
     navigate("/");
     reset();
   };
+
   return (
     <>
       {/*// bg here for theme */}
@@ -97,7 +99,6 @@ const SignInForm = () => {
         </div>
       </div>
     </>
-
   );
 };
 

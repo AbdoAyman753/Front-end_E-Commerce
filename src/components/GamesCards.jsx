@@ -7,10 +7,10 @@ const GamesCards = ({ categories, filteredGames }) => {
   const dispatch = useDispatch();
   return (
     <>
-      <div className="px-[5vw] mx-auto  my-10 justify-items-center  grid grid-rows-1  gap-6   md:grid-cols-2 lg:grid-cols-3">
+      <div className="md:px-[8vw] mx-auto   my-10 justify-items-center  grid grid-rows-1  gap-4   md:grid-cols-2 lg:grid-cols-3">
         {filteredGames.map((game) => (
           <div
-            className=" w-60 rounded-3xl  flex flex-col justify-between overflow-hidden shadow-lg shadow-black/80   "
+            className=" w-60 xs:w-72  rounded-3xl  flex flex-col justify-between overflow-hidden shadow-lg shadow-black/80   "
             key={game._id}
           >
             <div className="relative">
@@ -21,13 +21,13 @@ const GamesCards = ({ categories, filteredGames }) => {
               {/* image */}
               <Link to={`/game/${game._id}`}>
                 <img
-                  className="object-fit h-[30vh] lg:h-[40vh] w-full cursor-pointer hover:scale-105"
+                  className="object-fit h-64 w-full cursor-pointer hover:scale-105"
                   src={game.imgs_links[0]}
                   alt={game.product_name}
                 />
               </Link>
             </div>
-            <div className="px-4 py-1 h-[20vh] lg:h-[17vh]">
+            <div className="px-4 py-1 h-40">
               {/* cardHeader */}
               <div className="flex justify-between items-center">
                 <div className="font-bold text-xl mb-1">
@@ -56,7 +56,7 @@ const GamesCards = ({ categories, filteredGames }) => {
               </p>
             </div>
             {/* price */}
-            <div className=" pt-10 pb-2 text-right px-4 flex justify-end items-center  text-xl">
+            <div className=" pt-5 pb-2 text-right px-4 flex justify-end items-center  text-xl">
               <span>{game.price} </span>
 
               <svg
