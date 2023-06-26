@@ -9,12 +9,13 @@ import { useDispatch } from "react-redux";
 // import { addToCart } from "../store/slices/cartSlice";
 // import { addToWishlist } from "../store/slices/wishlistSlice";
 import GamesCards from "./../components/GamesCards";
+import SimpleGameFilter from "../components/SimpleGameFilter";
 
 const StorePage = () => {
   const [games, setGames] = useState([]);
   const [categories, setCategory] = useState([]);
   // const dispatch = useDispatch();
-
+  const [isLoading, setIsLoading] = useState(true);
   // filteruseState
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
   const [selectedPrice, setSelectedPrice] = useState(0);
@@ -46,12 +47,21 @@ const StorePage = () => {
 
   const handlePagination = (page) => {
     setCurrentPage(page);
+    if (currentPage != page) {
+      window.scrollTo(0, 0);
+    }
   };
   const handleNextPagination = () => {
     setCurrentPage(currentPage < noOfPages ? currentPage + 1 : noOfPages);
+    if (currentPage != noOfPages) {
+      window.scrollTo(0, 0);
+    }
   };
   const handlePrevPagination = () => {
     setCurrentPage(currentPage > 1 ? currentPage - 1 : 1);
+    if (currentPage != noOfPages) {
+      window.scrollTo(0, 0);
+    }
   };
 
   const handleGategoryFilter = (categoryId) => {
@@ -83,67 +93,110 @@ const StorePage = () => {
       const { data } = await axios.get(
         "http://localhost:3000/products?_delay=0"
       );
-
+      setIsLoading(false);
       setGames(data);
     };
     const fetchCategory = async () => {
       const { data } = await axios.get(
         "  http://localhost:3000/category?_delay=0"
       );
-
+      setIsLoading(false);
       setCategory(data);
     };
     fetchGames();
     fetchCategory();
   }, []);
+  {
+    /* loader */
+  }
+  if (isLoading) {
+    return (
+      <div className="h-[80vh] flex justify-center items-center">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <>
-      {/* loader */}
-      {games.length === 0 && (
-        <div className="h-[80vh] flex justify-center items-center">
-          <Loader />
-        </div>
-      )}
-
       {/* store games and filter*/}
-      <div className="flex   ">
-        {/* all filter */}
-        <GameFilter
-          handleGategoryFilter={handleGategoryFilter}
-          selectedCategoryId={selectedCategoryId}
-          categories={categories}
-          setSelectedCategoryId={setSelectedCategoryId}
-          setCurrentPage={setCurrentPage}
-          handlePriceFilter={handlePriceFilter}
-          selectedPrice={selectedPrice}
-          filteredGames={filteredGames}
-          games={games}
-        />
 
-        {/* Games cards */}
-
-        <GamesCards filteredGames={filteredGames} categories={categories} />
-
-
-      </div>
-      {/* filter match */}
-      {(games.length > 0 && filteredGames.length) == 0 ? (
-        <div className=" text-red-500 font-bold w-full md:ms-[25vw] ">
-          No games match the selected filter condition.
+      {games.length > 0 && filteredGames.length === 0 ? (
+        <div>
+          {/* <div className="flex   ">*/}
+          {/* all filter */}
+          <SimpleGameFilter
+            handleGategoryFilter={handleGategoryFilter}
+            selectedCategoryId={selectedCategoryId}
+            categories={categories}
+            setSelectedCategoryId={setSelectedCategoryId}
+            setCurrentPage={setCurrentPage}
+            handlePriceFilter={handlePriceFilter}
+            selectedPrice={selectedPrice}
+            filteredGames={filteredGames}
+            games={games}
+          />
+          {/* sliderFilter */}
+          {/* <GameFilter
+            handleGategoryFilter={handleGategoryFilter}
+            selectedCategoryId={selectedCategoryId}
+            categories={categories}
+            setSelectedCategoryId={setSelectedCategoryId}
+            setCurrentPage={setCurrentPage}
+            handlePriceFilter={handlePriceFilter}
+            selectedPrice={selectedPrice}
+            filteredGames={filteredGames}
+            games={games}
+          /> */}
+          <div className="text-red-500 font-bold w-full text-center my-[20vh]">
+            No games match the selected filter condition.
+          </div>
         </div>
       ) : (
-        ""
+        <div>
+          <div className="flex flex-raw flex-wrap xs:flex-row sm:flex-col">
+            <SimpleGameFilter
+              handleGategoryFilter={handleGategoryFilter}
+              selectedCategoryId={selectedCategoryId}
+              categories={categories}
+              setSelectedCategoryId={setSelectedCategoryId}
+              setCurrentPage={setCurrentPage}
+              handlePriceFilter={handlePriceFilter}
+              selectedPrice={selectedPrice}
+              filteredGames={filteredGames}
+              games={games}
+            />
+            {/* sliderFilter */}
+            {/* <div className="flex   ">
+          
+            <GameFilter
+              handleGategoryFilter={handleGategoryFilter}
+              selectedCategoryId={selectedCategoryId}
+              categories={categories}
+              setSelectedCategoryId={setSelectedCategoryId}
+              setCurrentPage={setCurrentPage}
+              handlePriceFilter={handlePriceFilter}
+              selectedPrice={selectedPrice}
+              filteredGames={filteredGames}
+              games={games}
+            /> */}
+            {/* Games cards */}
+
+            <GamesCards filteredGames={filteredGames} categories={categories} />
+            {/* </div> */}
+          </div>
+
+          {/* pagination component*/}
+          <GamesPagination
+            handleNextPagination={handleNextPagination}
+            handlePagination={handlePagination}
+            handlePrevPagination={handlePrevPagination}
+            noOfPages={noOfPages}
+            pages={pages}
+            currentPage={currentPage}
+          />
+        </div>
       )}
-      {/* pagination component*/}
-      <GamesPagination
-        handleNextPagination={handleNextPagination}
-        handlePagination={handlePagination}
-        handlePrevPagination={handlePrevPagination}
-        noOfPages={noOfPages}
-        pages={pages}
-        currentPage={currentPage}
-      />
     </>
   );
 };
