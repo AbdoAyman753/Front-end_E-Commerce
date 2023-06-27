@@ -7,10 +7,13 @@ import { BsBagCheckFill } from "react-icons/bs";
 import { AiFillEdit } from "react-icons/ai";
 import { MdNoEncryption } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import useLogout from "../utils/useLogout";
 
 function ProfileSidebar({ userImg }) {
   const navigate = useNavigate();
-  console.log(userImg);
+  const dispatch = useDispatch();
+  const logout = useLogout();
   return (
     <Sidebar aria-label="Default sidebar example" className="w-full">
       <Sidebar.Items>
@@ -57,8 +60,12 @@ function ProfileSidebar({ userImg }) {
           >
             <p>Orders</p>
           </Sidebar.Item>
-          <Sidebar.Item icon={HiArrowSmLeft}>
-            <p>Sign Out</p>
+          <Sidebar.Item
+            icon={HiArrowSmLeft}
+            onClick={() => logout()}
+            className="cursor-pointer"
+          >
+            Sign Out
           </Sidebar.Item>
         </Sidebar.ItemGroup>
       </Sidebar.Items>

@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import Button from "./Button";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import useAuthenticate from "../utils/useAuthenticate";
+import { logout } from "../store/slices/authSlice";
+import useLogout from "../utils/useLogout";
 
 const Header = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const cartNumber = useSelector((state) => state.cart.cart.length);
   const { wishlist } = useSelector((state) => state.wishlist);
+  const dispatch = useDispatch();
+  const isAuthenticated = useAuthenticate();
+  const logout = useLogout();
+
   return (
     <nav
       className={`bg-cyan-950 text-cyan-300 ${
@@ -54,24 +61,26 @@ const Header = () => {
               <li className="hover:text-cyan-500 pt-2 sm:pt-0">
                 <Link to="/about">About</Link>
               </li>
-              <li className="hover:text-cyan-500 pt-2 sm:pt-0">
-                <Link to="/wishlist">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill={`${wishlist.length > 0 ? "#22d3ee" : "none"}`}
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-                    />
-                  </svg>
-                </Link>
-              </li>
+              {isAuthenticated && (
+                <li className="hover:text-cyan-500 pt-2 sm:pt-0">
+                  <Link to="/wishlist">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill={`${wishlist.length > 0 ? "#22d3ee" : "none"}`}
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                      />
+                    </svg>
+                  </Link>
+                </li>
+              )}
               <li className="hover:text-cyan-500 pt-2 sm:pt-0 relative">
                 <Link to="/cart">
                   <svg
@@ -96,15 +105,32 @@ const Header = () => {
             </ul>
           </div>
           {/* Authentication Buttons  */}
-          <div className="ml-auto">
-            <Link to="/sign-in">
-              <Button text="Login" />
-            </Link>
-            <Link to="/sign-up">
-              <Button text="Sign up" />
-            </Link>
-
-          </div>
+          {!isAuthenticated && (
+            <div className="ml-auto">
+              <Link to="/sign-in">
+                <Button text="Login" />
+              </Link>
+              <Link to="/sign-up">
+                <Button text="Sign up" />
+              </Link>
+            </div>
+          )}
+          {isAuthenticated && (
+            <div className="ml-auto flex items-center">
+              <Link to="user">
+                <div className=" w-10 h-10">
+                  <img
+                    className="w-full h-full rounded-full"
+                    src="https://image.lexica.art/full_jpg/7515495b-982d-44d2-9931-5a8bbbf27532"
+                    alt=""
+                  />
+                </div>
+              </Link>
+              <Link onClick={logout}>
+                <Button text="logout" />
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </nav>

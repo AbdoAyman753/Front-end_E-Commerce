@@ -14,6 +14,7 @@ const AppLayout = () => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
+    // if user => get user with its cart and wishlsit
     let userCart;
     const getCart = async () => {
       const cart = await axios.get("http://localhost:3000/cart");
@@ -23,7 +24,7 @@ const AppLayout = () => {
     if (token) {
       getCart();
     }
-
+    //  if user save user cart and wishlist
     // return () => {
     //   const sendCartToServer = async () => {
     //     axios.post("http://localhost:3000/cart", cart);
