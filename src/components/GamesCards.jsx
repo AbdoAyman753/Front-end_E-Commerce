@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../store/slices/cartSlice";
 import { addToWishlist } from "../store/slices/wishlistSlice";
 import { Link } from "react-router-dom";
+import CartToggle from "./iconsToggle/CartToggle";
 const GamesCards = ({ categories, filteredGames }) => {
   const dispatch = useDispatch();
   return (
@@ -65,7 +66,7 @@ const GamesCards = ({ categories, filteredGames }) => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6"
+                className="w-7 h-7"
               >
                 <path
                   strokeLinecap="round"
@@ -91,7 +92,7 @@ const GamesCards = ({ categories, filteredGames }) => {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6  hover:stroke-sky-300  "
+                    className="w-7 h-7  hover:stroke-sky-300  "
                   >
                     <title>Buy Gift</title>
                     <path
@@ -113,7 +114,7 @@ const GamesCards = ({ categories, filteredGames }) => {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6  hover:stroke-sky-300  cursor-pointer "
+                    className="w-7 h-7  hover:stroke-sky-300  cursor-pointer "
                   >
                     <title>Add To WishList</title>
                     <path
@@ -131,30 +132,11 @@ const GamesCards = ({ categories, filteredGames }) => {
                   }}
                   className="rounded-full   text-sm font-semibold text-white hover:scale-110    "
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6  hover:stroke-sky-300  "
-                  >
-                    <title>Add To Cart</title>
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
+                  <CartToggle id={game._id} fill="#78716c" />
                 </span>
               </div>
             </div>
           </div>
-          //   ))
-          //   filteredGames.length > 0 ? (  ) : (
-          //   <div className=" text-red-500 font-bold m-auto w-full md:ms-[25vw] col-span-2">
-          //     No games match the selected filter condition.
-          //   </div>
         ))}
       </div>
     </>

@@ -7,6 +7,7 @@ import { useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../store/slices/cartSlice";
 import { addToWishlist } from "../store/slices/wishlistSlice";
+import CartToggle from "../components/iconsToggle/CartToggle";
 
 const GameProfile = () => {
   const { id } = useParams();
@@ -75,13 +76,13 @@ const GameProfile = () => {
                 "Select an image"
               )}
             </div>
-            <div className="flex md:w-[50vw] w-full h-24 overflow-x-auto  border-gray-300 border-t-2">
+            <div className="flex md:w-[50vw]  h-28 overflow-x-auto  border-gray-300 border-t-2">
               {game[0]?.imgs_links.map((image, index) => (
                 <img
                   key={index}
                   src={image}
                   alt=""
-                  className={`w-[12.8vw] md:w-[8vw] h-16 cursor-pointer ${
+                  className={`w-[12.8vw] md:w-[8vw] h-20 cursor-pointer ${
                     selectedImage === image
                       ? "scale-125 shadow-black shadow-md rounded-md border-gray-300 border-2"
                       : ""
@@ -97,7 +98,7 @@ const GameProfile = () => {
             <p className="">{game[0]?.description}</p>
             <p className="text-right me-5 text-xl ">{game[0]?.price} $</p>
             {/* footer */}
-            <div className="flex   gap-2  justify-end me-5">
+            <div className="flex   gap-2  justify-end me-5 ">
               {/* send gift */}
               <span className=" rounded-full   text-sm font-semibold text-sky-900 hover:scale-110   ">
                 <svg
@@ -106,7 +107,7 @@ const GameProfile = () => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6  hover:stroke-sky-300  "
+                  className="w-7 h-7  hover:stroke-sky-300  "
                 >
                   <title>Buy Gift</title>
                   <path
@@ -128,7 +129,7 @@ const GameProfile = () => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6  hover:stroke-sky-300  cursor-pointer "
+                  className="w-7 h-7  hover:stroke-sky-300  cursor-pointer "
                 >
                   <title>Add To WishList</title>
                   <path
@@ -147,21 +148,7 @@ const GameProfile = () => {
                 }}
                 className="rounded-full   text-sm font-semibold text-sky-900 hover:scale-110    "
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6  hover:stroke-sky-300  "
-                >
-                  <title>Add To Cart</title>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
+                <CartToggle id={game[0]._id} fill="#a8a29e" />
               </span>
             </div>
           </div>
