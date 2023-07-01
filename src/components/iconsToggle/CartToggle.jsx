@@ -10,7 +10,7 @@ const CartToggle = ({ id, fill }) => {
     const fetchCart = async () => {
       const { data } = await axios.get("http://localhost:3000/cart?_delay=0");
       setCart(data);
-      const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+      const storedCart = JSON.parse(localStorage.getItem("cartItems")) || [];
       setIsInCart(storedCart.some((game) => game.id === id));
     };
 
@@ -18,7 +18,7 @@ const CartToggle = ({ id, fill }) => {
   }, [id]);
 
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("cartItems", JSON.stringify(cart));
   }, [cart]);
 
   const handleToggle = () => {
