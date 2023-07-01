@@ -5,17 +5,21 @@ import axios from "axios";
 import { pagination } from "../utils/Pagination";
 import GameFilter from "../components/GameFilter";
 import GamesPagination from "../components/GamesPagination";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 // import { addToCart } from "../store/slices/cartSlice";
 // import { addToWishlist } from "../store/slices/wishlistSlice";
 import GamesCards from "./../components/GamesCards";
 import SimpleGameFilter from "../components/SimpleGameFilter";
+import SearchBar from "../components/searchBar/SearchBar";
 
 const StorePage = () => {
   const [games, setGames] = useState([]);
   const [categories, setCategory] = useState([]);
   // const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
+  // searchState
+  const [searchKeyword, setSearchKeyword] = useState("");
+
   // filteruseState
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
   const [selectedPrice, setSelectedPrice] = useState(0);
@@ -37,6 +41,16 @@ const StorePage = () => {
   } else if (selectedPrice === 3) {
     filteredGames = filteredGames.filter((game) => game.price > 20);
   }
+
+  if (searchKeyword) {
+    const keyword = searchKeyword.toLowerCase();
+    filteredGames = filteredGames.filter(
+      (game) =>
+        game.product_name.toLowerCase().includes(keyword) ||
+        game.description.toLowerCase().includes(keyword)
+    );
+  }
+
   // pagination
   const pageSize = 6;
   const noOfPages = Math.ceil(filteredGames.length / pageSize);
@@ -59,7 +73,8 @@ const StorePage = () => {
   };
   const handlePrevPagination = () => {
     setCurrentPage(currentPage > 1 ? currentPage - 1 : 1);
-    if (currentPage != noOfPages) {
+
+    if (currentPage !== 1) {
       window.scrollTo(0, 0);
     }
   };
@@ -120,9 +135,13 @@ const StorePage = () => {
   return (
     <>
       {/* store games and filter*/}
-
       {games.length > 0 && filteredGames.length === 0 ? (
         <div>
+          {/* search */}
+          <SearchBar
+            searchKeyword={searchKeyword}
+            setSearchKeyword={setSearchKeyword}
+          />
           {/* <div className="flex   ">*/}
           {/* all filter */}
           <SimpleGameFilter
@@ -155,6 +174,11 @@ const StorePage = () => {
       ) : (
         <div>
           <div className="flex flex-raw flex-wrap xs:flex-row sm:flex-col">
+            {/* search */}
+            <SearchBar
+              searchKeyword={searchKeyword}
+              setSearchKeyword={setSearchKeyword}
+            />
             <SimpleGameFilter
               handleGategoryFilter={handleGategoryFilter}
               selectedCategoryId={selectedCategoryId}
