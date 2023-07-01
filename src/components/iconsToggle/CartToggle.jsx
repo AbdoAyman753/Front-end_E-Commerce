@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const CartToggle = ({ id, fill }) => {
+const CartToggle = ({ game, fill }) => {
   const [cart, setCart] = useState([]);
   const [isInCart, setIsInCart] = useState(false);
 
@@ -11,11 +11,11 @@ const CartToggle = ({ id, fill }) => {
       const { data } = await axios.get("http://localhost:3000/cart?_delay=0");
       setCart(data);
       const storedCart = JSON.parse(localStorage.getItem("cartItems")) || [];
-      setIsInCart(storedCart.some((game) => game.id === id));
+      setIsInCart(storedCart.some((storedGame) => storedGame._id === game._id));
     };
 
     fetchCart();
-  }, [id]);
+  }, [game]);
 
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cart));
@@ -23,16 +23,18 @@ const CartToggle = ({ id, fill }) => {
 
   const handleToggle = () => {
     const newCart = [...cart];
-    const index = newCart.findIndex((game) => game.id === id);
+    const index = newCart.findIndex(
+      (storedGame) => storedGame._id === game._id
+    );
 
     if (index === -1) {
       // add to cart
-      axios.post("http://localhost:3000/cart", { id });
-      newCart.push({ id });
+      axios.post("http://localhost:3000/cart", game);
+      newCart.push(game);
       setIsInCart(true);
     } else {
       // remove from cart
-      axios.delete(`http://localhost:3000/cart/${id}`);
+      axios.delete(`http://localhost:3000/cart/${game._id}`);
       newCart.splice(index, 1);
       setIsInCart(false);
     }

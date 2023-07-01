@@ -136,7 +136,7 @@ const GamesCards = ({ categories, filteredGames }) => {
                   }}
                   className="rounded-full   text-sm font-semibold text-white hover:scale-110    "
                 >
-                  <CartToggle id={game._id} fill="#78716c" />
+                  <CartToggle game={game} fill="#78716c" />
                 </span>
               </div>
             </div>
