@@ -14,7 +14,7 @@ const SimpleGameFilter = ({
   return (
     <>
       {games.length > 0 && (
-        <div className="mx-auto xs:mx-0">
+        <div className="mx-5 xs:mx-0">
           <div className="  xs:ms-3 flex flex-col  sm:flex-row items-start justify-center mt-2">
             <button
               onClick={() => {
