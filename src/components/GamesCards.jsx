@@ -15,7 +15,7 @@ const GamesCards = ({ categories, filteredGames }) => {
         {filteredGames.map((game) => (
           <div
             className=" w-60 xs:w-72  rounded-3xl  flex flex-col justify-between overflow-hidden shadow-lg shadow-black/80   "
-            key={game._id}
+            key={game.id}
           >
             <div className="relative">
               {/* white circle

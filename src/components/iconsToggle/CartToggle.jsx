@@ -11,7 +11,7 @@ const CartToggle = ({ game, fill }) => {
       const { data } = await axios.get("http://localhost:3000/cart?_delay=0");
       setCart(data);
       const storedCart = JSON.parse(localStorage.getItem("cartItems")) || [];
-      setIsInCart(storedCart.some((storedGame) => storedGame._id === game._id));
+      setIsInCart(storedCart.some((storedGame) => storedGame._id == game._id));
     };
 
     fetchCart();
@@ -23,9 +23,7 @@ const CartToggle = ({ game, fill }) => {
 
   const handleToggle = () => {
     const newCart = [...cart];
-    const index = newCart.findIndex(
-      (storedGame) => storedGame._id === game._id
-    );
+    const index = newCart.findIndex((storedGame) => storedGame._id == game._id);
 
     if (index === -1) {
       // add to cart

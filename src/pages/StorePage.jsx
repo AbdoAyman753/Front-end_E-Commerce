@@ -11,6 +11,7 @@ import GamesPagination from "../components/GamesPagination";
 import GamesCards from "./../components/GamesCards";
 import SimpleGameFilter from "../components/SimpleGameFilter";
 import SearchBar from "../components/searchBar/SearchBar";
+import AddProduct from "./AddProduct";
 
 const StorePage = () => {
   const [games, setGames] = useState([]);
@@ -134,6 +135,7 @@ const StorePage = () => {
 
   return (
     <>
+      <AddProduct categories={categories} games={games} />
       {/* store games and filter*/}
       {games.length > 0 && filteredGames.length === 0 ? (
         <div>
