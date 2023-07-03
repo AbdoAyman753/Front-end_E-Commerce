@@ -4,8 +4,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router";
 import gameSchema from "./../models/GameSchema";
 import axios from "axios";
-const AddProduct = ({ categories, games }) => {
+const AddProduct = ({ categories, games, handleAdminAddGame }) => {
   const [showModal, setShowModal] = useState(false);
+  //usenavigate
   const navigate = useNavigate();
 
   const {
@@ -29,21 +30,21 @@ const AddProduct = ({ categories, games }) => {
       recently_added: true,
       imgs_links: newImages,
     };
-    console.log(newGame);
+    // console.log(newGame);
     const addProduct = async () => {
       const result = await axios.post(
         "http://localhost:3000/products",
         newGame
       );
-      console.log(result);
-      if (result.status == 201) {
+      // console.log(result);
+      if (result.status >= 200 && result.status < 300) {
+        handleAdminAddGame(newGame);
         navigate("/store");
         reset();
       }
     };
     addProduct();
   };
-  //usenavigate
   return (
     <>
       <button
