@@ -7,7 +7,12 @@ import CartToggle from "./iconsToggle/CartToggle";
 import useAuthenticate from "../utils/useAuthenticate";
 import EditGame from "./adminRoles/EditGame";
 
-const GamesCards = ({ categories, filteredGames, handleAdminEditGame }) => {
+const GamesCards = ({
+  categories,
+  filteredGames,
+  handleAdminEditGame,
+  mode,
+}) => {
   const dispatch = useDispatch();
   const isAuthenticated = useAuthenticate();
   return (
@@ -16,7 +21,7 @@ const GamesCards = ({ categories, filteredGames, handleAdminEditGame }) => {
         {filteredGames.map((game) => (
           <div
             className=" w-60 xs:w-72  rounded-3xl  flex flex-col justify-between overflow-hidden shadow-lg shadow-black/80   "
-            key={game.id}
+            key={game._id}
           >
             <div className="relative">
               {/* white circle

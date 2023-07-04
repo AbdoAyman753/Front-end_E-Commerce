@@ -1,6 +1,20 @@
 import React from "react";
 
-const AddEditForm = ({ setShowModal, register, errors, categories }) => {
+const AddEditForm = ({
+  setShowModal,
+  register,
+  errors,
+  categories,
+  reset,
+  mode,
+  handleDeleteImage,
+  handleImageMouseLeave,
+  handleImageMouseEnter,
+  imgsLinks,
+  hoveredImageIndex,
+  setImgsLinks,
+  game,
+}) => {
   return (
     <>
       {/* title */}
@@ -55,27 +69,101 @@ const AddEditForm = ({ setShowModal, register, errors, categories }) => {
         <p className="text-red-500 mx-auto">{errors.price?.message}</p>
       </div>
       {/* category */}
-      <div className="mb-2">
-        <label
-          className="block text-gray-700 text-sm font-bold mb-2"
-          htmlFor="categoryId"
-        >
-          category
-        </label>
+      {mode === "add" ? (
+        <div className="mb-2">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="categoryId"
+          >
+            category
+          </label>
 
-        <select
-          name="categoryId"
-          id="categoryId"
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          {...register("categoryId", { required: true })}
-        >
-          {categories?.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.name}
-            </option>
-          ))}
-        </select>
-      </div>
+          <select
+            name="categoryId"
+            id="categoryId"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            {...register("categoryId", { required: true })}
+          >
+            {categories?.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      ) : (
+        <>
+          <div className="mb-2 flex  justify-between items-center">
+            {/* category */}
+            <div>
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="categoryId"
+              >
+                category
+              </label>
+
+              <select
+                name="categoryId"
+                id="categoryId"
+                className="shadow appearance-none border rounded w-[40vw] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                {...register("categoryId", { required: true })}
+              >
+                {categories?.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {/* recentlyAdded */}
+            <div>
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="recentlyAdded "
+              >
+                Recently added
+              </label>
+
+              <select
+                name="recentlyAdded"
+                id="recentlyAdded"
+                className="shadow appearance-none border rounded w-[20vw] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                {...register("recently_added")}
+              >
+                <option value="true">true</option>
+                <option value="false">false</option>
+              </select>
+            </div>
+          </div>
+          {/* images of game */}
+          <div className="flex flex-wrap gap-1">
+            {imgsLinks?.map((image, index) => (
+              <div
+                key={index}
+                className="relative w-[6.5vw] h-10 cursor-pointer"
+                onMouseEnter={() => handleImageMouseEnter(index)}
+                onMouseLeave={handleImageMouseLeave}
+              >
+                <img
+                  className="w-full h-full object-cover"
+                  src={image}
+                  alt={`image${index}`}
+                />
+                {hoveredImageIndex === index && (
+                  <button
+                    className="absolute top-0 right-0 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center text-white text-xs"
+                    onClick={() => handleDeleteImage(index)}
+                  >
+                    X
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
       {/* upload pics */}
       <div className="mb-2">
         <label
@@ -107,7 +195,13 @@ const AddEditForm = ({ setShowModal, register, errors, categories }) => {
         <button
           className="text-white bg-red-500  hover:bg-red-700 font-bold uppercase px-6 py-3 text-sm  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
           type="button"
-          onClick={() => setShowModal(false)}
+          onClick={() => {
+            setShowModal(false);
+            reset();
+            {
+              mode == "edit" ? setImgsLinks(game?.imgs_links) : "";
+            }
+          }}
         >
           Close
         </button>

@@ -33,7 +33,7 @@ const AddGame = ({ categories, handleAdminAddGame }) => {
       recently_added: true,
       imgs_links: newImages,
     };
-    // console.log(newGame);
+    console.log(newGame);
     const addProduct = async () => {
       const result = await axios.post(
         "http://localhost:3000/products",
@@ -85,6 +85,8 @@ const AddGame = ({ categories, handleAdminAddGame }) => {
                         errors={errors}
                         register={register}
                         categories={categories}
+                        reset={reset}
+                        mode="add"
                       />
                     </form>
                   </div>
