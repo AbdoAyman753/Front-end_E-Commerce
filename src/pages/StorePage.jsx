@@ -11,7 +11,6 @@ import GamesPagination from "../components/GamesPagination";
 import GamesCards from "./../components/GamesCards";
 import SimpleGameFilter from "../components/SimpleGameFilter";
 import SearchBar from "../components/searchBar/SearchBar";
-import AddProduct from "./AddProduct";
 import AddGame from "../components/adminRoles/AddGame";
 
 const StorePage = () => {
@@ -104,11 +103,22 @@ const StorePage = () => {
       setCurrentPage(1);
     }
   };
+  //handle Admin roles
   const handleAdminAddGame = (game) => {
     // clone
     const newGames = [...games];
     // edit
     newGames.push(game);
+    // setstate
+    setGames(newGames);
+  };
+  const handleAdminEditGame = (editGme) => {
+    // clone
+    const newGames = [...games];
+    const index = newGames.findIndex((game) => game.id === editGme.id);
+    console.log(newGames[index]);
+    newGames[index] = { ...newGames[index], ...editGme };
+
     // setstate
     setGames(newGames);
   };
@@ -227,7 +237,11 @@ const StorePage = () => {
             /> */}
             {/* Games cards */}
 
-            <GamesCards filteredGames={filteredGames} categories={categories} />
+            <GamesCards
+              handleAdminEditGame={handleAdminEditGame}
+              filteredGames={filteredGames}
+              categories={categories}
+            />
             {/* </div> */}
           </div>
 
