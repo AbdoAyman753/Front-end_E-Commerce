@@ -21,6 +21,7 @@ import EditPassword from "./components/EditPassword";
 import GameProfile from "./pages/GameProfile";
 import Authentication from "./components/Authentication";
 import NotAuthentication from "./components/NotAuthentication";
+import PaymentSuccess from "./pages/PaymentSuccess";
 
 function App() {
   return (
@@ -72,6 +73,14 @@ function App() {
           }
         />
         <Route path="game/:id" element={<GameProfile />} />
+        <Route
+          path="payment-success"
+          element={
+            <Authentication>
+              <PaymentSuccess />
+            </Authentication>
+          }
+        />
       </Route>
     </Routes>
   );

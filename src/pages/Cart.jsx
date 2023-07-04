@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import CartItem from "../components/CartItem";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart, totalPrice } from "../store/slices/cartSlice";
+import { order } from "../utils/stripe";
+import useAuthenticate from "../utils/useAuthenticate";
 const ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -25,6 +27,18 @@ const Cart = () => {
   const { cart } = useSelector((state) => state.cart);
   const total = useSelector(totalPrice);
   const dispatch = useDispatch();
+  const authenticated = useAuthenticate();
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleOrder = () => {
+    if (authenticated) {
+      setIsLoading(true);
+      order(cart);
+    } else {
+      navigate("/sign-in");
+    }
+  };
 
   return (
     <div className="container py-14">
@@ -57,8 +71,11 @@ const Cart = () => {
               <CartItem key={item._id} item={item} />
             ))}
           </div>
-          <button className="border rounded-full bg-cyan-700 text-white px-3 py-1 mr-2">
-            Order
+          <button
+            onClick={handleOrder}
+            className="border rounded-full bg-cyan-700 text-white px-3 py-1 mr-2"
+          >
+            {isLoading ? "Loading..." : "Order"}
           </button>
           <button
             onClick={() => dispatch(clearCart())}
