@@ -104,20 +104,27 @@ const StorePage = () => {
     }
   };
   //handle Admin roles
-  const handleAdminAddGame = (game) => {
+  const handleAdminAddGame = (newGame) => {
     // clone
     const newGames = [...games];
     // edit
-    newGames.push(game);
+    newGames.push(newGame);
     // setstate
     setGames(newGames);
   };
-  const handleAdminEditGame = (editGme) => {
+  const handleAdminEditGame = (editGame) => {
     // clone
     const newGames = [...games];
-    const index = newGames.findIndex((game) => game.id === editGme.id);
+    const index = newGames.findIndex((game) => game.id === editGame.id);
     // console.log(newGames[index]);
-    newGames[index] = { ...newGames[index], ...editGme };
+    newGames[index] = { ...newGames[index], ...editGame };
+
+    // setstate
+    setGames(newGames);
+  };
+  const handleAdminDeleteGame = (deleteGameId) => {
+    // clone & edit
+    const newGames = games.filter((game) => game.id !== deleteGameId);
 
     // setstate
     setGames(newGames);
@@ -239,6 +246,7 @@ const StorePage = () => {
 
             <GamesCards
               handleAdminEditGame={handleAdminEditGame}
+              handleAdminDeleteGame={handleAdminDeleteGame}
               filteredGames={filteredGames}
               categories={categories}
             />
