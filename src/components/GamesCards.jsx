@@ -5,8 +5,15 @@ import { addToWishlist } from "../store/slices/wishlistSlice";
 import { Link } from "react-router-dom";
 import CartToggle from "./iconsToggle/CartToggle";
 import useAuthenticate from "../utils/useAuthenticate";
+import EditGame from "./adminRoles/EditGame";
+import DeleteGame from "./adminRoles/DeleteGame";
 
-const GamesCards = ({ categories, filteredGames }) => {
+const GamesCards = ({
+  categories,
+  filteredGames,
+  handleAdminEditGame,
+  handleAdminDeleteGame,
+}) => {
   const dispatch = useDispatch();
   const isAuthenticated = useAuthenticate();
   return (
@@ -87,8 +94,25 @@ const GamesCards = ({ categories, filteredGames }) => {
                   .map((category) => category.name)}
               </span>
               <div className=" px-4 flex flex-row justify-end items-center gap-2 ">
+                {/* edit icon*/}
+
+                <span className="  rounded-full cursor-pointer   text-sm font-semibold text-white hover:scale-110   ">
+                  <EditGame
+                    categories={categories}
+                    handleAdminEditGame={handleAdminEditGame}
+                    id={game.id}
+                    game={game}
+                  />
+                </span>
+                {/* delete icon*/}
+                <span className=" rounded-full cursor-pointer   text-sm font-semibold text-white hover:scale-110   ">
+                  <DeleteGame
+                    game={game}
+                    handleAdminDeleteGame={handleAdminDeleteGame}
+                  />
+                </span>
                 {/* gift icon*/}
-                <span className=" rounded-full   text-sm font-semibold text-white hover:scale-110   ">
+                <span className=" rounded-full cursor-pointer   text-sm font-semibold text-white hover:scale-110   ">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -110,7 +134,7 @@ const GamesCards = ({ categories, filteredGames }) => {
                 {isAuthenticated && (
                   <span
                     onClick={() => dispatch(addToWishlist(game))}
-                    className=" rounded-full   text-sm font-semibold text-white  hover:scale-110 "
+                    className=" rounded-full cursor-pointer   text-sm font-semibold text-white  hover:scale-110 "
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +158,7 @@ const GamesCards = ({ categories, filteredGames }) => {
                   onClick={() => {
                     dispatch(addToCart(game));
                   }}
-                  className="rounded-full   text-sm font-semibold text-white hover:scale-110    "
+                  className="rounded-full cursor-pointer   text-sm font-semibold text-white hover:scale-110    "
                 >
                   <CartToggle game={game} fill="#78716c" />
                 </span>
