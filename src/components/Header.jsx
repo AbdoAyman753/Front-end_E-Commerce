@@ -98,9 +98,11 @@ const Header = () => {
                     />
                   </svg>
                 </Link>
-                <span className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 w-4 h-4 rounded-full dark:bg-blue-900 dark:text-blue-300 absolute  top-[-2px] left-[15px] sm:top-[-11px] text-center">
-                  {cartNumber}
-                </span>
+                {cartNumber > 0 && (
+                  <span className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 w-4 h-4 rounded-full dark:bg-blue-900 dark:text-blue-300 absolute  top-[-2px] left-[15px] sm:top-[-11px] text-center">
+                    {cartNumber}
+                  </span>
+                )}
               </li>
             </ul>
           </div>
