@@ -7,10 +7,34 @@ import gameSchema from "./../../models/GameSchema";
 import { toast } from "react-toastify";
 
 import { createPortal } from "react-dom";
-const EditGame = ({ categories, handleAdminEditGame, game }) => {
+const EditGame = ({ categories, handleAdminEditGame, id, game }) => {
   const [showModal, setShowModal] = useState(false);
   const [hoveredImageIndex, setHoveredImageIndex] = useState(null);
   const [imgsLinks, setImgsLinks] = useState(game.imgs_links);
+  //usenavigate
+  const navigate = useNavigate();
+  // handleAdminEditGame(game.id);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    watch,
+  } = useForm({
+    resolver: yupResolver(gameSchema),
+  });
+  useEffect(() => {
+    const choosenGame = {
+      title: game.product_name,
+      description: game.description,
+      price: game.price,
+      categoryId: game.categoryId,
+      recently_added: game.recently_added,
+      imgs_links: game.imgs_links,
+    };
+    reset(choosenGame);
+    // console.log(choosenGame);
+  }, [game, reset]);
 
   const handleImageMouseEnter = (index) => {
     setHoveredImageIndex(index);
@@ -25,31 +49,23 @@ const EditGame = ({ categories, handleAdminEditGame, game }) => {
     newImgsLinks.splice(index, 1);
     setImgsLinks(newImgsLinks);
   };
-  //usenavigate
-  const navigate = useNavigate();
-  // handleAdminEditGame(game.id);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-    watch,
-  } = useForm({
-    resolver: yupResolver(gameSchema),
-  });
 
-  useEffect(() => {
-    const choosenGame = {
-      title: game.product_name,
-      description: game.description,
-      price: game.price,
-      categoryId: game.categoryId,
-      recently_added: game.recently_added,
-      imgs_links: game.imgs_links,
-    };
-    reset(choosenGame);
-    // console.log(choosenGame);
-  }, [game, reset]);
+  // useEffect(() => {
+  //   const fetchGame = async () => {
+  //     const { data } = await axios.get(`http://localhost:3000/products/${id}`);
+  //     console.log(data);
+  //     reset({
+  //       title: data.product_name,
+  //       description: data.description,
+  //       price: data.price,
+  //       categoryId: data.categoryId,
+  //       recently_added: data.recently_added,
+  //       imgs_links: data.imgs_links,
+  //     });
+  //   };
+  //   fetchGame();
+  // }, [game, reset]);
+
   const onSubmitHandler = (data) => {
     setShowModal(false);
     const images = [...data.attachment];

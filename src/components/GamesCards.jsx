@@ -94,6 +94,7 @@ const GamesCards = ({ categories, filteredGames, handleAdminEditGame }) => {
                   <EditGame
                     categories={categories}
                     handleAdminEditGame={handleAdminEditGame}
+                    id={game.id}
                     game={game}
                   />
                 </span>

@@ -116,7 +116,7 @@ const StorePage = () => {
     // clone
     const newGames = [...games];
     const index = newGames.findIndex((game) => game.id === editGme.id);
-    console.log(newGames[index]);
+    // console.log(newGames[index]);
     newGames[index] = { ...newGames[index], ...editGme };
 
     // setstate
