@@ -1,14 +1,24 @@
 import React from "react";
+
 // json-server --watch db.json
+
 const SimpleGameFilter = ({
   handleGategoryFilter,
-  selectedCategoryId,
+
+  selectedCategory,
+
   categories,
+
   setCurrentPage,
-  setSelectedCategoryId,
+
+  setselectedCategory,
+
   handlePriceFilter,
+
   selectedPrice,
+
   filteredGames,
+
   games,
 }) => {
   return (
@@ -18,35 +28,37 @@ const SimpleGameFilter = ({
           <div className="  xs:ms-3 flex flex-col  sm:flex-row items-start justify-center mt-2">
             <button
               onClick={() => {
-                setSelectedCategoryId(0);
+                setselectedCategory("all");
                 setCurrentPage(1);
               }}
               type="button"
               className={`  ${
-                selectedCategoryId === 0
+                selectedCategory == "all"
                   ? "bg-sky-800  text-white hover:bg-sky-300  hover:text-sky-700  hover:outline-0 shadow-slate-900 shadow-md"
                   : ""
               }  hover:border-sky-600 hover:outline hover:outline-1 hover:outline-slate-400 rounded-full  font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
             >
               All categories
             </button>
-            {categories.map((category) => (
+
+            {categories.map((category, index) => (
               <button
-                key={category.id}
+                key={index}
                 type="button"
                 onClick={() => {
-                  handleGategoryFilter(category.id);
+                  handleGategoryFilter(category);
                 }}
                 className={`${
-                  selectedCategoryId === category.id
+                  selectedCategory === category
                     ? "bg-sky-800  text-white hover:bg-sky-300  hover:text-sky-700  hover:outline-0 shadow-slate-900 shadow-md"
                     : ""
                 } hover:border-sky-600 hover:outline hover:outline-1 hover:outline-slate-400 rounded-full  text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
               >
-                {category.name}
+                {category}
               </button>
             ))}
           </div>
+
           <div className="border-t-2 sm:border-none flex flex-col  xs:ms-3 sm:flex-row items-center justify-center py-2">
             <button
               onClick={() => {
@@ -75,6 +87,7 @@ const SimpleGameFilter = ({
             >
               1-10$
             </button>
+
             <button
               type="button"
               onClick={() => {
@@ -88,6 +101,7 @@ const SimpleGameFilter = ({
             >
               11-20${" "}
             </button>
+
             <button
               type="button"
               onClick={() => {

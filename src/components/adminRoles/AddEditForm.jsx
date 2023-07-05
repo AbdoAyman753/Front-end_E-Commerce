@@ -69,73 +69,29 @@ const AddEditForm = ({
         <p className="text-red-500 mx-auto">{errors.price?.message}</p>
       </div>
       {/* category */}
-      {mode === "add" ? (
-        <div className="mb-2">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="categoryId"
-          >
-            category
-          </label>
+      <div className="mb-2">
+        <label
+          className="block text-gray-700 text-sm font-bold mb-2"
+          htmlFor="categoryId"
+        >
+          category
+        </label>
 
-          <select
-            name="categoryId"
-            id="categoryId"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            {...register("categoryId", { required: true })}
-          >
-            {categories?.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      ) : (
+        <select
+          name="categoryId"
+          id="categoryId"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          {...register("categoryId", { required: true })}
+        >
+          {categories?.map((category, index) => (
+            <option key={index} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+      </div>
+      {mode === "edit" ? (
         <>
-          <div className="mb-2 flex  justify-between items-center">
-            {/* category */}
-            <div>
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="categoryId"
-              >
-                category
-              </label>
-
-              <select
-                name="categoryId"
-                id="categoryId"
-                className="shadow appearance-none border rounded w-[40vw] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                {...register("categoryId", { required: true })}
-              >
-                {categories?.map((category) => (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-            {/* recentlyAdded */}
-            <div>
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="recentlyAdded "
-              >
-                Recently added
-              </label>
-
-              <select
-                name="recentlyAdded"
-                id="recentlyAdded"
-                className="shadow appearance-none border rounded w-[20vw] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                {...register("recently_added")}
-              >
-                <option value="true">true</option>
-                <option value="false">false</option>
-              </select>
-            </div>
-          </div>
           {/* images of game */}
           <div className="flex flex-wrap gap-1">
             {imgsLinks?.map((image, index) => (
@@ -162,6 +118,8 @@ const AddEditForm = ({
             ))}
           </div>
         </>
+      ) : (
+        ""
       )}
 
       {/* upload pics */}
