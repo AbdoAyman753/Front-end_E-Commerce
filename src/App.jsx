@@ -23,14 +23,16 @@ import GameProfile from "./pages/GameProfile";
 import Authentication from "./components/Authentication";
 import NotAuthentication from "./components/NotAuthentication";
 import PaymentSuccess from "./pages/PaymentSuccess";
+import About from "./pages/About";
+import Carousel from "./pages/Carousel";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<AppLayout />}>
-        <Route index element={<h2>Home Page</h2>} />
+        <Route index element={<Carousel />} />
         <Route path="store" element={<StorePage />} />
-        <Route path="about" element={<h2>About Page</h2>} />
+        <Route path="about" element={<About />} />
         <Route
           path="wishlist"
           element={
