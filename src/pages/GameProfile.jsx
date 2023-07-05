@@ -17,13 +17,15 @@ const GameProfile = () => {
   const dispatch = useDispatch();
   // fetch game from Api and stop loading when finish
   useEffect(() => {
+    console.log(id);
     const fetchGame = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:3000/products?_id=${id}`
+          `http://localhost:8000/products/${id}`
         );
+        console.log(data);
         setGame(data);
-        setSelectedImage(data[0]?.imgs_links[0]);
+        setSelectedImage(data?.imgs_links);
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
@@ -35,10 +37,10 @@ const GameProfile = () => {
   // slider time interval work each deps list changes
   useEffect(() => {
     const interval = setInterval(() => {
-      const currentIndex = game[0]?.imgs_links.indexOf(selectedImage);
+      const currentIndex = game?.imgs_links.indexOf(selectedImage);
       const nextIndex =
-        currentIndex === game[0]?.imgs_links.length - 1 ? 0 : currentIndex + 1;
-      setSelectedImage(game[0]?.imgs_links[nextIndex]);
+        currentIndex === game?.imgs_links.length - 1 ? 0 : currentIndex + 1;
+      setSelectedImage(game?.imgs_links[nextIndex]);
     }, 2000);
     return () => clearInterval(interval);
   }, [selectedImage, game]);
@@ -76,13 +78,13 @@ const GameProfile = () => {
                 "Select an image"
               )}
             </div>
-            <div className="flex md:w-[50vw]  h-28 overflow-x-auto  border-gray-300 border-t-2">
-              {game[0]?.imgs_links.map((image, index) => (
+            <div className="flex md:w-[50vw]  h-28 overflow-x-auto">
+              {game?.imgs_links.map((image, index) => (
                 <img
                   key={index}
                   src={image}
                   alt=""
-                  className={`w-[12.8vw] md:w-[8vw] h-20 cursor-pointer ${
+                  className={`w-[12.8vw] md:w-[8vw] h-20 me-1 mt-1 cursor-pointer ${
                     selectedImage === image
                       ? "scale-125 shadow-black shadow-md rounded-md border-gray-300 border-2"
                       : ""
@@ -94,9 +96,9 @@ const GameProfile = () => {
           </div>
           {/* card body */}
           <div className="flex flex-col justify-evenly md:w-[50vw]">
-            <h3 className="font-bold">{game[0]?.product_name}</h3>
-            <p className="">{game[0]?.description}</p>
-            <p className="text-right me-5 text-xl ">{game[0]?.price} $</p>
+            <h3 className="font-bold">{game?.product_name}</h3>
+            <p className="">{game?.description}</p>
+            <p className="text-right me-5 text-xl ">{game?.price} $</p>
             {/* footer */}
             <div className="flex   gap-2  justify-end me-5 ">
               {/* send gift */}
@@ -120,7 +122,7 @@ const GameProfile = () => {
 
               {/* heart icon */}
               <span
-                onClick={() => dispatch(addToWishlist(game[0]))}
+                onClick={() => dispatch(addToWishlist(game))}
                 className=" rounded-full   text-sm font-semibold text-sky-900  hover:scale-110 "
               >
                 <svg
@@ -143,12 +145,12 @@ const GameProfile = () => {
               {/* add to cart icon*/}
               <span
                 onClick={() => {
-                  dispatch(addToCart(game[0]));
-                  // console.log(game[0]);
+                  dispatch(addToCart(game));
+                  // console.log(game);
                 }}
                 className="rounded-full   text-sm font-semibold text-sky-900 hover:scale-110    "
               >
-                <CartToggle id={game[0]._id} fill="#a8a29e" />
+                <CartToggle id={game?._id} fill="#a8a29e" />
               </span>
             </div>
           </div>

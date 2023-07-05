@@ -45,21 +45,19 @@ const GamesCards = ({
                   {game.product_name}
                 </div>
                 {/* new game */}
-                <span>
-                  {game.recently_added == true ? (
-                    <div className="flex flex-col justify-center items-center">
-                      <span className="">
-                        <img
-                          className="w-9 animate-bounce "
-                          src="fire2.gif"
-                          alt=""
-                        />
-                      </span>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </span>
+                {game.created_at &&
+                Date.now() - new Date(game.created_at) <=
+                  1000 * 60 * 60 * 24 * 2 ? (
+                  <div className="flex flex-col justify-center items-center">
+                    <span className="">
+                      <img
+                        className="w-9 animate-bounce"
+                        src="fire2.gif"
+                        alt=""
+                      />
+                    </span>
+                  </div>
+                ) : null}
               </div>
               {/* description */}
               <p className="text-gray-700  text-base italic font-serif">
@@ -89,9 +87,7 @@ const GamesCards = ({
 
             <div className="flex justify-between  bg-sky-800 border-t-2 py-2 items-center">
               <span className="ps-4 text-gray-300 text-base italic font-serif">
-                {categories
-                  .filter((category) => category.id === game.categoryId)
-                  .map((category) => category.name)}
+                {game.category}
               </span>
               <div className=" px-4 flex flex-row justify-end items-center gap-2 ">
                 {/* edit icon*/}
