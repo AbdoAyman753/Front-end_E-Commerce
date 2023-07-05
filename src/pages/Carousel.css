@@ -1,0 +1,170 @@
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 800px; /* Change this value to adjust the maximum width of the carousel */
+    margin: 80px auto; /* This centers the carousel */
+}
+
+.carousel {
+    display: flex;
+    flex-wrap: nowrap;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+}
+
+  /* The following styles add the automatic sliding functionality */
+.carousel-container:hover .carousel {
+    animation-play-state: paused;
+}
+
+.carousel {
+    animation: slide 5s infinite;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-100%);
+    }
+    45% {
+        transform: translateX(-100%);
+    }
+    50% {
+        transform: translateX(-200%);
+    }
+    70% {
+        transform: translateX(-200%);
+    }
+    75% {
+        transform: translateX(-300%);
+    }
+    95% {
+        transform: translateX(-300%);
+    }
+    100% {
+        transform: translateX(-400%);
+    }
+}
+
+/* width for carousel */
+/* .swiper-slide{
+    width: 37rem;
+    height: 42rem;
+    position: relative;
+} */
+
+/* width for slider */
+
+.swiper-slide {
+    width: 18rem;
+    height: 42rem;
+    position: relative;
+  }
+  
+  .swiper-slide img {
+    width: 37rem;
+    height: 25rem;
+    border-radius: 2rem;
+    object-fit: cover;
+  }
+  
+  .swiper-slide-shadow-left,
+  .swiper-slide-shadow-right {
+    display: none;
+  }
+  
+  .card {
+    width: 20rem;
+    height: 30rem;
+    background-color: #fff;
+    border-radius: 2em;
+    box-shadow: 0 0 2em rgba(0, 0, 0, 0.2);
+    padding: 2em 1em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .card_image {
+    width: 17em;
+    height: 20em;
+    margin-bottom: 1em;
+  }
+  
+  .card_image img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .card_content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .card_title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    position: relative;
+    top: 0.5em;
+    margin-bottom: 2rem;
+  }
+  
+  
+  @media (max-width: 500px) {
+    .swiper-container {
+      height: 47rem;
+    }
+    .swiper-slide {
+      width: 28rem !important;
+      height: 36rem !important;
+    }
+    .swiper-slide img {
+      width: 28rem !important;
+      height: 36rem !important;
+    }
+  }
+  
+  @media (max-width: 990px) {
+    .swiper-container .swiper-button-next {
+      left: 70% !important;
+      transform: translateX(-70%) !important;
+    }
+  }
+  
+  @media (max-width: 450px) {
+    .slider-controler .swiper-button-next {
+      left: 80% !important;
+      transform: translateX(-80%) !important;
+    }
+  }
+  
+  @media (max-width: 990px) {
+    .slider-controler .swiper-button-prev {
+      left: 30% !important;
+      transform: translateX(-30%) !important;
+    }
+  }
+  
+  @media (max-width: 450px) {
+    .slider-controler .swiper-button-prev {
+      left: 20% !important;
+      transform: translateX(-20%) !important;
+    }
+  }
+  
