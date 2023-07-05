@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import signUpSchema from "../models/SignUpSchema";
 import { useNavigate } from "react-router";
+import axios from "axios";
 const SignUpForm = () => {
   const {
     register,
@@ -17,10 +18,14 @@ const SignUpForm = () => {
   //usenavigate
   const navigate = useNavigate();
 
-  const onSubmitHandler = (data) => {
+  const onSubmitHandler = async (data) => {
+    // user_name, email, password
     console.log({ data });
-    navigate("/");
-    reset();
+    const response = await axios.post("http://localhost:8000/users/", data);
+    if (response.status === 201) {
+      navigate("/sign-in");
+      reset();
+    }
   };
   return (
     <>
@@ -49,7 +54,7 @@ const SignUpForm = () => {
                     <input
                       autoComplete="off"
                       id="userName"
-                      {...register("userName", { required: true })}
+                      {...register("user_name", { required: true })}
                       type="text"
                       className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                       placeholder="User Name "
@@ -61,7 +66,7 @@ const SignUpForm = () => {
                       User Name
                     </label>
                     <p className="text-red-500 mx-auto">
-                      {errors.userName?.message}
+                      {errors.user_name?.message}
                     </p>
                   </div>
 
