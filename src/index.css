@@ -2,3 +2,132 @@
 @tailwind components;
 @tailwind utilities;
 
+/* width for carousel */
+/* .swiper-slide{
+    width: 37rem;
+    height: 42rem;
+    position: relative;
+} */
+
+/* width for slider */
+
+.swiper-slide{
+    width: 18rem;
+    height: 42rem;
+    position: relative;
+}
+
+
+
+.swiper-slide img{
+    width:  37rem;
+    height:  25rem;
+    border-radius: 2rem;
+    object-fit: cover;
+}
+
+.swiper-slide-shadow-left,
+.swiper-slide-shadow-right {
+    display: none;
+}
+
+.card{
+    width: 20rem;
+    height: 30rem;
+    background-color: #fff;
+    border-radius: 2em;
+    box-shadow: 0 0 2em rgba(0, 0, 0, .2);
+    padding: 2em 1em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card_image{
+    width:17em;
+    height: 20em;
+    margin-bottom: 1em;
+}
+
+.card_image img{
+    width: 100%;
+    height:100%;
+}
+
+.card_content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card_title{
+    font-size: 1.5rem;
+    font-weight: 500;
+    position: relative;
+    top: .5em;
+    margin-bottom: 2rem;
+}
+
+
+
+@media (min-width:1440px){
+html{
+    zoom : 1.5;
+}
+}
+
+@media (min-width: 2560px) {
+    html{
+        zoom : 1.7;
+    }
+}
+
+@media (min-width : 3860px){
+    html{
+        zoom : 2.5;
+    }
+}
+
+@media (max-width:500px){
+    .swiper-container{
+        height: 47rem;
+    }
+    .swiper-slide{
+        width: 28rem !important;
+        height: 36rem !important;
+    }
+    .swiper-slide img{
+        width: 28rem !important;
+        height: 36rem !important;
+    }
+}
+
+@media (max-width:990px) {
+    .swiper-container .swiper-button-next {
+        left: 70% !important;
+        transform: translateX(-70%) !important;
+    }
+}
+
+@media (max-width:450px) {
+    .slider-controler .swiper-button-next {
+        left: 80% !important;
+        transform: translateX(-80%) !important;
+    }
+}
+
+@media (max-width : 990px) {
+    .slider-controler .swiper-button-prev {
+        left: 30% !important;
+        transform: translateX(-30%) !important;
+    }
+}
+
+@media (max-width : 450px) {
+    .slider-controler .swiper-button-prev {
+        left: 20% !important;
+        transform: translateX(-20%) !important;
+    }
+}
+
+

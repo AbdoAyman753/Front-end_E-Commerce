@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+
 import "./App.css";
 
 import NewPage from "./pages/NewPage";
