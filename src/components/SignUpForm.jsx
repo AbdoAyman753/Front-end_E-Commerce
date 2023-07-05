@@ -11,6 +11,7 @@ const SignUpForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    setError,
   } = useForm({
     resolver: yupResolver(signUpSchema),
   });
@@ -19,12 +20,22 @@ const SignUpForm = () => {
   const navigate = useNavigate();
 
   const onSubmitHandler = async (data) => {
-    // user_name, email, password
     console.log({ data });
-    const response = await axios.post("http://localhost:8000/users/", data);
-    if (response.status === 201) {
-      navigate("/sign-in");
-      reset();
+
+    try {
+      const response = await axios.post("http://localhost:8000/users/", data);
+
+      if (response.status === 201) {
+        navigate("/sign-in");
+        reset();
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        setError("email", {
+          type: "manual",
+          message: "Email is already registered",
+        });
+      }
     }
   };
   return (
