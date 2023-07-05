@@ -4,7 +4,13 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import signInSchema from "../models/SignInSchema";
 import { useNavigate } from "react-router";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login } from "../store/slices/authSlice";
+import { setCart } from "../store/slices/cartSlice";
+import { setWishlist } from "../store/slices/wishlistSlice";
 const SignInForm = () => {
+  const dispatch = useDispatch();
   // react form hook
   const {
     register,
@@ -19,9 +25,21 @@ const SignInForm = () => {
   //usenavigate
   const navigate = useNavigate();
 
-  const onSubmitHandler = (data) => {
+  const onSubmitHandler = async (data) => {
     console.log({ data });
-    navigate("/");
+    const response = await axios.post(
+      "http://localhost:8000/users/login",
+      data
+    );
+    if (response.status === 200) {
+      const { token, user } = response.data;
+      const userInfo = { ...user, cart: undefined, wishlist: undefined };
+      dispatch(setCart(user.cart.products));
+      dispatch(setWishlist(user.cart.products));
+      dispatch(login({ token, userInfo }));
+    }
+    console.log(response);
+    // navigate("/");
     reset();
   };
 
