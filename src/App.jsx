@@ -24,13 +24,14 @@ import Authentication from "./components/Authentication";
 import NotAuthentication from "./components/NotAuthentication";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import About from "./pages/About";
-import Carousel from "./pages/Carousel";
+
+import Home from "./pages/Home";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<AppLayout />}>
-        <Route index element={<Carousel />} />
+        <Route index element={<Home />} />
         <Route path="store" element={<StorePage />} />
         <Route path="about" element={<About />} />
         <Route
