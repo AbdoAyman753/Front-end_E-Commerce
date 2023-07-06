@@ -15,7 +15,7 @@ const GamesCards = ({
   handleAdminDeleteGame,
 }) => {
   const dispatch = useDispatch();
-  const isAuthenticated = useAuthenticate();
+  const {isAuthenticated} = useAuthenticate();
   return (
     <>
       <div className="md:px-[8vw] mx-auto   my-10 justify-items-center  grid grid-rows-1  gap-4   md:grid-cols-2 lg:grid-cols-3">

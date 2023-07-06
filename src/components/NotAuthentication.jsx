@@ -4,7 +4,7 @@ import { Navigate } from "react-router";
 import useAuthenticate from "../utils/useAuthenticate";
 
 const NotAuthentication = ({ children }) => {
-  const isAuthenticated = useAuthenticate();
+  const { isAuthenticated } = useAuthenticate();
 
   if (isAuthenticated) return <Navigate replace to="/" />;
   return <>{!isAuthenticated && children}</>;
