@@ -12,7 +12,6 @@ import GamesCards from "./../components/GamesCards";
 import SimpleGameFilter from "../components/filter/SimpleGameFilter";
 import SearchBar from "../components/searchBar/SearchBar";
 import AddGame from "../components/adminRoles/AddGame";
-import useAdmin from "./../utils/useAdmin";
 const StorePage = () => {
   //_______________________________________ states___________________________________
   const [games, setGames] = useState([]);
@@ -25,7 +24,6 @@ const StorePage = () => {
   // filteruseState
   const [selectedCategory, setselectedCategory] = useState("all");
   const [selectedPrice, setSelectedPrice] = useState(0);
-  const isAdmin = useAdmin();
 
   // pagination useState
   let [currentPage, setCurrentPage] = useState(1);
@@ -153,7 +151,7 @@ const StorePage = () => {
 
     const newGames = [...games];
 
-    const index = newGames.findIndex((game) => game.id === editGame.id);
+    const index = newGames.findIndex((game) => game._id === editGame.id);
 
     // console.log(newGames[index]);
 
@@ -167,7 +165,7 @@ const StorePage = () => {
   const handleAdminDeleteGame = (deleteGameId) => {
     // clone & edit
 
-    const newGames = games.filter((game) => game.id !== deleteGameId);
+    const newGames = games.filter((game) => game._id !== deleteGameId);
 
     // setstate
 
@@ -228,22 +226,12 @@ const StorePage = () => {
 
   return (
     <>
-      {isAdmin && (
-        <AddGame
-          categories={categories}
-          handleAdminAddGame={handleAdminAddGame}
-        />
-      )}
-      {/* <AddProduct
-
+      <AddGame
         categories={categories}
-
-        games={games}
-
         handleAdminAddGame={handleAdminAddGame}
+      />
 
-      /> */}
-      {/* store games and filter*/}
+      {/* store games + filter + search bar*/}
       {games.length > 0 && filteredGames.length === 0 ? (
         <div>
           {/* search */}

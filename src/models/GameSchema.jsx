@@ -7,7 +7,7 @@ const gameSchema = yup.object().shape({
     .number()
     .typeError("Price must be a number")
     .required("Price is required"),
-  categoryId: yup.number().required("Category is required"),
+  category: yup.string().required("Category is required"),
 
   attachment: yup
     .mixed()

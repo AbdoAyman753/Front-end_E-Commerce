@@ -67,10 +67,9 @@ const EditGame = ({ categories, handleAdminEditGame, id, game }) => {
     // console.log(editGame);
 
     const editProduct = async () => {
-      editGame.id = game.id;
       editGame._id = game.id;
       const result = await axios.put(
-        `http://localhost:3000/products/${game.id}`,
+        `http://localhost:8000/products/${game._id}`,
         editGame
       );
       if (result.status >= 200 && result.status < 300) {

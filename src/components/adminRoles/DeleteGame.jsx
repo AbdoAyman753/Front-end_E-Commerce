@@ -13,11 +13,11 @@ const DeleteGame = ({ game, handleAdminDeleteGame }) => {
 
     const deleteProduct = async () => {
       const result = await axios.delete(
-        `http://localhost:3000/products/${game.id}`
+        `http://localhost:8000/products/${game._id}`
       );
       console.log(result);
       if (result.status >= 200 && result.status < 300) {
-        handleAdminDeleteGame(game.id);
+        handleAdminDeleteGame(game._id);
         toast.error("Game Deleted Sucessfully 😊");
         navigate("/store");
       }

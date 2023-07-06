@@ -29,14 +29,14 @@ const AddGame = ({ categories, handleAdminAddGame }) => {
       product_name: data.title,
       description: data.description,
       price: +data.price,
-      categoryId: +data.categoryId,
-      recently_added: true,
+      category: data.category,
       imgs_links: newImages,
+      created_at: Date.now(),
     };
     console.log(newGame);
     const addProduct = async () => {
       const result = await axios.post(
-        "http://localhost:3000/products",
+        "http://localhost:8000/products",
         newGame
       );
       // console.log(result);

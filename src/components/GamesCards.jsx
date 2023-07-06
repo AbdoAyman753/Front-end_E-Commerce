@@ -60,8 +60,10 @@ const GamesCards = ({
                 ) : null}
               </div>
               {/* description */}
-              <p className="text-gray-700  text-base italic font-serif">
-                {game.description}
+              <p className="text-gray-700 text-base italic font-serif">
+                {/* {game.description.split(" ").slice(0, 15).join(" ")}... */}
+                {`${game.description.slice(0, 100)}...`}
+                <Link to={`/game/${game._id}`}>See More</Link>
               </p>
             </div>
             {/* price */}
