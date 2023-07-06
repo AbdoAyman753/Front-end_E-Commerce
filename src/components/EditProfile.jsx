@@ -32,7 +32,7 @@ const EditProfile = () => {
                     ? "border-red-300 focus:ring-red-400 focus:border-red-400"
                     : "focus:ring-blue-500 focus:border-blue-500"
                 }`}
-                defaultValue={user.name}
+                defaultValue={user.user_name}
                 {...register("username", { required: "username is required" })}
               />
             </div>

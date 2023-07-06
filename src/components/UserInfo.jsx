@@ -27,7 +27,7 @@ const UserInfo = () => {
         <tbody>
           <tr>
             <td scope="col" className="px-6 py-3 border">
-              {user.name}
+              {user.user_name}
             </td>
             <td scope="col" className="px-6 py-3 border">
               {user.email}

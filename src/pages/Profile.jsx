@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProfileSidebar from "../components/ProfileSidebar";
 import { Outlet } from "react-router";
+import { useSelector } from "react-redux";
 
 const USER = {
   _id: 1,
@@ -59,14 +60,16 @@ const USER = {
 };
 
 const Profile = () => {
-  console.log(USER.profilePic);
+  const user = useSelector((state) => state.auth.user);
+  console.log(user);
+  useEffect(() => {}, []);
   return (
     <div className="container">
       <div className="sm:flex">
         <div className="sm:w-1/3">
-          <ProfileSidebar userImg={USER.profilePic} />
+          <ProfileSidebar userImg={user.profile_pic} />
         </div>
-        <Outlet context={USER} />
+        <Outlet context={user} />
       </div>
     </div>
   );
