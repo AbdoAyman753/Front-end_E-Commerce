@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Navigation, Pagination, EffectCoverflow } from 'swiper';
 
-
+import img from '../assets/img/imghome.jpg'
 import card1 from '../assets/img/img1.jpg'
 import card2 from '../assets/img/img2.jpg'
 import card3 from '../assets/img/img3.jpg'
@@ -15,13 +15,38 @@ import card7 from '../assets/img/img7.jpg'
 import card8 from '../assets/img/img8.jpg'
 import card9 from '../assets/img/img9.jpg'
 import card10 from '../assets/img/img10.jpg'
+import { Link } from 'react-router-dom';
+
+const gradient = {
+  width:'100%',
+  height: '100%',
+  position:'absolute',
+  opacity: '0.5',
+  backgroundImage: 'radial-gradient(circle farthest-corner at center, #15497E 0%, #3D93BC 100%)'
+}
 
 const Cards =() => {
 
   
 
   return (
+    <>
     
+    <div className='img_home h-screen bg-no-repeat bg-cover	bg-center flex justify-center items-center' style={{backgroundImage:`url(${img})`}}>
+      <div style={gradient}></div>
+    <div className='text font-extrabold	text-8xl	text-slate-100	font-mono	z-20'>
+        <p>Welcome to <span className='text-yellow-400 text-8xl'>z9Games</span> </p>
+        <div className='flex items-center justify-center mt-8'>
+        <button className="btn btn-outline btn-warning text-2xl m-auto" > <Link to='/store'>Explore Our Store</Link>
+</button>
+</div>
+      
+      </div>
+    </div>
+    
+    
+
+
     <div className='container flex items-center justify-center box-border 
     list-none	 mx-auto	py-20 px-12	scroll-smooth 
     overflow-auto hover:overflow-scroll max-w-full h-fit	'>
@@ -80,6 +105,7 @@ const Cards =() => {
         </div>
       </Swiper>
     </div>
+    </>
   )
 }
 
