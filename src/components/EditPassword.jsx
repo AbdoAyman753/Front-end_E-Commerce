@@ -1,5 +1,7 @@
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
+import useAuthenticate from "../utils/useAuthenticate";
 
 const EditPassword = () => {
   const {
@@ -8,10 +10,24 @@ const EditPassword = () => {
     watch,
     formState: { errors },
   } = useForm();
+  const { token, id } = useAuthenticate();
 
+  const handleOnSubmit = async (data) => {
+    console.log(id);
+    const response = await axios.patch(
+      `http://localhost:8000/users/${id}/changePassword`,
+      data,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+    console.log(response);
+  };
   return (
     <div className="m-5 pt-4 sm:mx-auto">
-      <form onSubmit={handleSubmit((data) => console.log(data))}>
+      <form onSubmit={handleSubmit(handleOnSubmit)}>
         <div className="grid gap-6 mb-6 md:grid-cols-2">
           <div>
             <div>
