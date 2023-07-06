@@ -5,8 +5,9 @@ const useAuthenticate = () => {
   const { token, user } = useSelector((state) => state.auth);
   const isAuthenticated =
     token && (user.role === "user" || user.role === "admin");
+  const isAdmin = user.role === "admin";
 
-  return isAuthenticated;
+  return { isAuthenticated, isAdmin };
 };
 
 export default useAuthenticate;

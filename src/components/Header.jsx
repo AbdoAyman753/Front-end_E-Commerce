@@ -11,7 +11,7 @@ const Header = () => {
 
   const { wishlist } = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
-  const isAuthenticated = useAuthenticate();
+  const {isAuthenticated} = useAuthenticate();
   const logout = useLogout();
   const { profile_pic } = useSelector((state) => state.auth.user);
   return (
