@@ -3,7 +3,6 @@ import Button from "./Button";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import useAuthenticate from "../utils/useAuthenticate";
-import { logout } from "../store/slices/authSlice";
 import useLogout from "../utils/useLogout";
 
 const Header = () => {
@@ -13,7 +12,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const isAuthenticated = useAuthenticate();
   const logout = useLogout();
-
+  const { profile_pic } = useSelector((state) => state.auth.user);
   return (
     <nav
       className={`bg-cyan-950 text-cyan-300 ${
@@ -123,7 +122,8 @@ const Header = () => {
                 <div className=" w-10 h-10">
                   <img
                     className="w-full h-full rounded-full"
-                    src="https://image.lexica.art/full_jpg/7515495b-982d-44d2-9931-5a8bbbf27532"
+                    // src="https://image.lexica.art/full_jpg/7515495b-982d-44d2-9931-5a8bbbf27532"
+                    src={profile_pic}
                     alt=""
                   />
                 </div>
