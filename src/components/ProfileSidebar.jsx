@@ -60,13 +60,13 @@ function ProfileSidebar({ userImg }) {
           >
             <p>Orders</p>
           </Sidebar.Item>
-          <Sidebar.Item
+          {/* <Sidebar.Item
             icon={HiArrowSmLeft}
             onClick={() => logout()}
             className="cursor-pointer"
           >
             Sign Out
-          </Sidebar.Item>
+          </Sidebar.Item> */}
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>
