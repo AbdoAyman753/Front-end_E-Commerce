@@ -7,7 +7,7 @@ const useAuthenticate = () => {
     token && (user.role === "user" || user.role === "admin");
   const isAdmin = user.role === "admin";
 
-  return { isAuthenticated, isAdmin };
+  return { isAuthenticated, isAdmin, token };
 };
 
 export default useAuthenticate;
