@@ -12,20 +12,20 @@ import GamesCards from "./../components/GamesCards";
 import SimpleGameFilter from "../components/filter/SimpleGameFilter";
 import SearchBar from "../components/searchBar/SearchBar";
 import AddGame from "../components/adminRoles/AddGame";
-
+import useAdmin from "./../utils/useAdmin";
 const StorePage = () => {
   //_______________________________________ states___________________________________
   const [games, setGames] = useState([]);
   const [categories, setCategory] = useState([]);
   // const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
-
   // searchState
   const [searchKeyword, setSearchKeyword] = useState("");
 
   // filteruseState
   const [selectedCategory, setselectedCategory] = useState("all");
   const [selectedPrice, setSelectedPrice] = useState(0);
+  const isAdmin = useAdmin();
 
   // pagination useState
   let [currentPage, setCurrentPage] = useState(1);
@@ -228,11 +228,12 @@ const StorePage = () => {
 
   return (
     <>
-      <AddGame
-        categories={categories}
-        handleAdminAddGame={handleAdminAddGame}
-      />
-
+      {isAdmin && (
+        <AddGame
+          categories={categories}
+          handleAdminAddGame={handleAdminAddGame}
+        />
+      )}
       {/* <AddProduct
 
         categories={categories}
@@ -242,9 +243,7 @@ const StorePage = () => {
         handleAdminAddGame={handleAdminAddGame}
 
       /> */}
-
       {/* store games and filter*/}
-
       {games.length > 0 && filteredGames.length === 0 ? (
         <div>
           {/* search */}
