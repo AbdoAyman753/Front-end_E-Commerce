@@ -23,8 +23,9 @@ const authSlice = createSlice({
   extraReducers: (builder) =>
     builder.addCase(logout.fulfilled, (state) => {
       localStorage.removeItem("token");
+      localStorage.removeItem("userId");
       state.token = "";
-      state.user = null;
+      state.user = {};
     }),
 });
 export const logout = createAsyncThunk(
