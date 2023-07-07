@@ -32,8 +32,8 @@ const AppLayout = () => {
         const user = response.data;
         const userInfo = { ...user, cart: undefined, wishlist: undefined };
         // const userInfo = { ...user };
-        dispatch(setCart(user.cart.products));
-        dispatch(setWishlist(user.wishlist.products));
+        dispatch(setCart(user.cart[0].products));
+        dispatch(setWishlist(user.wishlist[0].products));
         dispatch(login({ token, userInfo }));
       }
     };
@@ -58,7 +58,7 @@ const AppLayout = () => {
         : [];
 
       const sendCartAndWishlistToServer = async () => {
-        const cartResponse = axios.patch(
+        const cartResponse = await axios.patch(
           "http://localhost:8000/carts/updateCart",
           { products: cartIds },
           {
@@ -67,7 +67,8 @@ const AppLayout = () => {
             },
           }
         );
-        const wishlistResponse = axios.patch(
+        console.log(cartResponse);
+        const wishlistResponse = await axios.patch(
           "http://localhost:8000/wishlists/",
           { products: wishlistIds },
           {
