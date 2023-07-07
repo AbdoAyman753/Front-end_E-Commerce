@@ -2,6 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useOutletContext } from "react-router-dom";
 import Picture from "./Picture";
+import useAuthenticate from "../utils/useAuthenticate";
+import axios from "axios";
 
 const EditProfile = () => {
   const user = useOutletContext();
@@ -10,11 +12,24 @@ const EditProfile = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  const { token, id } = useAuthenticate();
+  const handleOnSubmit = async (data) => {
+    console.log(id);
+    const response = await axios.patch(
+      `http://localhost:8000/users/${id}/`,
+      data,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+    console.log(response);
+  };
   return (
     <div className="m-5 pt-4 sm:mx-auto">
       <Picture />
-      <form onSubmit={handleSubmit((data) => console.log(data))}>
+      <form onSubmit={handleSubmit(handleOnSubmit)}>
         <div className="grid gap-6 mb-6 md:grid-cols-2">
           <div>
             <div>
@@ -38,7 +53,7 @@ const EditProfile = () => {
             </div>
             <span className="text-red-500">{errors.username?.message}</span>
           </div>
-          <div>
+          {/* <div>
             <div>
               <label
                 htmlFor="email"
@@ -65,7 +80,7 @@ const EditProfile = () => {
               />
             </div>
             <span className="text-red-500">{errors.email?.message}</span>
-          </div>
+          </div> */}
         </div>
 
         <button

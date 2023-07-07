@@ -37,6 +37,45 @@ export const logout = createAsyncThunk(
     // } catch (err) {
     //   console.log(err.message);
     // }
+
+    ///////
+    const token = localStorage.getItem("token");
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    const wishlist = JSON.parse(localStorage.getItem("wishlist"));
+
+    const cartIds = cart
+      ? cart.map((product) => {
+          return product._id;
+        })
+      : [];
+
+    const wishlistIds = wishlist
+      ? wishlist.map((product) => {
+          return product._id;
+        })
+      : [];
+
+    const sendCartAndWishlistToServer = async () => {};
+    const cartResponse = axios.patch(
+      "http://localhost:8000/carts/updateCart",
+      { products: cartIds },
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+    const wishlistResponse = axios.patch(
+      "http://localhost:8000/wishlists/",
+      { products: wishlistIds },
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+    await sendCartAndWishlistToServer();
+    ///////
     dispatch(clearCart());
     dispatch(clearWishlist());
   }

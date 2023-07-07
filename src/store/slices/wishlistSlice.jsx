@@ -28,8 +28,8 @@ const wishlistSlice = createSlice({
       localStorage.removeItem("wishlist");
     },
     setWishlist: (state, action) => {
-      state.cart = action.payload;
-      localStorage.setItem("wishlist", JSON.stringify(state.cart));
+      state.wishlist = action.payload;
+      localStorage.setItem("wishlist", JSON.stringify(state.wishlist));
     },
   },
 });

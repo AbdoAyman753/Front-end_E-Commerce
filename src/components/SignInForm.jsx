@@ -33,9 +33,10 @@ const SignInForm = () => {
     );
     if (response.status === 200) {
       const { token, user } = response.data;
+      console.log(user);
       const userInfo = { ...user, cart: undefined, wishlist: undefined };
       dispatch(setCart(user.cart.products));
-      dispatch(setWishlist(user.cart.products));
+      dispatch(setWishlist(user.wishlist.products));
       dispatch(login({ token, userInfo }));
     }
     console.log(response);

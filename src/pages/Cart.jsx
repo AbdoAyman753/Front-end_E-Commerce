@@ -27,7 +27,7 @@ const Cart = () => {
   const { cart } = useSelector((state) => state.cart);
   const total = useSelector(totalPrice);
   const dispatch = useDispatch();
-  const authenticated = useAuthenticate();
+  const { authenticated } = useAuthenticate();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
