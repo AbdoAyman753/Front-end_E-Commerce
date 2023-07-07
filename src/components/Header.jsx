@@ -8,6 +8,7 @@ import useLogout from "../utils/useLogout";
 const Header = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const cartNumber = useSelector((state) => state.cart.cart.length);
+
   const { wishlist } = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
   const {isAuthenticated} = useAuthenticate();

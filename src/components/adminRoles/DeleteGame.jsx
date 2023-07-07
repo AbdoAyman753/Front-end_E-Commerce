@@ -3,9 +3,12 @@ import { createPortal } from "react-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
+import useAuthenticate from "../../utils/useAuthenticate";
 
 const DeleteGame = ({ game, handleAdminDeleteGame }) => {
   const [showModal, setShowModal] = useState(false);
+  const { token } = useAuthenticate();
+
   const navigate = useNavigate();
 
   const handleGameDelete = () => {
@@ -13,11 +16,16 @@ const DeleteGame = ({ game, handleAdminDeleteGame }) => {
 
     const deleteProduct = async () => {
       const result = await axios.delete(
-        `http://localhost:3000/products/${game.id}`
+        `http://localhost:8000/products/${game._id}`,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
       );
       console.log(result);
       if (result.status >= 200 && result.status < 300) {
-        handleAdminDeleteGame(game.id);
+        handleAdminDeleteGame(game._id);
         toast.error("Game Deleted Sucessfully 😊");
         navigate("/store");
       }

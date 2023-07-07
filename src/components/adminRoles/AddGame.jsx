@@ -6,8 +6,11 @@ import axios from "axios";
 import gameSchema from "./../../models/GameSchema";
 import { toast } from "react-toastify";
 import AddEditForm from "./AddEditForm";
+import useAuthenticate from "../../utils/useAuthenticate";
 
 const AddGame = ({ categories, handleAdminAddGame }) => {
+  const { token } = useAuthenticate();
+
   const [showModal, setShowModal] = useState(false);
   //usenavigate
   const navigate = useNavigate();
@@ -20,33 +23,48 @@ const AddGame = ({ categories, handleAdminAddGame }) => {
   } = useForm({
     resolver: yupResolver(gameSchema),
   });
+
   const onSubmitHandler = (data) => {
-    // console.log({ data });
     setShowModal(false);
     const images = [...data.attachment];
     const newImages = images.map((file) => file.name);
-    const newGame = {
-      product_name: data.title,
-      description: data.description,
-      price: +data.price,
-      categoryId: +data.categoryId,
-      recently_added: true,
-      imgs_links: newImages,
-    };
-    console.log(newGame);
-    const addProduct = async () => {
-      const result = await axios.post(
-        "http://localhost:3000/products",
-        newGame
+    const formData = new FormData();
+    formData.append("product_name", data.title);
+    formData.append("description", data.description);
+    formData.append("vendor", data.vendor);
+
+    formData.append("price", +data.price);
+    formData.append("category", data.category);
+    newImages.forEach((image) => {
+      formData.append(
+        "product_images",
+        data.attachment[newImages.indexOf(image)]
       );
-      // console.log(result);
-      if (result.status >= 200 && result.status < 300) {
-        handleAdminAddGame(newGame);
-        toast.success("Game Added Sucessfully 😊");
-        navigate("/store");
-        reset();
+    });
+    const addProduct = async () => {
+      try {
+        const result = await axios.post(
+          "http://localhost:8000/products",
+          formData,
+          {
+            headers: {
+              Authorization: token,
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        if (200 <= result.status < 300) {
+          const newGame = result.data.createdProduct;
+          toast.success("Game Added Successfully 😊");
+          handleAdminAddGame(newGame);
+          // navigate("/store");
+          reset();
+        }
+      } catch (error) {
+        console.log(error);
       }
     };
+
     addProduct();
   };
   return (

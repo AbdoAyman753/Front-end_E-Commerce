@@ -3,11 +3,12 @@ import * as yup from "yup";
 const gameSchema = yup.object().shape({
   title: yup.string().required("Title is required"),
   description: yup.string().required("Description is required"),
+  vendor: yup.string().required("Vendor is required"),
   price: yup
     .number()
     .typeError("Price must be a number")
     .required("Price is required"),
-  categoryId: yup.number().required("Category is required"),
+  category: yup.string().required("Category is required"),
 
   attachment: yup
     .mixed()

@@ -6,12 +6,14 @@ import axios from "axios";
 import gameSchema from "./../../models/GameSchema";
 import { toast } from "react-toastify";
 import AddEditForm from "./AddEditForm";
-
+import useAuthenticate from "../../utils/useAuthenticate";
 import { createPortal } from "react-dom";
 const EditGame = ({ categories, handleAdminEditGame, id, game }) => {
   const [showModal, setShowModal] = useState(false);
   const [hoveredImageIndex, setHoveredImageIndex] = useState(null);
   const [imgsLinks, setImgsLinks] = useState(game.imgs_links);
+  const { token } = useAuthenticate();
+
   //usenavigate
   const navigate = useNavigate();
   const {
@@ -27,9 +29,9 @@ const EditGame = ({ categories, handleAdminEditGame, id, game }) => {
     const choosenGame = {
       title: game.product_name,
       description: game.description,
+      vendor: game.vendor,
       price: game.price,
-      categoryId: game.categoryId,
-      recently_added: game.recently_added,
+      category: game.category,
       imgs_links: game.imgs_links,
     };
     reset(choosenGame);
@@ -53,31 +55,58 @@ const EditGame = ({ categories, handleAdminEditGame, id, game }) => {
     setShowModal(false);
     const images = [...data.attachment];
     const newImages = images.map((file) => file.name);
-    const newImgsLinks = [...imgsLinks, ...newImages];
+    const formData = new FormData();
+    formData.append("product_name", data.title);
+    formData.append("description", data.description);
+    formData.append("vendor", data.vendor);
 
-    const editGame = {
-      product_name: data.title,
-      description: data.description,
-      price: +data.price,
-      categoryId: +data.categoryId,
-      recently_added: data.recentlyAdded === "true",
-      imgs_links: newImgsLinks,
-    };
-    // console.log(data);
-    // console.log(editGame);
+    formData.append("price", +data.price);
+    formData.append("category", data.category);
+    imgsLinks.forEach((image) => {
+      formData.append("old_images", image);
+    });
+    newImages.forEach((image) => {
+      formData.append(
+        "product_images",
+        data.attachment[newImages.indexOf(image)]
+      );
+    });
+    const allImages = [
+      ...formData.getAll("old_images"),
+      ...formData.getAll("product_images"),
+    ];
 
     const editProduct = async () => {
-      editGame.id = game.id;
-      editGame._id = game.id;
-      const result = await axios.put(
-        `http://localhost:3000/products/${game.id}`,
-        editGame
-      );
-      if (result.status >= 200 && result.status < 300) {
-        handleAdminEditGame(editGame);
-        toast.success("Game updated Sucessfully 😊");
-        navigate("/store");
-        reset();
+      try {
+        const result = await axios.patch(
+          `http://localhost:8000/products/${game._id}`,
+          formData,
+          {
+            headers: {
+              Authorization: token,
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        console.log(result);
+        if (200 <= result.status < 300) {
+          const editGame = {
+            product_name: data.title,
+            description: data.description,
+            vendor: data.vendor,
+            price: +data.price,
+            category: data.category,
+            imgs_links: result.data.Product.imgs_links,
+            _id: game._id,
+          };
+
+          handleAdminEditGame(editGame);
+          toast.success("Game updated Sucessfully 😊");
+          navigate("/store");
+          reset();
+        }
+      } catch (error) {
+        console.log(error);
       }
     };
     editProduct();

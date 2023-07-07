@@ -12,6 +12,7 @@ import GamesCards from "./../components/GamesCards";
 import SimpleGameFilter from "../components/filter/SimpleGameFilter";
 import SearchBar from "../components/searchBar/SearchBar";
 import AddGame from "../components/adminRoles/AddGame";
+import useAuthenticate from "../utils/useAuthenticate";
 
 const StorePage = () => {
   //_______________________________________ states___________________________________
@@ -19,13 +20,14 @@ const StorePage = () => {
   const [categories, setCategory] = useState([]);
   // const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
-
   // searchState
   const [searchKeyword, setSearchKeyword] = useState("");
 
   // filteruseState
   const [selectedCategory, setselectedCategory] = useState("all");
   const [selectedPrice, setSelectedPrice] = useState(0);
+
+  const { isAdmin } = useAuthenticate();
 
   // pagination useState
   let [currentPage, setCurrentPage] = useState(1);
@@ -35,7 +37,6 @@ const StorePage = () => {
     selectedCategory === "all"
       ? games
       : games.filter((game) => game.category.includes(selectedCategory));
-
   if (selectedPrice === 1) {
     filteredGames = filteredGames.filter((game) => game.price <= 10);
   } else if (selectedPrice === 2) {
@@ -47,10 +48,8 @@ const StorePage = () => {
   }
 
   // search
-
   if (searchKeyword) {
     const keyword = searchKeyword.toLowerCase();
-
     filteredGames = filteredGames.filter(
       (game) =>
         game.product_name.toLowerCase().includes(keyword) ||
@@ -59,29 +58,21 @@ const StorePage = () => {
   }
 
   // pagination
-
   const pageSize = 6;
-
   const noOfPages = Math.ceil(filteredGames.length / pageSize);
-
   const pages = pagination(noOfPages);
-
   const pageStartWith = (currentPage - 1) * pageSize;
-
   filteredGames = filteredGames.slice(pageStartWith, pageSize + pageStartWith);
 
   //_______________________________________ handle filter+pagination___________________________________
 
   // handle pagination
-
   const handlePagination = (page) => {
     setCurrentPage(page);
-
     if (currentPage != page) {
       window.scrollTo(0, 0);
     }
   };
-
   const handleNextPagination = () => {
     setCurrentPage(currentPage < noOfPages ? currentPage + 1 : noOfPages);
 
@@ -89,7 +80,6 @@ const StorePage = () => {
       window.scrollTo(0, 0);
     }
   };
-
   const handlePrevPagination = () => {
     setCurrentPage(currentPage > 1 ? currentPage - 1 : 1);
 
@@ -98,126 +88,77 @@ const StorePage = () => {
     }
   };
 
-  // handle filter
-
+  // handle category filter
   const handleGategoryFilter = (category) => {
     setselectedCategory(category);
-
     setCurrentPage(1);
   };
-
+  // handle price filter
   const handlePriceFilter = (status) => {
     if (status == 0) {
       setSelectedPrice(0);
-
       setCurrentPage(1);
     }
-
     if (status == 1) {
       setSelectedPrice(1);
-
       setCurrentPage(1);
     }
-
     if (status == 2) {
       setSelectedPrice(2);
-
       setCurrentPage(1);
     }
-
     if (status == 3) {
       setSelectedPrice(3);
-
       setCurrentPage(1);
     }
   };
 
   //handle Admin roles
-
   const handleAdminAddGame = (newGame) => {
     // clone
-
     const newGames = [...games];
-
     // edit
-
     newGames.push(newGame);
-
     // setstate
-
     setGames(newGames);
   };
 
   const handleAdminEditGame = (editGame) => {
     // clone
-
     const newGames = [...games];
-
-    const index = newGames.findIndex((game) => game.id === editGame.id);
-
+    const index = newGames.findIndex((game) => game._id == editGame._id);
     // console.log(newGames[index]);
-
     newGames[index] = { ...newGames[index], ...editGame };
-
+    console.log(newGames);
     // setstate
-
     setGames(newGames);
   };
 
   const handleAdminDeleteGame = (deleteGameId) => {
     // clone & edit
-
-    const newGames = games.filter((game) => game.id !== deleteGameId);
-
+    const newGames = games.filter((game) => game._id !== deleteGameId);
     // setstate
-
     setGames(newGames);
   };
 
   //_______________________________________ fetch games and categories ___________________________________
 
   // use effects
-
   useEffect(() => {
     const fetchGames = async () => {
       // const { data, categoryList } = await axios.get(
-
       const { data } = await axios.get("http://localhost:8000/products");
-
       const { Products, categoryList } = data;
-
       setIsLoading(false);
-
       setGames(Products);
-
       setCategory(categoryList);
-
       console.log(Products, categoryList);
     };
-
-    // const fetchCategory = async () => {
-
-    //   const { data } = await axios.get(
-
-    //     "  http://localhost:3000/category?_delay=0"
-
-    //   );
-
-    //   setIsLoading(false);
-
-    //   setCategory(data);
-
-    // };
-
     fetchGames();
-
-    // fetchCategory();
   }, []);
 
   // check if data is ready to show or not to show loader
-
   // loader
-
   if (isLoading) {
     return (
       <div className="h-[80vh] flex justify-center items-center">
@@ -228,23 +169,13 @@ const StorePage = () => {
 
   return (
     <>
-      <AddGame
-        categories={categories}
-        handleAdminAddGame={handleAdminAddGame}
-      />
-
-      {/* <AddProduct
-
-        categories={categories}
-
-        games={games}
-
-        handleAdminAddGame={handleAdminAddGame}
-
-      /> */}
-
-      {/* store games and filter*/}
-
+      {isAdmin && (
+        <AddGame
+          categories={categories}
+          handleAdminAddGame={handleAdminAddGame}
+        />
+      )}
+      {/* store games + filter + search bar*/}
       {games.length > 0 && filteredGames.length === 0 ? (
         <div>
           {/* search */}
