@@ -126,9 +126,10 @@ const StorePage = () => {
   const handleAdminEditGame = (editGame) => {
     // clone
     const newGames = [...games];
-    const index = newGames.findIndex((game) => game._id === editGame.id);
+    const index = newGames.findIndex((game) => game._id == editGame._id);
     // console.log(newGames[index]);
     newGames[index] = { ...newGames[index], ...editGame };
+    console.log(newGames);
     // setstate
     setGames(newGames);
   };
