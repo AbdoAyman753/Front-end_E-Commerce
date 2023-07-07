@@ -34,6 +34,7 @@ const AddEditForm = ({
         />
         <p className="text-red-500 mx-auto">{errors.title?.message}</p>
       </div>
+
       {/* description */}
       <div className="mb-2">
         <label
@@ -50,6 +51,23 @@ const AddEditForm = ({
           placeholder="Game Description"
         />
         <p className="text-red-500 mx-auto">{errors.description?.message}</p>
+      </div>
+      {/* vendor */}
+      <div className="mb-2">
+        <label
+          className="block text-gray-700 text-sm font-bold mb-2"
+          htmlFor="vendor"
+        >
+          Vendor
+        </label>
+        <input
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="vendor"
+          type="text"
+          {...register("vendor", { required: true })}
+          placeholder="Game vendor"
+        />
+        <p className="text-red-500 mx-auto">{errors.vendor?.message}</p>
       </div>
       {/* price */}
       <div className="mb-2">
