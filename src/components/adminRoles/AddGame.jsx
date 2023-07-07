@@ -53,7 +53,7 @@ const AddGame = ({ categories, handleAdminAddGame }) => {
             },
           }
         );
-        if (200 < result.status < 300) {
+        if (200 <= result.status < 300) {
           const newGame = result.data.createdProduct;
           toast.success("Game Added Successfully 😊");
           handleAdminAddGame(newGame);
