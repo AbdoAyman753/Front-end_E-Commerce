@@ -27,14 +27,15 @@ const Cart = () => {
   const { cart } = useSelector((state) => state.cart);
   const total = useSelector(totalPrice);
   const dispatch = useDispatch();
-  const { authenticated } = useAuthenticate();
+  const { isAuthenticated, token } = useAuthenticate();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleOrder = () => {
-    if (authenticated) {
+    console.log(isAuthenticated);
+    if (isAuthenticated) {
       setIsLoading(true);
-      order(cart);
+      order(cart, total, token);
     } else {
       navigate("/sign-in");
     }
