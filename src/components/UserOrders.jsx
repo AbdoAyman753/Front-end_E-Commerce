@@ -1,13 +1,20 @@
 import React from "react";
 import { useOutletContext } from "react-router";
+const dateOptions = {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+};
 
 const UserOrders = () => {
-  const { orders } = useOutletContext();
-
-  if (orders.length == 0) return <h2>empty</h2>;
+  let { orders } = useOutletContext();
+  // orders = orders[0].products;
+  // console.log(orders);
+  if (orders.length < 1) return <h2>empty</h2>;
   return (
     <>
-      {orders?.length && (
+      {orders?.length > 0 && (
         <div className=" w-full mt-3 sm:ml-2 mb-4">
           <div className="relative overflow-x-auto">
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 border">
@@ -37,7 +44,12 @@ const UserOrders = () => {
                       {order.order_name}
                     </th> */}
                     <td className="px-6 py-4">${order.totalPrice}</td>
-                    <td className="px-6 py-4">{order.createdAt}</td>
+                    <td className="px-6 py-4">
+                      {new Date(order.createdAt).toLocaleDateString(
+                        "en-EG",
+                        dateOptions
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -45,7 +57,6 @@ const UserOrders = () => {
           </div>
         </div>
       )}
-      ;
     </>
   );
 };
