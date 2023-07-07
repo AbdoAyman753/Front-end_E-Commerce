@@ -15,7 +15,7 @@ const GamesCards = ({
   handleAdminDeleteGame,
 }) => {
   const dispatch = useDispatch();
-  const {isAuthenticated} = useAuthenticate();
+  const { isAuthenticated } = useAuthenticate();
   return (
     <>
       <div className="md:px-[8vw] mx-auto   my-10 justify-items-center  grid grid-rows-1  gap-4   md:grid-cols-2 lg:grid-cols-3">
@@ -38,12 +38,14 @@ const GamesCards = ({
                 />
               </Link>
             </div>
-            <div className="px-4 py-1 h-40">
-              {/* cardHeader */}
-              <div className="flex justify-between items-center">
-                <div className="font-bold text-xl mb-1">
-                  {game.product_name}
-                </div>
+            {/* cardHeader */}
+            <div className="px-4 py-1  ">
+              <div className="font-bold text-xl mb-1">{game.product_name}</div>
+              <div className="flex justify-between">
+                <p className="text-sm">
+                  <span className="font-semibold">vendor :</span>
+                  {game.vendor}
+                </p>
                 {/* new game */}
                 {game.created_at &&
                 Date.now() - new Date(game.created_at) <=
@@ -59,7 +61,10 @@ const GamesCards = ({
                   </div>
                 ) : null}
               </div>
-              {/* description */}
+            </div>
+
+            {/* description */}
+            <div className="px-4 pb-1 h-28">
               <p className="text-gray-700 text-base italic font-serif">
                 {/* {game.description.split(" ").slice(0, 15).join(" ")}... */}
                 {`${game.description.slice(0, 100)}...`}
