@@ -5,16 +5,15 @@ import Loader from "./../components/Loader";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../store/slices/cartSlice";
-import { addToWishlist } from "../store/slices/wishlistSlice";
+
 import CartToggle from "../components/iconsToggle/CartToggle";
+import WishlistToggle from "../components/iconsToggle/WishlistToggle";
 
 const GameProfile = () => {
   const { id } = useParams();
   const [game, setGame] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const dispatch = useDispatch();
   // fetch game from Api and stop loading when finish
   useEffect(() => {
     console.log(id);
@@ -121,36 +120,13 @@ const GameProfile = () => {
               </span>
 
               {/* heart icon */}
-              <span
-                onClick={() => dispatch(addToWishlist(game))}
-                className=" rounded-full   text-sm font-semibold text-sky-900  hover:scale-110 "
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-7 h-7  hover:stroke-sky-300  cursor-pointer "
-                >
-                  <title>Add To WishList</title>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-                  />
-                </svg>
+              <span className=" rounded-full   text-sm font-semibold text-sky-900  hover:scale-110 ">
+                <WishlistToggle game={game} id={id} />
               </span>
 
               {/* add to cart icon*/}
-              <span
-                onClick={() => {
-                  dispatch(addToCart(game));
-                  // console.log(game);
-                }}
-                className="rounded-full   text-sm font-semibold text-sky-900 hover:scale-110    "
-              >
-                <CartToggle id={game?._id} fill="#a8a29e" />
+              <span className="rounded-full   text-sm font-semibold text-sky-900 hover:scale-110    ">
+                <CartToggle game={game} id={id} />
               </span>
             </div>
           </div>
