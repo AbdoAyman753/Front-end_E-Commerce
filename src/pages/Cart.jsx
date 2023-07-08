@@ -62,7 +62,7 @@ const Cart = () => {
           <div className="border border-cyan-500 my-8">
             <div className="flex justify-between bg-cyan-600 text-white p-3">
               <p>Your cart, User</p>
-              <p>total price ${total}</p>
+              <p>total price ${total.toFixed(2)}</p>
             </div>
             {cart?.map((item) => (
               <CartItem key={item._id} item={item} />

@@ -19,11 +19,17 @@ const authSlice = createSlice({
       localStorage.setItem("userId", action.payload.userInfo._id);
       console.log(state.user);
     },
+    updateUserName: (state, action) => {
+      state.user.user_name = action.payload;
+    },
+    updateUserPicture: (state, action) => {
+      state.user.profile_pic = action.payload;
+    },
   },
   extraReducers: (builder) =>
     builder.addCase(logout.fulfilled, (state) => {
-      localStorage.removeItem("token");
-      localStorage.removeItem("userId");
+      // localStorage.removeItem("token");
+      // localStorage.removeItem("userId");
       state.token = "";
       state.user = {};
     }),
@@ -39,46 +45,48 @@ export const logout = createAsyncThunk(
     // }
 
     ///////
-    const token = localStorage.getItem("token");
-    const cart = JSON.parse(localStorage.getItem("cart"));
-    const wishlist = JSON.parse(localStorage.getItem("wishlist"));
+    // const token = localStorage.getItem("token");
+    // const cart = JSON.parse(localStorage.getItem("cart"));
+    // const wishlist = JSON.parse(localStorage.getItem("wishlist"));
 
-    const cartIds = cart
-      ? cart.map((product) => {
-          return product._id;
-        })
-      : [];
+    // const cartIds = cart
+    //   ? cart.map((product) => {
+    //       return product._id;
+    //     })
+    //   : [];
 
-    const wishlistIds = wishlist
-      ? wishlist.map((product) => {
-          return product._id;
-        })
-      : [];
+    // const wishlistIds = wishlist
+    //   ? wishlist.map((product) => {
+    //       return product._id;
+    //     })
+    //   : [];
 
-    const sendCartAndWishlistToServer = async () => {};
-    const cartResponse = axios.patch(
-      "http://localhost:8000/carts/updateCart",
-      { products: cartIds },
-      {
-        headers: {
-          Authorization: token,
-        },
-      }
-    );
-    const wishlistResponse = axios.patch(
-      "http://localhost:8000/wishlists/",
-      { products: wishlistIds },
-      {
-        headers: {
-          Authorization: token,
-        },
-      }
-    );
-    await sendCartAndWishlistToServer();
+    // const sendCartAndWishlistToServer = async () => {};
+    // const cartResponse = axios.patch(
+    //   "http://localhost:8000/carts/updateCart",
+    //   { products: cartIds },
+    //   {
+    //     headers: {
+    //       Authorization: token,
+    //     },
+    //   }
+    // );
+    // const wishlistResponse = axios.patch(
+    //   "http://localhost:8000/wishlists/",
+    //   { products: wishlistIds },
+    //   {
+    //     headers: {
+    //       Authorization: token,
+    //     },
+    //   }
+    // );
+    // await sendCartAndWishlistToServer();
     ///////
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
     dispatch(clearCart());
     dispatch(clearWishlist());
   }
 );
-export const { login } = authSlice.actions;
+export const { login, updateUserName, updateUserPicture } = authSlice.actions;
 export default authSlice.reducer;

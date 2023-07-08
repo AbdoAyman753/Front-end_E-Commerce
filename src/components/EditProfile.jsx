@@ -4,6 +4,8 @@ import { useOutletContext } from "react-router-dom";
 import Picture from "./Picture";
 import useAuthenticate from "../utils/useAuthenticate";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { updateUserName } from "../store/slices/authSlice";
 
 const EditProfile = () => {
   const user = useOutletContext();
@@ -12,9 +14,10 @@ const EditProfile = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const dispatch = useDispatch();
   const { token, id } = useAuthenticate();
   const handleOnSubmit = async (data) => {
-    console.log(id);
+    console.log(data.username);
     const response = await axios.patch(
       `http://localhost:8000/users/${id}/`,
       data,
@@ -24,6 +27,7 @@ const EditProfile = () => {
         },
       }
     );
+    if (response.status === 200) dispatch(updateUserName(data.username));
     console.log(response);
   };
   return (
