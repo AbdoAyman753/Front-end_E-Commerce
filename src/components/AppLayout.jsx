@@ -142,7 +142,7 @@ const AppLayout = () => {
     // firstRender = false;
   }, [wishlist]);
   return (
-    <div>
+    <div className="flex flex-col">
       <Header />
       <main className="min-h-[80vh] flex flex-col">
         <Outlet />

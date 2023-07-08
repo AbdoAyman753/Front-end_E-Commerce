@@ -19,7 +19,7 @@ const Cards =() => {
     <div className='container  flex items-center justify-center box-border 
     list-none	 mx-auto	py-20 px-12	scroll-smooth 
     overflow-auto hover:overflow-scroll max-w-full h-fit'>
-      <Swiper wrapperClass="swiper-wrapper" slideClass="swiper-slide"
+      <Swiper wrapperClass="swiper-wrapper" slideClass="swiper-slider"
       effect={'coverflow'}
         grabCursor={true}
         centeredSlides={true}
