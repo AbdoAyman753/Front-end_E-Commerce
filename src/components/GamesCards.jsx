@@ -172,16 +172,10 @@ const GamesCards = ({
                 {/* add to cart icon*/}
 
                 {!isAdmin && (
-                  <span
-                    onClick={() => {
-                      dispatch(addToCart(game));
-                    }}
-                    className="rounded-full cursor-pointer   text-sm font-semibold text-white hover:scale-110    "
-                  >
-                    <CartToggle game={game} fill="#78716c" />
+                  <span className="rounded-full cursor-pointer   text-sm font-semibold text-white hover:scale-110    ">
+                    <CartToggle game={game} />
                   </span>
                 )}
-
               </div>
             </div>
           </div>

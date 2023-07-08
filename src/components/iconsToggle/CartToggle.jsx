@@ -1,63 +1,92 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+
+import { addToCart, removeFromCart } from "../../store/slices/cartSlice";
 
 const CartToggle = ({ game, fill }) => {
-  const [cart, setCart] = useState([]);
+  const { user } = useSelector((state) => state.auth);
+  const { cart } = useSelector((state) => state.cart.cart);
+  const isInLibrary = user.library?.includes(game);
   const [isInCart, setIsInCart] = useState(false);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    const fetchCart = async () => {
-      const { data } = await axios.get("http://localhost:3000/cart?_delay=0");
-      setCart(data);
-      const storedCart = JSON.parse(localStorage.getItem("cartItems")) || [];
-      setIsInCart(storedCart.some((storedGame) => storedGame._id == game._id));
-    };
-
-    fetchCart();
-  }, [game]);
-
-  useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cart));
-  }, [cart]);
-
-  const handleToggle = () => {
-    const newCart = [...cart];
-    const index = newCart.findIndex((storedGame) => storedGame._id == game._id);
-
-    if (index === -1) {
-      // add to cart
-      axios.post("http://localhost:3000/cart", game);
-      newCart.push(game);
-      setIsInCart(true);
-    } else {
-      // remove from cart
-      axios.delete(`http://localhost:3000/cart/${game._id}`);
-      newCart.splice(index, 1);
-      setIsInCart(false);
-    }
-
-    setCart(newCart);
+  const handleAddToCart = () => {
+    dispatch(addToCart(game));
+    setIsInCart(true);
   };
 
+  const handleRemoveFromCart = () => {
+    dispatch(removeFromCart(game._id));
+    setIsInCart(false);
+  };
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setIsInCart(storedCart.some((storedGame) => storedGame._id == game._id));
+  }, [game]);
+
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill={isInCart ? fill : "none"}
-      viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      stroke="currentColor"
-      className="w-7 h-7 
+    <>
+      {/* add to cart */}
+      {!isInCart && (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-7 h-7 
          hover:stroke-sky-300 "
-      onClick={handleToggle}
-    >
-      <title>Add To Cart</title>
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-      />
-    </svg>
+          onClick={handleAddToCart}
+        >
+          <title>Add To Cart</title>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+      )}
+      {/* remove from cart */}
+      {isInCart && (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-7 h-7"
+          onClick={handleRemoveFromCart}
+        >
+          <title>Remove From Cart</title>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+      )}
+      {/* item in library */}
+      {isInLibrary && (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-7 h-7"
+        >
+          <title>Owned In Library </title>
+
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+      )}
+    </>
   );
 };
 
