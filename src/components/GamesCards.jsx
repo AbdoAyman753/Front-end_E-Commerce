@@ -141,7 +141,7 @@ const GamesCards = ({
                   <span
                     onClick={() => {
                       dispatch(addToWishlist(game));
-                      dispatch(removeFromCart(game));
+                      dispatch(removeFromCart(game._id));
                     }}
                     className=" rounded-full cursor-pointer   text-sm font-semibold text-white  hover:scale-110 "
                   >
@@ -166,7 +166,7 @@ const GamesCards = ({
                 <span
                   onClick={() => {
                     dispatch(addToCart(game));
-                    dispatch(removeFromWishlist(game));
+                    dispatch(removeFromWishlist(game._id));
                   }}
                   className="rounded-full cursor-pointer   text-sm font-semibold text-white hover:scale-110    "
                 >
