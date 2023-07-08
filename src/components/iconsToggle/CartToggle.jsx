@@ -2,14 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-
 import { addToCart, removeFromCart } from "../../store/slices/cartSlice";
 
-const CartToggle = ({ game, fill }) => {
+const CartToggle = ({ game, id }) => {
   const { user } = useSelector((state) => state.auth);
-  const { cart } = useSelector((state) => state.cart.cart);
-  const isInLibrary = user.library?.includes(game);
   const [isInCart, setIsInCart] = useState(false);
+  const [isInLibrary, setIsInLibrary] = useState(false);
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
@@ -23,13 +21,16 @@ const CartToggle = ({ game, fill }) => {
   };
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setIsInCart(storedCart.some((storedGame) => storedGame._id == game._id));
-  }, [game]);
+    setIsInCart(storedCart.some((storedGame) => storedGame._id == game?._id));
+    setIsInLibrary(
+      user.library[0].products.some((product) => product._id === game._id)
+    );
+  }, [game, id]);
 
   return (
     <>
       {/* add to cart */}
-      {!isInCart && (
+      {!isInCart && !isInLibrary && (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -49,7 +50,7 @@ const CartToggle = ({ game, fill }) => {
         </svg>
       )}
       {/* remove from cart */}
-      {isInCart && (
+      {isInCart && !isInLibrary && (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
