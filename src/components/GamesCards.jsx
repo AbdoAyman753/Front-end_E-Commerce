@@ -1,7 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../store/slices/cartSlice";
-import { addToWishlist } from "../store/slices/wishlistSlice";
+import { addToCart, removeFromCart } from "../store/slices/cartSlice";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "../store/slices/wishlistSlice";
 import { Link } from "react-router-dom";
 import CartToggle from "./iconsToggle/CartToggle";
 import useAuthenticate from "../utils/useAuthenticate";
@@ -136,7 +139,10 @@ const GamesCards = ({
                 {/* heart icon */}
                 {isAuthenticated && (
                   <span
-                    onClick={() => dispatch(addToWishlist(game))}
+                    onClick={() => {
+                      dispatch(addToWishlist(game));
+                      dispatch(removeFromCart(game));
+                    }}
                     className=" rounded-full cursor-pointer   text-sm font-semibold text-white  hover:scale-110 "
                   >
                     <svg
@@ -160,6 +166,7 @@ const GamesCards = ({
                 <span
                   onClick={() => {
                     dispatch(addToCart(game));
+                    dispatch(removeFromWishlist(game));
                   }}
                   className="rounded-full cursor-pointer   text-sm font-semibold text-white hover:scale-110    "
                 >
