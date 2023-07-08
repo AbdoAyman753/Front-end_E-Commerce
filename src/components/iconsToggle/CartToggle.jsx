@@ -23,7 +23,7 @@ const CartToggle = ({ game, id }) => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setIsInCart(storedCart.some((storedGame) => storedGame._id == game?._id));
     setIsInLibrary(
-      user.library[0].products.some((product) => product._id === game._id)
+      user?.library[0]?.products?.some((product) => product._id === game._id)
     );
   }, [game, id]);
 
