@@ -16,7 +16,7 @@ const Header = () => {
 
   return (
     <nav
-      className={`bg-cyan-950 text-cyan-300 ${
+      className={`bg-base-200 text-cyan-300 ${
         isCollapsed ? "pb-3" : "pb-52"
       } pt-3 sm:pb-3`}
     >
@@ -48,7 +48,7 @@ const Header = () => {
               isCollapsed ? "hidden" : ""
             } absolute w-100 top-5 sm:block sm:relative py-5 pl-5 sm:text-center sm:top-0 grow bg-inherit `}
           >
-            <ul className="sm:flex justify-between items-center w-72 m-auto">
+            <ul className="sm:flex justify-around items-center w-4/5 m-auto">
               <li className="hover:text-cyan-500 pt-2 sm:pt-0">
                 <Link to="/">Home</Link>
               </li>

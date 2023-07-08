@@ -1,10 +1,10 @@
 import React from "react";
+import FooterLayout from '../components/FooterLayout'
+
 
 const Footer = () => {
   return (
-    <div className="bg-cyan-950 text-white py-4 relative left-0 right-0 bottom-0 w-100">
-      <div className="container">footer</div>
-    </div>
+    <FooterLayout/>
   );
 };
 

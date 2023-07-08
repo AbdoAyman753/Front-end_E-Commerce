@@ -73,8 +73,8 @@ const About =() =>{
                 <div className="about_monitor_video  w-3/5 ">
                     <video className="video w-full h-auto object-contain box-content overflow-clip " autoPlay muted loop 
                     poster="https://cdn.cloudflare.steamstatic.com/store/about/videos/about_hero_loop_web.png">
-                        {/* <source src="https://cdn.cloudflare.steamstatic.com/store/about/videos/about_hero_loop_web.webm"></source> */}
-                        {/* <source src="https://cdn.cloudflare.steamstatic.com/store/about/videos/about_hero_loop_web.mp4"></source> */}
+                        <source src="https://cdn.cloudflare.steamstatic.com/store/about/videos/about_hero_loop_web.webm"></source>
+                        <source src="https://cdn.cloudflare.steamstatic.com/store/about/videos/about_hero_loop_web.mp4"></source>
                     </video>
                 </div>
                 {/* <div className="about_header overflow-hidden w-28 ml-8 mt-7">
