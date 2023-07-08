@@ -16,6 +16,8 @@ const GamesCards = ({
 }) => {
   const dispatch = useDispatch();
   const { isAuthenticated } = useAuthenticate();
+  const { isAdmin } = useAuthenticate();
+
   return (
     <>
       <div className="md:px-[8vw] mx-auto   my-10 justify-items-center  grid grid-rows-1  gap-4   md:grid-cols-2 lg:grid-cols-3">
@@ -98,22 +100,25 @@ const GamesCards = ({
               </span>
               <div className=" px-4 flex flex-row justify-end items-center gap-2 ">
                 {/* edit icon*/}
-
-                <span className="  rounded-full cursor-pointer   text-sm font-semibold text-white hover:scale-110   ">
-                  <EditGame
-                    categories={categories}
-                    handleAdminEditGame={handleAdminEditGame}
-                    id={game.id}
-                    game={game}
-                  />
-                </span>
+                {isAdmin && (
+                  <span className="  rounded-full cursor-pointer   text-sm font-semibold text-white hover:scale-110   ">
+                    <EditGame
+                      categories={categories}
+                      handleAdminEditGame={handleAdminEditGame}
+                      id={game.id}
+                      game={game}
+                    />
+                  </span>
+                )}
                 {/* delete icon*/}
-                <span className=" rounded-full cursor-pointer   text-sm font-semibold text-white hover:scale-110   ">
-                  <DeleteGame
-                    game={game}
-                    handleAdminDeleteGame={handleAdminDeleteGame}
-                  />
-                </span>
+                {isAdmin && (
+                  <span className=" rounded-full cursor-pointer   text-sm font-semibold text-white hover:scale-110   ">
+                    <DeleteGame
+                      game={game}
+                      handleAdminDeleteGame={handleAdminDeleteGame}
+                    />
+                  </span>
+                )}
                 {/* gift icon*/}
                 <span className=" rounded-full cursor-pointer   text-sm font-semibold text-white hover:scale-110   ">
                   <svg
