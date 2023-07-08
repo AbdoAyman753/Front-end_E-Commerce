@@ -10,12 +10,15 @@ import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orien
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import useAuthenticate from "../utils/useAuthenticate";
+import { useDispatch } from "react-redux";
+import { updateUserPicture } from "../store/slices/authSlice";
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 const Picture = () => {
   const [files, setFiles] = useState([]);
+  const dispatch = useDispatch();
   const { token, id } = useAuthenticate();
 
   const handleChangePicture = async () => {
@@ -36,7 +39,10 @@ const Picture = () => {
         },
       }
     );
-    console.log(response);
+    if (response.status === 200)
+      console.log(response.data.updatedUser.profile_pic);
+    if (response.status === 200)
+      dispatch(updateUserPicture(response.data.updatedUser.profile_pic));
   };
 
   return (
