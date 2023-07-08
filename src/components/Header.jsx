@@ -11,7 +11,7 @@ const Header = () => {
 
   const { wishlist } = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
-  const {isAuthenticated} = useAuthenticate();
+  const { isAuthenticated } = useAuthenticate();
   const logout = useLogout();
   const { profile_pic } = useSelector((state) => state.auth.user);
   return (
@@ -85,7 +85,7 @@ const Header = () => {
                 <Link to="/cart">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
+                    fill={cartNumber > 0 ? "#22d3ee" : "none"}
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"

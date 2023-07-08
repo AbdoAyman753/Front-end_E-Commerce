@@ -85,7 +85,7 @@ const SearchBar = ({ searchKeyword, setSearchKeyword }) => {
   });
 
   const handleSearchChange = (event) => {
-    const keyword = event.target.value.replace(/^\s+/, "").toLowerCase();
+    const keyword = event.target.value.trimStart().toLowerCase();
     setSearchKeyword(keyword);
   };
 
