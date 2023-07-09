@@ -3,12 +3,11 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addToCart, removeFromCart } from "../../store/slices/cartSlice";
-
-const CartToggle = ({ game, id }) => {
+const CartToggle = ({ game }) => {
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const [isInCart, setIsInCart] = useState(false);
   const [isInLibrary, setIsInLibrary] = useState(false);
-  const dispatch = useDispatch();
 
   const handleAddToCart = () => {
     dispatch(addToCart(game));
@@ -19,13 +18,17 @@ const CartToggle = ({ game, id }) => {
     dispatch(removeFromCart(game._id));
     setIsInCart(false);
   };
+
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setIsInCart(storedCart.some((storedGame) => storedGame._id == game?._id));
-    setIsInLibrary(
-      user?.library[0]?.products?.some((product) => product._id === game._id)
-    );
-  }, [game, id]);
+    setIsInLibrary(() => {
+      const isInLibrary = user.library
+        ? user.library[0].products.some((product) => product._id === game._id)
+        : false;
+      return isInLibrary;
+    });
+  }, [game, user]);
 
   return (
     <>
