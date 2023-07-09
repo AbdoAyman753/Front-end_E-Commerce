@@ -121,12 +121,12 @@ const GameProfile = () => {
 
               {/* heart icon */}
               <span className=" rounded-full   text-sm font-semibold text-sky-900  hover:scale-110 ">
-                <WishlistToggle game={game} id={id} />
+                <WishlistToggle game={game} />
               </span>
 
               {/* add to cart icon*/}
               <span className="rounded-full   text-sm font-semibold text-sky-900 hover:scale-110    ">
-                <CartToggle game={game} id={id} />
+                <CartToggle game={game} />
               </span>
             </div>
           </div>
