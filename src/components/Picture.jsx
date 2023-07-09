@@ -12,6 +12,7 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import useAuthenticate from "../utils/useAuthenticate";
 import { useDispatch } from "react-redux";
 import { updateUserPicture } from "../store/slices/authSlice";
+import { toast } from "react-toastify";
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
@@ -20,15 +21,19 @@ const Picture = () => {
   const [files, setFiles] = useState([]);
   const dispatch = useDispatch();
   const { token, id } = useAuthenticate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChangePicture = async () => {
-    console.log(files);
+    if (files.length === 0) {
+      toast.warn("upload image first");
+      return;
+    }
+    setIsLoading(true);
     const file = files[0].file;
-    console.log(file);
     const formData = new FormData();
 
     formData.append("image", file);
-    console.log(formData.get("image"));
+
     const response = await axios.patch(
       `http://localhost:8000/users/${id}/profile_pic`,
       formData,
@@ -39,10 +44,13 @@ const Picture = () => {
         },
       }
     );
-    if (response.status === 200)
-      console.log(response.data.updatedUser.profile_pic);
-    if (response.status === 200)
+    setIsLoading(false);
+    if (response.status === 200) {
       dispatch(updateUserPicture(response.data.updatedUser.profile_pic));
+      toast.success("Picture changed successfully");
+    } else {
+      toast.warn("Picture is not changed");
+    }
   };
 
   return (
@@ -68,7 +76,7 @@ const Picture = () => {
         onClick={handleChangePicture}
         className="border rounded-full  bg-cyan-800 text-sm text-white w-auto h-10 p-2"
       >
-        Change
+        {isLoading ? "Loading..." : "Change"}
       </button>
     </div>
   );

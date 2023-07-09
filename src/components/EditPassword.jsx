@@ -1,6 +1,7 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import useAuthenticate from "../utils/useAuthenticate";
 
 const EditPassword = () => {
@@ -11,19 +12,29 @@ const EditPassword = () => {
     formState: { errors },
   } = useForm();
   const { token, id } = useAuthenticate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleOnSubmit = async (data) => {
-    console.log(id);
-    const response = await axios.patch(
-      `http://localhost:8000/users/${id}/changePassword`,
-      data,
-      {
-        headers: {
-          Authorization: token,
-        },
+    setIsLoading(true);
+    try {
+      const response = await axios.patch(
+        `http://localhost:8000/users/${id}/changePassword`,
+        data,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+      setIsLoading(false);
+      if (response.status === 200) {
+        toast.success("password changed successfully");
+      } else {
+        toast.warn("password is not changed");
       }
-    );
-    console.log(response);
+    } catch (error) {
+      // console.log(error);
+    }
   };
   return (
     <div className="m-5 pt-4 sm:mx-auto">
@@ -113,7 +124,7 @@ const EditPassword = () => {
           type="submit"
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
-          Save
+          {isLoading ? "loading..." : "Save"}
         </button>
       </form>
     </div>
