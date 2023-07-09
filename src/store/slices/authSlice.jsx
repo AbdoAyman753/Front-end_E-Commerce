@@ -17,7 +17,6 @@ const authSlice = createSlice({
       state.user = action.payload.userInfo;
       localStorage.setItem("token", action.payload.token);
       localStorage.setItem("userId", action.payload.userInfo._id);
-      console.log(state.user);
     },
     updateUserName: (state, action) => {
       state.user.user_name = action.payload;
