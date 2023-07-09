@@ -25,6 +25,7 @@ const AddEditForm = ({
     formState: { errors },
     reset,
     watch,
+    setError,
   } = useForm({
     resolver: yupResolver(gameSchema),
   });
@@ -111,7 +112,6 @@ const AddEditForm = ({
       };
       editProduct();
     } else {
-      setShowModal(false);
       const images = [...data.attachment];
       const newImages = images.map((file) => file.name);
       const formData = new FormData();
@@ -140,6 +140,7 @@ const AddEditForm = ({
             }
           );
           if (200 <= result.status < 300) {
+            setShowModal(false);
             const newGame = result.data.createdProduct;
             toast.success("Game Added Successfully 😊");
             handleAdminAddGame(newGame);
@@ -147,7 +148,27 @@ const AddEditForm = ({
             reset();
           }
         } catch (error) {
-          console.log(error);
+          if (error.response?.status === 400) {
+            setError("attachment", {
+              type: "manual",
+              message: "Must Provide 1 to 8 Images Of Added Game",
+            });
+          } else if (error.response) {
+            const { data } = error.response;
+
+            if (data.message) {
+              setError("error", {
+                type: "manual",
+                message: data.message,
+              });
+            }
+          } else {
+            // Handle other errors here
+            setError("error", {
+              type: "manual",
+              message: "An error occurred while submitting the form",
+            });
+          }
         }
       };
 
@@ -298,7 +319,7 @@ const AddEditForm = ({
             id="attachment"
             type="file"
             multiple
-            required={mode === "add" ? true : false}
+            required={mode !== "edit" ? true : false}
             {...register("attachment", {
               required:
                 mode === "add" ? "Upload multiple Pics is required" : false,
@@ -311,6 +332,7 @@ const AddEditForm = ({
             SVG, PNG, JPG or GIF (MAX: 1MB).
           </p>
           <p className="text-red-500 mx-auto">{errors.attachment?.message}</p>
+          <p className="text-red-500 mx-auto">{errors.error?.message}</p>
         </div>
         {/*footer*/}
         <div className="flex items-center justify-evenly p-2  ">

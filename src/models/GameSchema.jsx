@@ -20,23 +20,23 @@ const gameSchema = yup.object().shape({
           }
         }
       }
-
       return true;
     })
     .test("fileType", "Unsupported File Format", (value) => {
       if (value && value.length > 0) {
         for (let i = 0; i < value.length; i++) {
-          if (
-            value[i].type != "image/png" &&
-            value[i].type != "image/jpg" &&
-            value[i].type != "image/jpeg"
-          ) {
+          if (!value[i].type.startsWith("image/")) {
             return false;
           }
         }
       }
       return true;
-    }),
+    })
+    .test(
+      "maxFiles",
+      "Number of files exceeded the limit - (MAX:8 Image)",
+      (value) => value && value.length <= 8
+    ),
 });
 
 export default gameSchema;
