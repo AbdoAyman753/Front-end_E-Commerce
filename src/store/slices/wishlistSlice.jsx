@@ -1,7 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const wishlistData = localStorage.getItem("wishlist");
+
 const initialState = {
-  wishlist: JSON.parse(localStorage.getItem("wishlist")) || [],
+  wishlist: /^[\],:{}\s]*$/.test(
+    wishlistData
+      .replace(/\\["\\\/bfnrtu]/g, "@")
+      .replace(
+        /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
+        "]"
+      )
+      .replace(/(?:^|:|,)(?:\s*\[)+/g, "")
+  )
+    ? JSON.parse(localStorage.getItem("wishlist"))
+    : [],
 };
 
 const wishlistSlice = createSlice({

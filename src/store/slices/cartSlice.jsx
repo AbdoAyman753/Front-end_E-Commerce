@@ -1,7 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
+const cartData = localStorage.getItem("cart");
 
 const initialState = {
-  cart: JSON.parse(localStorage.getItem("cart")) || [],
+  // cart: JSON.parse(localStorage.getItem("cart")) || [],
+  cart: /^[\],:{}\s]*$/.test(
+    cartData
+      .replace(/\\["\\\/bfnrtu]/g, "@")
+      .replace(
+        /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
+        "]"
+      )
+      .replace(/(?:^|:|,)(?:\s*\[)+/g, "")
+  )
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [],
 };
 const cartSlice = createSlice({
   name: "cart",
