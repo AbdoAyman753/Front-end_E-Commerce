@@ -9,64 +9,8 @@ import AddEditForm from "./AddEditForm";
 import useAuthenticate from "../../utils/useAuthenticate";
 
 const AddGame = ({ categories, handleAdminAddGame }) => {
-  const { token } = useAuthenticate();
-
   const [showModal, setShowModal] = useState(false);
-  //usenavigate
-  const navigate = useNavigate();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm({
-    resolver: yupResolver(gameSchema),
-  });
-
-  const onSubmitHandler = (data) => {
-    setShowModal(false);
-    const images = [...data.attachment];
-    const newImages = images.map((file) => file.name);
-    const formData = new FormData();
-    formData.append("product_name", data.title);
-    formData.append("description", data.description);
-    formData.append("vendor", data.vendor);
-
-    formData.append("price", +data.price);
-    formData.append("category", data.category);
-    newImages.forEach((image) => {
-      formData.append(
-        "product_images",
-        data.attachment[newImages.indexOf(image)]
-      );
-    });
-    const addProduct = async () => {
-      try {
-        const result = await axios.post(
-          "http://localhost:8000/products",
-          formData,
-          {
-            headers: {
-              Authorization: token,
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-        if (200 <= result.status < 300) {
-          const newGame = result.data.createdProduct;
-          toast.success("Game Added Successfully 😊");
-          handleAdminAddGame(newGame);
-          // navigate("/store");
-          reset();
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    addProduct();
-  };
   return (
     <>
       <div className="text-end">
@@ -97,16 +41,12 @@ const AddGame = ({ categories, handleAdminAddGame }) => {
                 {/*body*/}
                 <div className="relative px-6 py-2">
                   <div className="w-full ">
-                    <form onSubmit={handleSubmit(onSubmitHandler)}>
-                      <AddEditForm
-                        setShowModal={setShowModal}
-                        errors={errors}
-                        register={register}
-                        categories={categories}
-                        reset={reset}
-                        mode="add"
-                      />
-                    </form>
+                    <AddEditForm
+                      setShowModal={setShowModal}
+                      handleAdminAddGame={handleAdminAddGame}
+                      categories={categories}
+                      mode="add"
+                    />
                   </div>
                 </div>
               </div>

@@ -118,7 +118,7 @@ const StorePage = () => {
     // clone
     const newGames = [...games];
     // edit
-    newGames.push(newGame);
+    newGames.unshift(newGame);
     // setstate
     setGames(newGames);
   };

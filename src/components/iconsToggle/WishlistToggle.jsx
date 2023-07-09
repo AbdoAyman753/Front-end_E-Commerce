@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
   addToWishlist,
   removeFromWishlist,
 } from "../../store/slices/wishlistSlice";
+import { removeFromCart } from "../../store/slices/cartSlice";
+
 import { useSelector } from "react-redux";
+import { Toggles } from "../../utils/TogglesContext";
 
 const WishlistToggle = ({ game }) => {
+  const {
+    isInWishList,
+    setIsInWishList,
+    isInCart,
+    setIsInCart,
+    handleInCart,
+    handleInWishList,
+  } = useContext(Toggles);
   const dispatch = useDispatch();
-  const [isInWishList, setIsInWishList] = useState(false);
+  // const [isInWishList, setIsInWishList] = useState(false);
   const [isInLibrary, setIsInLibrary] = useState(false);
   const { user } = useSelector((state) => state.auth);
 
@@ -25,7 +36,9 @@ const WishlistToggle = ({ game }) => {
       newWishlist.push(game);
       localStorage.setItem("wishlist", JSON.stringify(newWishlist));
       dispatch(addToWishlist(game));
+      dispatch(removeFromCart(game._id));
       setIsInWishList(true);
+      setIsInCart(false);
     } else {
       // remove from WishList
       newWishlist.splice(index, 1);

@@ -1,17 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addToCart, removeFromCart } from "../../store/slices/cartSlice";
+import { removeFromWishlist } from "../../store/slices/wishlistSlice";
+import { Toggles } from "../../utils/TogglesContext";
 const CartToggle = ({ game }) => {
+  const {
+    isInWishList,
+    setIsInWishList,
+    isInCart,
+    setIsInCart,
+    handleInCart,
+    handleInWishList,
+  } = useContext(Toggles);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  const [isInCart, setIsInCart] = useState(false);
+  // const [isInCart, setIsInCart] = useState(false);
   const [isInLibrary, setIsInLibrary] = useState(false);
 
   const handleAddToCart = () => {
     dispatch(addToCart(game));
+    dispatch(removeFromWishlist(game._id));
     setIsInCart(true);
+    setIsInWishList(false);
   };
 
   const handleRemoveFromCart = () => {

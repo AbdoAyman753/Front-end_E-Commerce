@@ -1,116 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate } from "react-router";
-import axios from "axios";
-import gameSchema from "./../../models/GameSchema";
-import { toast } from "react-toastify";
 import AddEditForm from "./AddEditForm";
-import useAuthenticate from "../../utils/useAuthenticate";
 import { createPortal } from "react-dom";
 const EditGame = ({ categories, handleAdminEditGame, id, game }) => {
   const [showModal, setShowModal] = useState(false);
-  const [hoveredImageIndex, setHoveredImageIndex] = useState(null);
-  const [imgsLinks, setImgsLinks] = useState(game.imgs_links);
-  const { token } = useAuthenticate();
-
-  //usenavigate
-  const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-    watch,
-  } = useForm({
-    resolver: yupResolver(gameSchema),
-  });
-  useEffect(() => {
-    const choosenGame = {
-      title: game.product_name,
-      description: game.description,
-      vendor: game.vendor,
-      price: game.price,
-      category: game.category,
-      imgs_links: game.imgs_links,
-    };
-    reset(choosenGame);
-    // console.log(choosenGame);
-  }, [game, reset]);
-
-  const handleImageMouseEnter = (index) => {
-    setHoveredImageIndex(index);
-  };
-
-  const handleImageMouseLeave = () => {
-    setHoveredImageIndex(null);
-  };
-
-  const handleDeleteImage = (index) => {
-    const newImgsLinks = [...imgsLinks];
-    newImgsLinks.splice(index, 1);
-    setImgsLinks(newImgsLinks);
-  };
-  const onSubmitHandler = (data) => {
-    setShowModal(false);
-    const images = [...data.attachment];
-    const newImages = images.map((file) => file.name);
-    const formData = new FormData();
-    formData.append("product_name", data.title);
-    formData.append("description", data.description);
-    formData.append("vendor", data.vendor);
-
-    formData.append("price", +data.price);
-    formData.append("category", data.category);
-    imgsLinks.forEach((image) => {
-      formData.append("old_images", image);
-    });
-    newImages.forEach((image) => {
-      formData.append(
-        "product_images",
-        data.attachment[newImages.indexOf(image)]
-      );
-    });
-    const allImages = [
-      ...formData.getAll("old_images"),
-      ...formData.getAll("product_images"),
-    ];
-
-    const editProduct = async () => {
-      try {
-        const result = await axios.patch(
-          `http://localhost:8000/products/${game._id}`,
-          formData,
-          {
-            headers: {
-              Authorization: token,
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-        console.log(result);
-        if (200 <= result.status < 300) {
-          const editGame = {
-            product_name: data.title,
-            description: data.description,
-            vendor: data.vendor,
-            price: +data.price,
-            category: data.category,
-            imgs_links: result.data.Product.imgs_links,
-            _id: game._id,
-          };
-
-          handleAdminEditGame(editGame);
-          toast.success("Game updated Sucessfully 😊");
-          navigate("/store");
-          reset();
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    editProduct();
-  };
 
   return (
     <>
@@ -154,23 +46,13 @@ const EditGame = ({ categories, handleAdminEditGame, id, game }) => {
                     {/*body*/}
                     <div className="relative px-6 py-2">
                       <div className="w-full ">
-                        <form onSubmit={handleSubmit(onSubmitHandler)}>
-                          <AddEditForm
-                            setShowModal={setShowModal}
-                            errors={errors}
-                            register={register}
-                            categories={categories}
-                            reset={reset}
-                            mode="edit"
-                            handleDeleteImage={handleDeleteImage}
-                            handleImageMouseLeave={handleImageMouseLeave}
-                            handleImageMouseEnter={handleImageMouseEnter}
-                            imgsLinks={imgsLinks}
-                            hoveredImageIndex={hoveredImageIndex}
-                            setImgsLinks={setImgsLinks}
-                            game={game}
-                          />
-                        </form>
+                        <AddEditForm
+                          setShowModal={setShowModal}
+                          categories={categories}
+                          mode="edit"
+                          handleAdminEditGame={handleAdminEditGame}
+                          game={game}
+                        />
                       </div>
                     </div>
                   </div>
