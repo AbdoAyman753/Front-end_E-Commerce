@@ -2,9 +2,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 // import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import signUpSchema from "../models/SignUpSchema";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import signUpSchema from "./../../models/SignUpSchema";
 const SignUpForm = () => {
   const {
     register,

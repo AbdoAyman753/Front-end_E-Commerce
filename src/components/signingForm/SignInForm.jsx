@@ -2,13 +2,13 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import signInSchema from "../models/SignInSchema";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { login } from "../store/slices/authSlice";
-import { setCart } from "../store/slices/cartSlice";
-import { setWishlist } from "../store/slices/wishlistSlice";
+import { login } from "./../../store/slices/authSlice";
+import { setCart } from "./../../store/slices/cartSlice";
+import { setWishlist } from "./../../store/slices/wishlistSlice";
+import signInSchema from "./../../models/SignInSchema";
 const SignInForm = () => {
   const dispatch = useDispatch();
   // react form hook

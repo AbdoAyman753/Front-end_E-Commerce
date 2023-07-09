@@ -8,11 +8,11 @@ import GamesPagination from "../components/pagination/GamesPagination";
 // import { useDispatch } from "react-redux";
 // import { addToCart } from "../store/slices/cartSlice";
 // import { addToWishlist } from "../store/slices/wishlistSlice";
-import GamesCards from "./../components/GamesCards";
 import SimpleGameFilter from "../components/filter/SimpleGameFilter";
 import SearchBar from "../components/searchBar/SearchBar";
 import AddGame from "../components/adminRoles/AddGame";
 import useAuthenticate from "../utils/useAuthenticate";
+import GamesCards from "./../components/gamesCard/GamesCards";
 
 const StorePage = () => {
   //_______________________________________ states___________________________________
