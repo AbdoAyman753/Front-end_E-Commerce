@@ -30,10 +30,25 @@ const SignUpForm = () => {
         reset();
       }
     } catch (error) {
-      if (error.response && error.response.status === 409) {
+      if (error.response?.status === 409) {
         setError("email", {
           type: "manual",
           message: "Email is already registered",
+        });
+      } else if (error.response) {
+        const { data } = error.response;
+
+        if (data.message) {
+          setError("error", {
+            type: "manual",
+            message: data.message,
+          });
+        }
+      } else {
+        // Handle other errors here
+        setError("error", {
+          type: "manual",
+          message: "An error occurred while submitting the form",
         });
       }
     }
@@ -150,6 +165,7 @@ const SignUpForm = () => {
                     </button>
                   </div>
                 </div>
+                <p className="text-red-500 mx-auto ">{errors.error?.message}</p>
               </form>
             </div>
           </div>
