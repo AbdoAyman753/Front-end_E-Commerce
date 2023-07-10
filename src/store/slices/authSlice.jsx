@@ -5,6 +5,7 @@ import { clearWishlist } from "./wishlistSlice";
 
 const initialState = {
   token: localStorage.getItem("token") || undefined,
+  isLogged: false,
   user: {},
 };
 
@@ -16,13 +17,15 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.user = action.payload.userInfo;
       localStorage.setItem("token", action.payload.token);
-      localStorage.setItem("userId", action.payload.userInfo._id);
     },
     updateUserName: (state, action) => {
       state.user.user_name = action.payload;
     },
     updateUserPicture: (state, action) => {
       state.user.profile_pic = action.payload;
+    },
+    updateUserState: (state, action) => {
+      state.isLogged = action.payload;
     },
   },
   extraReducers: (builder) =>
@@ -82,10 +85,10 @@ export const logout = createAsyncThunk(
     // await sendCartAndWishlistToServer();
     ///////
     localStorage.removeItem("token");
-    localStorage.removeItem("userId");
     dispatch(clearCart());
     dispatch(clearWishlist());
   }
 );
-export const { login, updateUserName, updateUserPicture } = authSlice.actions;
+export const { login, updateUserName, updateUserPicture, updateUserState } =
+  authSlice.actions;
 export default authSlice.reducer;

@@ -9,14 +9,14 @@ import Footer from "./Footer";
 import Loader from "../ui/Loader";
 import { setCart } from "../../store/slices/cartSlice";
 import { setWishlist } from "../../store/slices/wishlistSlice";
-import { login } from "../../store/slices/authSlice";
+import { login, updateUserState } from "../../store/slices/authSlice";
 import useAuthenticate from "../../utils/useAuthenticate";
 
 const AppLayout = () => {
   const dispatch = useDispatch();
   const { cart } = useSelector((state) => state.cart);
   const { wishlist } = useSelector((state) => state.wishlist);
-  const { userId } = useAuthenticate();
+  const { userId, isLogged } = useAuthenticate();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -36,6 +36,7 @@ const AppLayout = () => {
       );
       setIsLoading(false);
       if (response.status === 200) {
+        dispatch(updateUserState(false));
         const user = response.data;
         const userInfo = { ...user, cart: undefined, wishlist: undefined };
         dispatch(setCart(user.cart[0].products));
@@ -50,7 +51,7 @@ const AppLayout = () => {
         // console.log(error.message);
       }
     }
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     const cartIds = cart
@@ -71,7 +72,10 @@ const AppLayout = () => {
       );
       // console.log(cartResponse);
     };
-    if (userId) {
+    if (userId && token) {
+      if (!isLogged) {
+        return;
+      }
       try {
         sendCartToServer();
       } catch (error) {
@@ -99,7 +103,11 @@ const AppLayout = () => {
       );
       // console.log(wishlistResponse);
     };
-    if (userId) {
+    if (userId && token) {
+      if (!isLogged) {
+        dispatch(updateUserState(true));
+        return;
+      }
       try {
         sendWishlistToServer();
       } catch (error) {

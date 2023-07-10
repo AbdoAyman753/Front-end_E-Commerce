@@ -6,7 +6,7 @@ import signInSchema from "../models/SignInSchema";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { login } from "../store/slices/authSlice";
+import { login, updateUserState } from "../store/slices/authSlice";
 import { setCart } from "../store/slices/cartSlice";
 import { setWishlist } from "../store/slices/wishlistSlice";
 const SignInForm = () => {
@@ -32,6 +32,7 @@ const SignInForm = () => {
       data
     );
     if (response.status === 200) {
+      dispatch(updateUserState(false));
       const { token, user } = response.data;
       const userInfo = { ...user, cart: undefined, wishlist: undefined };
       // console.log(user.cart.products);
