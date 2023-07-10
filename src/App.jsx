@@ -4,7 +4,6 @@ import "./App.css";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import AppLayout from "./components/layout/AppLayout";
-
 import Support from "./pages/Support";
 import StorePage from "./pages/StorePage";
 import SignInPage from "./pages/SignInPage";

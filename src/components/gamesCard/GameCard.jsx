@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import CartToggle from "./iconsToggle/CartToggle";
-import useAuthenticate from "../utils/useAuthenticate";
-import EditGame from "./adminRoles/EditGame";
-import DeleteGame from "./adminRoles/DeleteGame";
-import WishlistToggle from "./iconsToggle/WishlistToggle";
-import { Toggles } from "../utils/TogglesContext";
+import CartToggle from "../iconsToggle/CartToggle";
+import useAuthenticate from "../../utils/useAuthenticate";
+import EditGame from "../adminRoles/EditGame";
+import DeleteGame from "../adminRoles/DeleteGame";
+import WishlistToggle from "../iconsToggle/WishlistToggle";
+import { Toggles } from "../../utils/TogglesContext";
 const GameCard = ({
   game,
   handleAdminEditGame,
