@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { login, updateUserState } from "../store/slices/authSlice";
+import { login, updateUserState } from "../../store/slices/authSlice";
 import { setCart } from "../../store/slices/cartSlice";
 import { setWishlist } from "../../store/slices/wishlistSlice";
 
