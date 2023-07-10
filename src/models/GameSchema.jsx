@@ -40,3 +40,14 @@ const gameSchema = yup.object().shape({
 });
 
 export default gameSchema;
+// .test("fileType", "Unsupported File Format", (value) => {
+//   if (value && value.length > 0) {
+//     for (let i = 0; i < value.length; i++) {
+//       const validFileTypes = ["image/png", "image/jpg", "image/jpeg", "image/svg+xml", "image/webp"];
+//       if (!validFileTypes.includes(value[i].type)) {
+//         return false;
+//       }
+//     }
+//   }
+//   return true;
+// })
