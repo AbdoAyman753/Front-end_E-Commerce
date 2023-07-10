@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Button from "./Button";
+import Button from "../ui/Button";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import useAuthenticate from "../utils/useAuthenticate";
-import useLogout from "../utils/useLogout";
+import useAuthenticate from "../../utils/useAuthenticate";
+import useLogout from "../../utils/useLogout";
 
 const Header = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);

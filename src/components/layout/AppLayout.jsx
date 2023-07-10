@@ -6,10 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Header from "./Header";
 import Footer from "./Footer";
-import Loader from "./Loader";
-import { setCart } from "../store/slices/cartSlice";
-import { setWishlist } from "../store/slices/wishlistSlice";
-import { login } from "../store/slices/authSlice";
+import Loader from "../ui/Loader";
+import { setCart } from "../../store/slices/cartSlice";
+import { setWishlist } from "../../store/slices/wishlistSlice";
+import { login } from "../../store/slices/authSlice";
 
 const AppLayout = () => {
   const dispatch = useDispatch();

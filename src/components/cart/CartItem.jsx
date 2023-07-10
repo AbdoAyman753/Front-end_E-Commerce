@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { useDispatch } from "react-redux";
-import { removeFromCart } from "../store/slices/cartSlice";
+import { removeFromCart } from "../../store/slices/cartSlice";
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
