@@ -16,7 +16,7 @@ const Header = () => {
   const { profile_pic } = useSelector((state) => state.auth.user);
   return (
     <nav
-      className={`bg-base-200 text-cyan-300 ${
+      className={` bg-gray-600 text-white ${
         isCollapsed ? "pb-3" : "pb-52"
       } pt-3 sm:pb-3`}
     >
