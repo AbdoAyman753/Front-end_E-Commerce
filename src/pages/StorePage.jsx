@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import Loader from "./../components/Loader";
+import Loader from "../components/ui/Loader";
 import axios from "axios";
 import { pagination } from "../utils/Pagination";
 import GameFilter from "../components/filter/GameFilter";

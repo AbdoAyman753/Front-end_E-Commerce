@@ -1,6 +1,6 @@
 import React from "react";
-import Faq from "../components/Faq";
-import Contact from "../components/Contact";
+import Faq from "../components/support/Faq";
+import Contact from "../components/support/Contact";
 
 const Support = () => {
   return (

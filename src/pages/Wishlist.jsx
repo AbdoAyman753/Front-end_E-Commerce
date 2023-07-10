@@ -2,7 +2,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import WishlistItem from "../components/WishlistItem";
+import WishlistItem from "../components/wishlist/WishlistItem";
 import { clearWishlist } from "../store/slices/wishlistSlice";
 
 const ICON = (
