@@ -5,7 +5,7 @@ const wishlistData = localStorage.getItem("wishlist");
 const initialState = {
   wishlist: /^[\],:{}\s]*$/.test(
     wishlistData
-      .replace(/\\["\\\/bfnrtu]/g, "@")
+      ?.replace(/\\["\\\/bfnrtu]/g, "@")
       .replace(
         /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
         "]"

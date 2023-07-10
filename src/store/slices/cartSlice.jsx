@@ -5,7 +5,7 @@ const initialState = {
   // cart: JSON.parse(localStorage.getItem("cart")) || [],
   cart: /^[\],:{}\s]*$/.test(
     cartData
-      .replace(/\\["\\\/bfnrtu]/g, "@")
+      ?.replace(/\\["\\\/bfnrtu]/g, "@")
       .replace(
         /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
         "]"
