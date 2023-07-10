@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useOutletContext } from "react-router-dom";
 import Picture from "./Picture";
-import useAuthenticate from "../utils/useAuthenticate";
+import useAuthenticate from "../../utils/useAuthenticate";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { updateUserName } from "../store/slices/authSlice";
+import { updateUserName } from "../../store/slices/authSlice";
 import { toast } from "react-toastify";
 
 const EditProfile = () => {

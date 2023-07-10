@@ -8,7 +8,7 @@ import { AiFillEdit } from "react-icons/ai";
 import { MdNoEncryption } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-import useAuthenticate from "../utils/useAuthenticate";
+import useAuthenticate from "../../utils/useAuthenticate";
 
 function ProfileSidebar({ userImg }) {
   const navigate = useNavigate();
