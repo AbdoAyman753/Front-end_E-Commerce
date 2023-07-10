@@ -69,9 +69,7 @@ const AddEditForm = ({
       formData.append("price", +data.price);
       formData.append("category", data.category);
       // send the final (current) pictures of game
-      imgsLinks.forEach((image) => {
-        formData.append("old_images", image);
-      });
+      formData.append("old_images", JSON.stringify(imgsLinks));
       // send the final (new) pictures of game
       newImages.forEach((image) => {
         formData.append(
@@ -79,13 +77,8 @@ const AddEditForm = ({
           data.attachment[newImages.indexOf(image)]
         );
       });
-      console.log(formData.getAll("old_images"));
-      console.log(formData.getAll("product_images"));
-      // const totalImages = [
-      //   ...formData.getAll("old_images"),
-      //   ...formData.getAll("product_images"),
-      // ];
-      // console.log(totalImages);
+      // final total images for game
+      const totalImages = [...imgsLinks, ...formData.getAll("product_images")];
       // patch data and test response
       const editProduct = async () => {
         try {
@@ -100,7 +93,6 @@ const AddEditForm = ({
               },
             }
           );
-          console.log(result);
           // if response is ok
           if (200 <= result.status < 300) {
             // close modal
@@ -126,30 +118,28 @@ const AddEditForm = ({
           }
           // error cases
         } catch (error) {
-          console.log(error);
-          // // if (error.response?.status === 400) {
-          // if (totalImages.length > 8) {
-          //   setError("attachment", {
-          //     type: "manual",
-          //     message: "Game Must have only 8 Images",
-          //   });
-          // }
-          //  else if (error.response) {
-          //   const { data } = error.response;
+          // if (error.response?.status === 400) {
+          if (totalImages.length > 8) {
+            setError("attachment", {
+              type: "manual",
+              message: "Game Must have only 8 Images",
+            });
+          } else if (error.response) {
+            const { data } = error.response;
 
-          //   if (data.message) {
-          //     setError("error", {
-          //       type: "manual",
-          //       message: data.message,
-          //     });
-          //   }
-          // } else {
-          //   // Handle other errors here
-          //   setError("error", {
-          //     type: "manual",
-          //     message: "An error occurred while submitting the form",
-          //   });
-          // }
+            if (data.message) {
+              setError("error", {
+                type: "manual",
+                message: data.message,
+              });
+            }
+          } else {
+            // Handle other errors here
+            setError("error", {
+              type: "manual",
+              message: "An error occurred while submitting the form",
+            });
+          }
         }
       };
       editProduct();
@@ -162,7 +152,6 @@ const AddEditForm = ({
       formData.append("product_name", data.title);
       formData.append("description", data.description);
       formData.append("vendor", data.vendor);
-
       formData.append("price", +data.price);
       formData.append("category", data.category);
       newImages.forEach((image) => {
@@ -171,6 +160,7 @@ const AddEditForm = ({
           data.attachment[newImages.indexOf(image)]
         );
       });
+      // post data to Api and test response
       const addProduct = async () => {
         try {
           const result = await axios.post(
@@ -183,7 +173,7 @@ const AddEditForm = ({
               },
             }
           );
-          console.log(result);
+          // if response is ok
           if (200 <= result.status < 300) {
             setShowModal(false);
             const newGame = result.data.createdProduct;
@@ -193,23 +183,22 @@ const AddEditForm = ({
             reset();
           }
         } catch (error) {
+          // handle error cases
           if (error.response?.status === 400) {
             setError("attachment", {
               type: "manual",
               message: "Must Provide 1 to 8 Images Of Added Game",
             });
-          }
-          // else if (error.response) {
-          //   const { data } = error.response;
+          } else if (error.response) {
+            const { data } = error.response;
 
-          //   if (data.message) {
-          //     setError("error", {
-          //       type: "manual",
-          //       message: data.message,
-          //     });
-          //   }
-          // }
-          else {
+            if (data.message) {
+              setError("error", {
+                type: "manual",
+                message: data.message,
+              });
+            }
+          } else {
             // Handle other errors here
             setError("error", {
               type: "manual",
@@ -377,7 +366,7 @@ const AddEditForm = ({
             className="mt-1 ps-1 text-sm text-gray-500 dark:text-gray-300"
             id="file_input_help"
           >
-            SVG, PNG, JPG or GIF (MAX: 1MB).
+            PNG, JPG or JPEG (MAX: 1MB).
           </p>
           <p className="text-red-500 mx-auto">{errors.attachment?.message}</p>
           <p className="text-red-500 mx-auto">{errors.error?.message}</p>
