@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import CartItem from "../components/CartItem";
+import CartItem from "../components/cart/CartItem";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart, totalPrice } from "../store/slices/cartSlice";
 import { order } from "../utils/stripe";

@@ -1,29 +1,26 @@
 /* eslint-disable no-unused-vars */
 
 import "./App.css";
-
-import AppLayout from "./components/AppLayout";
-import Support from "./pages/Support";
-import StorePage from "./pages/StorePage";
 import { Navigate, Route, Routes } from "react-router-dom";
 
+import AppLayout from "./components/layout/AppLayout";
+import Support from "./pages/Support";
+import StorePage from "./pages/StorePage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
-
 import Cart from "./pages/Cart";
 import Wishlist from "./pages/Wishlist";
 import Profile from "./pages/Profile";
-import UserInfo from "./components/UserInfo";
-import UserGames from "./components/UserGames";
-import UserOrders from "./components/UserOrders";
-import EditProfile from "./components/editProfile";
-import EditPassword from "./components/EditPassword";
+import UserInfo from "./components/profile/UserInfo";
+import UserGames from "./components/profile/UserGames";
+import UserOrders from "./components/profile/UserOrders";
+import EditProfile from "./components/profile/editProfile";
+import EditPassword from "./components/profile/EditPassword";
 import GameProfile from "./pages/GameProfile";
-import Authentication from "./components/Authentication";
-import NotAuthentication from "./components/NotAuthentication";
+import Authentication from "./components/authentication/Authentication";
+import NotAuthentication from "./components/authentication/NotAuthentication";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import About from "./pages/About";
-
 import Home from "./pages/Home";
 
 function App() {

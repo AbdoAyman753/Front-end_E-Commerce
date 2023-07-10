@@ -1,9 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
+const cartData = localStorage.getItem("cart");
 
 const initialState = {
-  cart: JSON.parse(localStorage.getItem("cart")) || [],
+  // cart: JSON.parse(localStorage.getItem("cart")) || [],
+  cart: /^[\],:{}\s]*$/.test(
+    cartData
+      ?.replace(/\\["\\\/bfnrtu]/g, "@")
+      .replace(
+        /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
+        "]"
+      )
+      .replace(/(?:^|:|,)(?:\s*\[)+/g, "")
+  )
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [],
 };
-console.log("first ");
 const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -15,6 +26,8 @@ const cartSlice = createSlice({
       localStorage.setItem("cart", JSON.stringify(state.cart));
     },
     removeFromCart: (state, action) => {
+      const item = state.cart.find((el) => el._id === action.payload);
+      if (!item) return;
       state.cart = state.cart.filter((item) => item._id !== action.payload);
       localStorage.setItem("cart", JSON.stringify(state.cart));
     },
@@ -22,7 +35,6 @@ const cartSlice = createSlice({
     clearCart: (state) => {
       state.cart = [];
       localStorage.removeItem("cart");
-      console.log(state.cart);
     },
     setCart: (state, action) => {
       state.cart = action.payload;

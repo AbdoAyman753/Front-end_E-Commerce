@@ -9,9 +9,9 @@ import "filepond/dist/filepond.min.css";
 import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
-import useAuthenticate from "../utils/useAuthenticate";
+import useAuthenticate from "../../utils/useAuthenticate";
 import { useDispatch } from "react-redux";
-import { updateUserPicture } from "../store/slices/authSlice";
+import { updateUserPicture } from "../../store/slices/authSlice";
 import { toast } from "react-toastify";
 
 // Register the plugins
