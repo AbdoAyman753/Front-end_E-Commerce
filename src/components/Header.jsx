@@ -11,7 +11,7 @@ const Header = () => {
 
   const { wishlist } = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
-  const { isAuthenticated } = useAuthenticate();
+  const { isAuthenticated, isAdmin } = useAuthenticate();
   const logout = useLogout();
   const { profile_pic } = useSelector((state) => state.auth.user);
   return (
@@ -61,7 +61,7 @@ const Header = () => {
               <li className="hover:text-cyan-500 pt-2 sm:pt-0">
                 <Link to="/about">About</Link>
               </li>
-              {isAuthenticated && (
+              {isAuthenticated && !isAdmin && (
                 <li className="hover:text-cyan-500 pt-2 sm:pt-0">
                   <Link to="/wishlist">
                     <svg
@@ -81,29 +81,31 @@ const Header = () => {
                   </Link>
                 </li>
               )}
-              <li className="hover:text-cyan-500 pt-2 sm:pt-0 relative">
-                <Link to="/cart">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill={cartNumber > 0 ? "#22d3ee" : "none"}
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-                    />
-                  </svg>
-                </Link>
-                {cartNumber > 0 && (
-                  <span className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 w-4 h-4 rounded-full dark:bg-blue-900 dark:text-blue-300 absolute  top-[-2px] left-[15px] sm:top-[-11px] text-center">
-                    {cartNumber}
-                  </span>
-                )}
-              </li>
+              {!isAdmin && (
+                <li className="hover:text-cyan-500 pt-2 sm:pt-0 relative">
+                  <Link to="/cart">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill={cartNumber > 0 ? "#22d3ee" : "none"}
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                      />
+                    </svg>
+                  </Link>
+                  {cartNumber > 0 && (
+                    <span className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 w-4 h-4 rounded-full dark:bg-blue-900 dark:text-blue-300 absolute  top-[-2px] left-[15px] sm:top-[-11px] text-center">
+                      {cartNumber}
+                    </span>
+                  )}
+                </li>
+              )}
             </ul>
           </div>
           {/* Authentication Buttons  */}
@@ -123,7 +125,6 @@ const Header = () => {
                 <div className=" w-10 h-10">
                   <img
                     className="w-full h-full rounded-full"
-                    // src="https://image.lexica.art/full_jpg/7515495b-982d-44d2-9931-5a8bbbf27532"
                     src={profile_pic}
                     alt=""
                   />
