@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "../ui/Button";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import useAuthenticate from "../../utils/useAuthenticate";
 import useLogout from "../../utils/useLogout";
@@ -54,36 +54,36 @@ const Header = () => {
           >
             <ul className="sm:flex justify-center sm:space-x-2 md:space-x-8 items-center w-4/5 m-auto text-lg">
               <li className="pt-2 sm:pt-0">
-                <Link
+                <NavLink
                   to="/"
                   className="hover:border-b-2 border-line-primary py-1 transition"
                 >
                   Home
-                </Link>
+                </NavLink>
               </li>
               <li className="pt-2 sm:pt-0">
-                <Link
+                <NavLink
                   to="/store"
                   className="hover:border-b-2 border-line-primary py-1 transition"
                 >
                   Store
-                </Link>
+                </NavLink>
               </li>
               <li className="pt-2 sm:pt-0">
-                <Link
+                <NavLink
                   to="/support"
                   className="hover:border-b-2 border-line-primary py-1 transition"
                 >
                   Support
-                </Link>
+                </NavLink>
               </li>
               <li className="pt-2 sm:pt-0">
-                <Link
+                <NavLink
                   to="/about"
                   className="hover:border-b-2 border-line-primary py-1 transition"
                 >
                   About
-                </Link>
+                </NavLink>
               </li>
               {isAuthenticated && !isAdmin && (
                 <li className="pt-2 sm:pt-0">
