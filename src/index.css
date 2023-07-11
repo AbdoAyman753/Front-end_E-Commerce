@@ -2,21 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* width for slider */
-
-.swiper-slider {
-  width: 18rem;
-  height: 42rem;
-  position: relative;
-} 
-
 
 .swiper-slide-shadow-left,
 .swiper-slide-shadow-right {
   display: none;
 }
 
+/* 
 .card {
   width: 20rem;
   height: 30rem;
@@ -52,5 +45,4 @@
   position: relative;
   top: 0.5em;
   margin-bottom: 2rem;
-}
-
+} */
