@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearCart, totalPrice } from "../store/slices/cartSlice";
 import { order } from "../utils/stripe";
 import useAuthenticate from "../utils/useAuthenticate";
+import Button from "../components/ui/Button";
 const ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -45,22 +46,22 @@ const Cart = () => {
     <div className="container py-14">
       <Link
         to="/store"
-        className="flex items-center text-cyan-800 hover:translate-x-[-2px] hover:text-cyan-900 transition-all"
+        className="flex items-center text-btn-primary hover:translate-x-[-2px] hover:text-btn-Secondary transition-all"
       >
         <span>{ICON}</span>Back to store
       </Link>
       {cart.length == 0 && (
         <>
-          <div className="w-48 h-48 m-auto mt-16">
-            <img className="w-full h-full" src="/emptycart.png" alt="" />
+          <div className="w-1/5 m-auto mt-16">
+            <img className="w-full" src="/emptycart.png" alt="" />
           </div>
           <p className="text-center text-lg">your cart is empty!</p>
         </>
       )}
       {cart.length > 0 && (
         <>
-          <div className="border border-cyan-500 my-8">
-            <div className="flex justify-between bg-cyan-600 text-white p-3">
+          <div className="border border-[#22778C] my-8">
+            <div className="flex justify-between bg-[#22778C] text-white p-3">
               <p>Your cart, User</p>
               <p>total price ${total.toFixed(2)}</p>
             </div>
@@ -68,18 +69,31 @@ const Cart = () => {
               <CartItem key={item._id} item={item} />
             ))}
           </div>
-          <button
+          <Button
+            onClick={handleOrder}
+            className="bg-cyan-700 text-white px-3 py-1 mr-2 hover:bg-cyan-800"
+          >
+            {isLoading ? "Loading..." : "Order"}
+          </Button>
+          {/* <button
             onClick={handleOrder}
             className="border rounded-full bg-cyan-700 text-white px-3 py-1 mr-2"
           >
             {isLoading ? "Loading..." : "Order"}
-          </button>
-          <button
+          </button> */}
+          <Button
+            onClick={() => dispatch(clearCart())}
+            primary={false}
+            className="bg-slate-200 text-btn-primary px-2 py-1 hover:text-white border-none"
+          >
+            Clear Cart
+          </Button>
+          {/* <button
             onClick={() => dispatch(clearCart())}
             className="border rounded-full bg-slate-200 text-slate-400 px-2 py-1 hover:bg-cyan-700 hover:text-white transition-all"
           >
             Clear Cart
-          </button>
+          </button> */}
         </>
       )}
     </div>

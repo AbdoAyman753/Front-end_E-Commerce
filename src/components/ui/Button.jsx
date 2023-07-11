@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ text, primary = true, styling = "", onClick }) => {
+const Button = ({ children, primary = true, className = "", onClick }) => {
   const clickHandler = () => {
     if (onClick) onClick();
   };
@@ -11,9 +11,9 @@ const Button = ({ text, primary = true, styling = "", onClick }) => {
         primary
           ? "bg-btn-primary text-white hover:bg-btn-Secondary"
           : "border-2 border-btn-Secondary hover:bg-btn-primary"
-      } ${styling} rounded-lg ms-2 px-2 py-1 text-md transition-all`}
+      } rounded-lg ms-2 px-2 py-1 text-md transition-all ${className}`}
     >
-      {text}
+      {children}
     </button>
   );
 };
