@@ -52,7 +52,7 @@ const Header = () => {
               isCollapsed ? "hidden" : ""
             } absolute w-100 top-5 sm:block sm:relative py-5 pl-5 sm:text-center sm:top-0 grow bg-inherit `}
           >
-            <ul className="sm:flex justify-center sm:space-x-2 md:space-x-10 items-center w-4/5 m-auto text-lg">
+            <ul className="sm:flex justify-center sm:space-x-2 md:space-x-8 items-center w-4/5 m-auto text-lg">
               <li className="pt-2 sm:pt-0">
                 <Link
                   to="/"
@@ -98,7 +98,9 @@ const Header = () => {
                       }`}
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
-                      stroke="currentColor"
+                      stroke={`${
+                        wishlist.length > 0 ? "var(--btn-primary)" : "white"
+                      }`}
                       className="w-6 h-6"
                     >
                       <path
@@ -115,7 +117,8 @@ const Header = () => {
                   <Link to="/cart">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      fill={cartNumber > 0 ? "var(--btn-primary)" : "none"}
+                      // fill={cartNumber > 0 ? "var(--btn-primary)" : "none"}
+                      fill={cartNumber > 0 ? "none" : "none"}
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
                       stroke="currentColor"
@@ -129,7 +132,7 @@ const Header = () => {
                     </svg>
                   </Link>
                   {cartNumber > 0 && (
-                    <span className="bg-blue-100 text-black text-xs font-medium mr-2 w-4 h-4 rounded-full dark:bg-blue-900 dark:text-blue-300 absolute  top-[-2px] left-[15px] sm:top-[-11px] text-center">
+                    <span className="bg-btn-primary text-white text-xs font-medium mr-2 w-4 h-4 rounded-full dark:bg-btn-primary dark:text-btn-primary absolute  top-[-2px] left-[15px] sm:top-[-11px] text-center">
                       {cartNumber}
                     </span>
                   )}
@@ -141,10 +144,10 @@ const Header = () => {
           {!isAuthenticated && (
             <div className="ml-auto">
               <Link to="/sign-in">
-                <Button text="Login" />
+                <Button>Login</Button>
               </Link>
               <Link to="/sign-up">
-                <Button text="Sign up" />
+                <Button>Sign up</Button>
               </Link>
             </div>
           )}
@@ -160,7 +163,7 @@ const Header = () => {
                 </div>
               </Link>
               <Link onClick={logout}>
-                <Button text="logout" primary={false} />
+                <Button primary={false}>logout</Button>
               </Link>
             </div>
           )}
