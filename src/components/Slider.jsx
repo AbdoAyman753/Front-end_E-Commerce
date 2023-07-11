@@ -19,12 +19,12 @@ const Cards = (/*{ recentGames }*/) => {
   return (
     <>
       <div className="flex flex-col justify-center items-center mt-9 w-full">
-        <div className="text-gray-800 text-left text-3xl font-bold w-full pl-10 ">
+        <div className="text-white text-left  text-2xl font-bold w-full pl-10 ">
           Recently Added Games
         </div>
         <div
           className="container  flex items-center justify-center box-border 
-    list-none	 mx-auto	py-10 px-10 scroll-smooth 
+    list-none	 mx-auto	pt-2 pb-10 px-10 scroll-smooth 
     overflow-auto  max-w-full h-fit hover:overflow-hidden  "
         >
           <Swiper
