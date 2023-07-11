@@ -15,6 +15,9 @@ body {
   --btn-Secondary: #fb0000;
   --line-primary: #c80708;
 }
+a.active {
+  border-bottom: 2px solid var(--line-primary);
+}
 .swiper-slide-shadow-left,
 .swiper-slide-shadow-right {
   display: none;

@@ -15,7 +15,7 @@ function ProfileSidebar({ userImg }) {
   const { isAdmin } = useAuthenticate();
 
   return (
-    <Sidebar aria-label="Default sidebar example" className="w-full">
+    <Sidebar aria-label="Default sidebar example" className="w-full h-[78vh]">
       <Sidebar.Items>
         <Sidebar.ItemGroup>
           <div className="w-20 h-20 m-2 rounded-full">

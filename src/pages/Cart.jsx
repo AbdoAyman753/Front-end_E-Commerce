@@ -84,7 +84,7 @@ const Cart = () => {
           <Button
             onClick={() => dispatch(clearCart())}
             primary={false}
-            className="bg-slate-200 text-btn-primary px-2 py-1 hover:text-white border-none"
+            className="px-2 py-1 text-btn-primary hover:text-white bg-red-400 border-none"
           >
             Clear Cart
           </Button>

@@ -7,6 +7,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { updateUserName } from "../../store/slices/authSlice";
 import { toast } from "react-toastify";
+import Button from "../ui/Button";
 
 const EditProfile = () => {
   const user = useOutletContext();
@@ -17,12 +18,12 @@ const EditProfile = () => {
     formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
-  const { token, id } = useAuthenticate();
+  const { token, userId } = useAuthenticate();
 
   const handleOnSubmit = async (data) => {
     setIsLoading(true);
     const response = await axios.patch(
-      `http://localhost:8000/users/${id}/`,
+      `http://localhost:8000/users/${userId}/`,
       data,
       {
         headers: {
@@ -39,15 +40,15 @@ const EditProfile = () => {
     }
   };
   return (
-    <div className="m-5 pt-4 sm:mx-auto">
+    <div className="m-5 mb-12 pt-4 sm:mx-auto ">
       <Picture />
       <form onSubmit={handleSubmit(handleOnSubmit)}>
-        <div className="grid gap-6 mb-6 md:grid-cols-2">
+        <div className="grid gap-6 mb-6 md:grid-cols-2 text-white">
           <div>
             <div>
               <label
                 htmlFor="user_name"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                className="block mb-2 text-sm font-medium text-white dark:text-white"
               >
                 User name
               </label>
@@ -94,13 +95,13 @@ const EditProfile = () => {
             <span className="text-red-500">{errors.email?.message}</span>
           </div> */}
         </div>
-
-        <button
+        <Button type="submit">{isLoading ? "loading..." : "Save"}</Button>
+        {/* <button
           type="submit"
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           {isLoading ? "loading..." : "Save"}
-        </button>
+        </button> */}
       </form>
     </div>
   );

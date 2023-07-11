@@ -13,6 +13,7 @@ import useAuthenticate from "../../utils/useAuthenticate";
 import { useDispatch } from "react-redux";
 import { updateUserPicture } from "../../store/slices/authSlice";
 import { toast } from "react-toastify";
+import Button from "../ui/Button";
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
@@ -20,41 +21,46 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 const Picture = () => {
   const [files, setFiles] = useState([]);
   const dispatch = useDispatch();
-  const { token, id } = useAuthenticate();
+  const { token, userId } = useAuthenticate();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChangePicture = async () => {
-    if (files.length === 0) {
-      toast.warn("upload image first");
-      return;
-    }
-    setIsLoading(true);
-    const file = files[0].file;
-    const formData = new FormData();
-
-    formData.append("image", file);
-
-    const response = await axios.patch(
-      `http://localhost:8000/users/${id}/profile_pic`,
-      formData,
-      {
-        headers: {
-          Authorization: token,
-          "content-type": "multipart/form-data",
-        },
+    try {
+      if (files.length === 0) {
+        toast.warn("upload image first");
+        return;
       }
-    );
-    setIsLoading(false);
-    if (response.status === 200) {
-      dispatch(updateUserPicture(response.data.updatedUser.profile_pic));
-      toast.success("Picture changed successfully");
-    } else {
-      toast.warn("Picture is not changed");
+      setIsLoading(true);
+      const file = files[0].file;
+      const formData = new FormData();
+
+      formData.append("image", file);
+
+      const response = await axios.patch(
+        `http://localhost:8000/users/${userId}/profile_pic`,
+        formData,
+        {
+          headers: {
+            Authorization: token,
+            "content-type": "multipart/form-data",
+          },
+        }
+      );
+      setIsLoading(false);
+      if (response.status === 200) {
+        dispatch(updateUserPicture(response.data.updatedUser.profile_pic));
+        toast.success("Picture changed successfully");
+      } else {
+        toast.warn("Picture is not changed");
+      }
+    } catch (error) {
+      setIsLoading(false);
+      toast.warn("something went wrong");
     }
   };
 
   return (
-    <div className="flex space-x-4 items-center justify-center mb-10">
+    <div className="flex space-x-4 items-center  mb-10">
       <div className="w-28 h-28">
         <FilePond
           className="w-full h-full"
@@ -72,12 +78,18 @@ const Picture = () => {
           labelIdle='Drag & Drop your image or <span class="filepond--label-action">Browse</span>'
         />
       </div>
-      <button
+      <Button
+        onClick={handleChangePicture}
+        className="bg-secondary-color hover:bg-cyan-800"
+      >
+        {isLoading ? "Loading..." : "Change"}
+      </Button>
+      {/* <button
         onClick={handleChangePicture}
         className="border rounded-full  bg-cyan-800 text-sm text-white w-auto h-10 p-2"
       >
         {isLoading ? "Loading..." : "Change"}
-      </button>
+      </button> */}
     </div>
   );
 };
