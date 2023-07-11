@@ -25,6 +25,7 @@ export default {
       colors: {
         "primary-color": "var(--primary-color)",
         "secondary-color": "var(--secondary-color)",
+        "back-color": "var(--back-color)",
         "third-color": "var(--third-color)",
         "btn-primary": "var(--btn-primary)",
         "btn-Secondary": "var(--btn-Secondary)",

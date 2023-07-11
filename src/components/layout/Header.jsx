@@ -50,7 +50,7 @@ const Header = () => {
           <div
             className={`${
               isCollapsed ? "hidden" : ""
-            } absolute w-100 top-5 sm:block sm:relative py-5 pl-5 sm:text-center sm:top-0 grow bg-inherit `}
+            } absolute w-100 top-5 sm:block sm:relative py-5 pl-5 pr-2 sm:text-center sm:top-0 grow bg-inherit `}
           >
             <ul className="sm:flex justify-center sm:space-x-2 md:space-x-8 items-center w-4/5 m-auto text-lg">
               <li className="pt-2 sm:pt-0">
@@ -144,10 +144,10 @@ const Header = () => {
           {!isAuthenticated && (
             <div className="ml-auto">
               <Link to="/sign-in">
-                <Button>Login</Button>
+                <Button className="ms-2">Login</Button>
               </Link>
               <Link to="/sign-up">
-                <Button>Sign up</Button>
+                <Button className="ms-2">Sign up</Button>
               </Link>
             </div>
           )}
@@ -163,7 +163,9 @@ const Header = () => {
                 </div>
               </Link>
               <Link onClick={logout}>
-                <Button primary={false}>logout</Button>
+                <Button className="ms-2" primary={false}>
+                  logout
+                </Button>
               </Link>
             </div>
           )}

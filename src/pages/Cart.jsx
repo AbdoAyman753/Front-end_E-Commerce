@@ -60,8 +60,8 @@ const Cart = () => {
       )}
       {cart.length > 0 && (
         <>
-          <div className="border border-[#22778C] my-8">
-            <div className="flex justify-between bg-[#22778C] text-white p-3">
+          <div className="border border-secondary-color my-8">
+            <div className="flex justify-between bg-secondary-color text-white p-3">
               <p>Your cart, User</p>
               <p>total price ${total.toFixed(2)}</p>
             </div>
