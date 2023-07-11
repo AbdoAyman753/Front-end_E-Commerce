@@ -1,8 +1,18 @@
 import React from "react";
 
-const Button = ({ text }) => {
+const Button = ({ text, primary = true, styling = "", onClick }) => {
+  const clickHandler = () => {
+    if (onClick) onClick();
+  };
   return (
-    <button className="border-2 border-cyan-500 rounded-full ms-2 px-2 py-1 text-sm text-cyan-200 hover:bg-cyan-500 hover:text-white transition-all">
+    <button
+      onClick={() => clickHandler()}
+      className={`${
+        primary
+          ? "bg-btn-primary text-white hover:bg-btn-Secondary"
+          : "border-2 border-btn-Secondary hover:bg-btn-primary"
+      } ${styling} rounded-lg ms-2 px-2 py-1 text-md transition-all`}
+    >
       {text}
     </button>
   );
