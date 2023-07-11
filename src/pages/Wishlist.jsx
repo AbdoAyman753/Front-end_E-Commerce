@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import WishlistItem from "../components/wishlist/WishlistItem";
 import { clearWishlist } from "../store/slices/wishlistSlice";
+import Button from "../components/ui/Button";
 
 const ICON = (
   <svg
@@ -31,14 +32,14 @@ const Wishlist = () => {
     <div className="container py-14">
       <Link
         to="/store"
-        className="flex items-center text-cyan-800 hover:translate-x-[-2px] hover:text-cyan-900 transition-all"
+        className="flex items-center text-btn-primary hover:translate-x-[-2px] hover:text-btn-Secondary transition-all"
       >
         <span>{ICON}</span>Back to store
       </Link>
       {wishlist.length == 0 && (
         <>
-          <div className="w-48 h-48 m-auto mt-16">
-            <img className="w-full h-full" src="/empty-wishlist.png" alt="" />
+          <div className="w-1/3 m-auto mt-16">
+            <img className="w-full" src="/empty-wishlist.png" alt="" />
           </div>
           <p className="text-center text-lg">your wishlist is empty!</p>
         </>
@@ -53,13 +54,19 @@ const Wishlist = () => {
               <WishlistItem key={item._id} item={item} />
             ))}
           </div>
-
-          <button
+          <Button
+            onClick={() => dispatch(clearWishlist())}
+            primary={false}
+            className="bg-slate-200 text-btn-primary px-2 py-1 hover:text-white border-none"
+          >
+            Clear Wishlist
+          </Button>
+          {/* <button
             onClick={() => dispatch(clearWishlist())}
             className="border rounded-full bg-slate-200 text-slate-400 px-2 py-1 hover:bg-cyan-700 hover:text-white transition-all"
           >
             Clear Wishlist
-          </button>
+          </button> */}
         </>
       )}
     </div>
