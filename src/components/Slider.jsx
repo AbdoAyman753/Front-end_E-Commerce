@@ -68,25 +68,19 @@ const Cards = (/*{ recentGames }*/) => {
                   key={el._id}
                   className="swiper-slide h-2/4 relative"
                 >
-                  <div className="card w-80 h-1/3 bg-blue-400		 rounded-3xl shadow-lg shadow-black py-8 px-4 flex items-center flex-col hover:shadow-amber-300 hover:scale-x-105	">
-                    <div className="card_image w-64 h-80 mb-4">
-                      <img
-                        className="img w-full h-full"
-                        src={el.imgs_links[0]}
-                        alt="card1"
-                      />
-                    </div>
+                  <div
+                    style={{ backgroundImage: `url(${el.imgs_links[0]})` }}
+                    className=" bg-no-repeat flex flex-col items-center justify-end bg-cover	bg-center card w-full h-96 bg-slate-900	 rounded-xl shadow-md shadow-black  hover:shadow-slate-400 hover:scale-x-105	"
+                  >
+                    {/* <div className="card_image w-64  mb-4"></div> */}
 
-                    <div className="card_content flex items-center flex-col">
-                      <span className="card_title text-2xl font-medium relative top-2 mb-8">
+                    <div className="card_content flex  items-center flex-col w-full bg-slate-300 rounded-b-xl border-t-2 border-line-primary py-1 bg-opacity-50 shadow-sm">
+                      <span className="card_title text-2xl font-medium relative mb-2">
                         {el.product_name}
                       </span>
 
-                      <button className="card_btn bg-white rounded p-1">
-                        <Link
-                          className="text-yellow-400"
-                          to={`/game/${el._id}`}
-                        >
+                      <button className="card_btn bg-btn-primary hover:bg-btn-secondry hover:shadow-sm hover:scale-105 rounded p-1 mb-2">
+                        <Link className="text-white " to={`/game/${el._id}`}>
                           See More
                         </Link>
                       </button>
