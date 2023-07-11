@@ -1,11 +1,18 @@
 import React from "react";
 
-const Button = ({ children, primary = true, className = "", onClick }) => {
+const Button = ({
+  children,
+  primary = true,
+  className = "",
+  onClick,
+  type = "button",
+}) => {
   const clickHandler = () => {
     if (onClick) onClick();
   };
   return (
     <button
+      type={type}
       onClick={() => clickHandler()}
       className={`${
         primary
