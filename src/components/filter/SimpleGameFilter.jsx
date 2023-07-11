@@ -24,8 +24,10 @@ const SimpleGameFilter = ({
   return (
     <>
       {games.length > 0 && (
-        <div className="mx-5 xs:mx-0">
-          <div className="  xs:ms-3 flex flex-col  sm:flex-row items-start justify-center mt-2">
+        <div className="mx-5 xs:mx-auto ">
+          {/* category filter  */}
+
+          <div className="  xs:ms-3 flex flex-col  sm:flex-row sm:justify-start items-start justify-center mt-2">
             <button
               onClick={() => {
                 setselectedCategory("all");
@@ -34,9 +36,9 @@ const SimpleGameFilter = ({
               type="button"
               className={`  ${
                 selectedCategory == "all"
-                  ? "bg-sky-800  text-white hover:bg-sky-300  hover:text-sky-700  hover:outline-0 shadow-slate-900 shadow-md"
+                  ? "bg-btn-primary  text-white hover:bg-btn-secondary  hover:text-slate-300  hover:outline-0 shadow-slate-700 shadow-md"
                   : ""
-              }  hover:border-sky-600 hover:outline hover:outline-1 hover:outline-slate-400 rounded-full  font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
+              }  hover:border-btn-primary text-white outline outline-btn-primary outline-1 hover:outline-white hover:bg-red-600 rounded-full  font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
             >
               All categories
             </button>
@@ -50,16 +52,16 @@ const SimpleGameFilter = ({
                 }}
                 className={`${
                   selectedCategory === category
-                    ? "bg-sky-800  text-white hover:bg-sky-300  hover:text-sky-700  hover:outline-0 shadow-slate-900 shadow-md"
+                    ? "bg-btn-primary  text-white hover:bg-btn-secondary  hover:text-slate-300  hover:outline-0 shadow-slate-700 shadow-md"
                     : ""
-                } hover:border-sky-600 hover:outline hover:outline-1 hover:outline-slate-400 rounded-full  text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
+                }  hover:border-btn-primary text-white outline outline-btn-primary outline-1 hover:outline-white hover:bg-red-600 rounded-full  font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
               >
                 {category}
               </button>
             ))}
           </div>
-
-          <div className="border-t-2 sm:border-none flex flex-col  xs:ms-3 sm:flex-row items-center justify-center py-2">
+          {/* price filter  */}
+          <div className="border-t-2 sm:border-none flex flex-col  xs:ms-3 sm:flex-row sm:justify-start  items-start justify-center py-2">
             <button
               onClick={() => {
                 handlePriceFilter(0);
@@ -67,9 +69,9 @@ const SimpleGameFilter = ({
               type="button"
               className={`  ${
                 selectedPrice === 0
-                  ? "bg-sky-800  text-white hover:bg-sky-300  hover:text-sky-700  hover:outline-0 shadow-slate-900 shadow-md"
+                  ? "bg-btn-primary  text-white hover:bg-btn-secondary  hover:text-slate-300  hover:outline-0 shadow-slate-700 shadow-md"
                   : ""
-              }  hover:border-sky-600 hover:outline hover:outline-1 hover:outline-slate-400 rounded-full  text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
+              }  hover:border-btn-primary text-white outline outline-btn-primary outline-1 hover:outline-white hover:bg-red-600 rounded-full  font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
             >
               All Prices
             </button>
@@ -81,9 +83,9 @@ const SimpleGameFilter = ({
               }}
               className={`${
                 selectedPrice === 1
-                  ? "bg-sky-800  text-white hover:bg-sky-300  hover:text-sky-700  hover:outline-0 shadow-slate-900 shadow-md"
+                  ? "bg-btn-primary  text-white hover:bg-btn-secondary  hover:text-slate-300  hover:outline-0 shadow-slate-700 shadow-md"
                   : ""
-              } hover:border-sky-600 hover:outline hover:outline-1 hover:outline-slate-400 rounded-full  text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
+              }  hover:border-btn-primary text-white outline outline-btn-primary outline-1 hover:outline-white hover:bg-red-600 rounded-full  font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
             >
               1-10$
             </button>
@@ -95,9 +97,9 @@ const SimpleGameFilter = ({
               }}
               className={`${
                 selectedPrice === 2
-                  ? "bg-sky-800  text-white hover:bg-sky-300  hover:text-sky-700  hover:outline-0 shadow-slate-900 shadow-md"
+                  ? "bg-btn-primary  text-white hover:bg-btn-secondary  hover:text-slate-300  hover:outline-0 shadow-slate-700 shadow-md"
                   : ""
-              } hover:border-sky-600 hover:outline hover:outline-1 hover:outline-slate-400 rounded-full  text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
+              }  hover:border-btn-primary text-white outline outline-btn-primary outline-1 hover:outline-white hover:bg-red-600 rounded-full  font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
             >
               11-20${" "}
             </button>
@@ -109,9 +111,9 @@ const SimpleGameFilter = ({
               }}
               className={`${
                 selectedPrice === 3
-                  ? "bg-sky-800  text-white hover:bg-sky-300  hover:text-sky-700  hover:outline-0 shadow-slate-900 shadow-md"
+                  ? "bg-btn-primary  text-white hover:bg-btn-secondary  hover:text-slate-300  hover:outline-0 shadow-slate-700 shadow-md"
                   : ""
-              } hover:border-sky-600 hover:outline hover:outline-1 hover:outline-slate-400 rounded-full  text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
+              }  hover:border-btn-primary text-white outline outline-btn-primary outline-1 hover:outline-white hover:bg-red-600 rounded-full  font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
             >
               above 20$
             </button>
