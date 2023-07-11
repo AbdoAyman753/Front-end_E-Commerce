@@ -9,9 +9,9 @@ const Button = ({ children, primary = true, className = "", onClick }) => {
       onClick={() => clickHandler()}
       className={`${
         primary
-          ? "bg-btn-primary text-white hover:bg-btn-Secondary"
+          ? "bg-btn-primary hover:bg-btn-Secondary"
           : "border-2 border-btn-Secondary hover:bg-btn-primary"
-      } rounded-lg ms-2 px-2 py-1 text-md transition-all ${className}`}
+      } rounded-lg px-2 py-1 text-md text-white transition-all ${className}`}
     >
       {children}
     </button>
