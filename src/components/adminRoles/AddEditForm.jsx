@@ -25,6 +25,7 @@ const AddEditForm = ({
     formState: { errors },
     reset,
     watch,
+    setError,
   } = useForm({
     resolver: yupResolver(gameSchema),
   });
@@ -56,28 +57,32 @@ const AddEditForm = ({
     setImgsLinks(newImgsLinks);
   };
   const onSubmitHandler = (data) => {
+    // edit game case
     if (mode == "edit") {
-      setShowModal(false);
       const images = [...data.attachment];
       const newImages = images.map((file) => file.name);
       const formData = new FormData();
+      // conert All input type to formdata
       formData.append("product_name", data.title);
       formData.append("description", data.description);
       formData.append("vendor", data.vendor);
-
       formData.append("price", +data.price);
       formData.append("category", data.category);
-      imgsLinks.forEach((image) => {
-        formData.append("old_images", image);
-      });
+      // send the final (current) pictures of game
+      formData.append("old_images", JSON.stringify(imgsLinks));
+      // send the final (new) pictures of game
       newImages.forEach((image) => {
         formData.append(
           "product_images",
           data.attachment[newImages.indexOf(image)]
         );
       });
+      // final total images for game
+      const totalImages = [...imgsLinks, ...formData.getAll("product_images")];
+      // patch data and test response
       const editProduct = async () => {
         try {
+          // send edited game
           const result = await axios.patch(
             `http://localhost:8000/products/${game._id}`,
             formData,
@@ -88,8 +93,11 @@ const AddEditForm = ({
               },
             }
           );
-          console.log(result);
+          // if response is ok
           if (200 <= result.status < 300) {
+            // close modal
+            setShowModal(false);
+
             const editGame = {
               product_name: data.title,
               description: data.description,
@@ -99,26 +107,51 @@ const AddEditForm = ({
               imgs_links: result.data.Product.imgs_links,
               _id: game._id,
             };
-
+            // show the edited data once the admin cliclk submit
             handleAdminEditGame(editGame);
+            // show toastify with done
             toast.success("Game updated Sucessfully 😊");
+            // navigate to store
             navigate("/store");
+            // clear form data
             reset();
           }
+          // error cases
         } catch (error) {
-          console.log(error);
+          // if (error.response?.status === 400) {
+          if (totalImages.length > 8) {
+            setError("attachment", {
+              type: "manual",
+              message: "Game Must have only 8 Images",
+            });
+          } else if (error.response) {
+            const { data } = error.response;
+
+            if (data.message) {
+              setError("error", {
+                type: "manual",
+                message: data.message,
+              });
+            }
+          } else {
+            // Handle other errors here
+            setError("error", {
+              type: "manual",
+              message: "An error occurred while submitting the form",
+            });
+          }
         }
       };
       editProduct();
-    } else {
-      setShowModal(false);
+    }
+    // Add game case
+    else {
       const images = [...data.attachment];
       const newImages = images.map((file) => file.name);
       const formData = new FormData();
       formData.append("product_name", data.title);
       formData.append("description", data.description);
       formData.append("vendor", data.vendor);
-
       formData.append("price", +data.price);
       formData.append("category", data.category);
       newImages.forEach((image) => {
@@ -127,6 +160,7 @@ const AddEditForm = ({
           data.attachment[newImages.indexOf(image)]
         );
       });
+      // post data to Api and test response
       const addProduct = async () => {
         try {
           const result = await axios.post(
@@ -139,7 +173,9 @@ const AddEditForm = ({
               },
             }
           );
+          // if response is ok
           if (200 <= result.status < 300) {
+            setShowModal(false);
             const newGame = result.data.createdProduct;
             toast.success("Game Added Successfully 😊");
             handleAdminAddGame(newGame);
@@ -147,7 +183,28 @@ const AddEditForm = ({
             reset();
           }
         } catch (error) {
-          console.log(error);
+          // handle error cases
+          if (error.response?.status === 400) {
+            setError("attachment", {
+              type: "manual",
+              message: "Must Provide 1 to 8 Images Of Added Game",
+            });
+          } else if (error.response) {
+            const { data } = error.response;
+
+            if (data.message) {
+              setError("error", {
+                type: "manual",
+                message: data.message,
+              });
+            }
+          } else {
+            // Handle other errors here
+            setError("error", {
+              type: "manual",
+              message: "An error occurred while submitting the form",
+            });
+          }
         }
       };
 
@@ -260,7 +317,7 @@ const AddEditForm = ({
               {imgsLinks?.map((image, index) => (
                 <div
                   key={index}
-                  className="relative w-[6.5vw] h-10 cursor-pointer"
+                  className="relative w-[6.5vw] h-8 cursor-pointer"
                   onMouseEnter={() => handleImageMouseEnter(index)}
                   onMouseLeave={handleImageMouseLeave}
                 >
@@ -298,7 +355,8 @@ const AddEditForm = ({
             id="attachment"
             type="file"
             multiple
-            required={mode === "add" ? true : false}
+            placeholder="SVG, PNG, JPG or GIF (MAX: 1MB)"
+            // required={mode !== "edit" ? true : false}
             {...register("attachment", {
               required:
                 mode === "add" ? "Upload multiple Pics is required" : false,
@@ -308,9 +366,10 @@ const AddEditForm = ({
             className="mt-1 ps-1 text-sm text-gray-500 dark:text-gray-300"
             id="file_input_help"
           >
-            SVG, PNG, JPG or GIF (MAX: 1MB).
+            PNG, JPG or JPEG (MAX: 1MB).
           </p>
           <p className="text-red-500 mx-auto">{errors.attachment?.message}</p>
+          <p className="text-red-500 mx-auto">{errors.error?.message}</p>
         </div>
         {/*footer*/}
         <div className="flex items-center justify-evenly p-2  ">

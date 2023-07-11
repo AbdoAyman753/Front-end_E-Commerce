@@ -6,36 +6,37 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Header from "./Header";
 import Footer from "./Footer";
-import Loader from "./Loader";
-import { setCart } from "../store/slices/cartSlice";
-import { setWishlist } from "../store/slices/wishlistSlice";
-import { login } from "../store/slices/authSlice";
+import Loader from "../ui/Loader";
+import { setCart } from "../../store/slices/cartSlice";
+import { setWishlist } from "../../store/slices/wishlistSlice";
+import { login, updateUserState } from "../../store/slices/authSlice";
+import useAuthenticate from "../../utils/useAuthenticate";
 
 const AppLayout = () => {
   const dispatch = useDispatch();
   const { cart } = useSelector((state) => state.cart);
   const { wishlist } = useSelector((state) => state.wishlist);
+  const { userId, isLogged } = useAuthenticate();
 
   const [isLoading, setIsLoading] = useState(false);
 
   const token = localStorage.getItem("token");
-  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     // if user => get user with its cart and wishlsit
     const getUser = async () => {
       setIsLoading(true);
       const response = await axios.get(
-        `http://localhost:8000/users/${userId}`,
+        `http://localhost:8000/users/user-info`,
         {
           headers: {
             Authorization: token,
           },
         }
       );
-      // console.log(response);
       setIsLoading(false);
       if (response.status === 200) {
+        dispatch(updateUserState(false));
         const user = response.data;
         const userInfo = { ...user, cart: undefined, wishlist: undefined };
         dispatch(setCart(user.cart[0].products));
@@ -43,14 +44,14 @@ const AppLayout = () => {
         dispatch(login({ token, userInfo }));
       }
     };
-    if (token && userId) {
+    if (token) {
       try {
         getUser();
       } catch (error) {
         // console.log(error.message);
       }
     }
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     const cartIds = cart
@@ -71,7 +72,10 @@ const AppLayout = () => {
       );
       // console.log(cartResponse);
     };
-    if (token) {
+    if (userId && token) {
+      if (!isLogged) {
+        return;
+      }
       try {
         sendCartToServer();
       } catch (error) {
@@ -99,7 +103,11 @@ const AppLayout = () => {
       );
       // console.log(wishlistResponse);
     };
-    if (token) {
+    if (userId && token) {
+      if (!isLogged) {
+        dispatch(updateUserState(true));
+        return;
+      }
       try {
         sendWishlistToServer();
       } catch (error) {

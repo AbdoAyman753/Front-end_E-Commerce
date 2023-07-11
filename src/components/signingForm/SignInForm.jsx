@@ -2,13 +2,15 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import signInSchema from "../models/SignInSchema";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { login } from "../store/slices/authSlice";
-import { setCart } from "../store/slices/cartSlice";
-import { setWishlist } from "../store/slices/wishlistSlice";
+import { login, updateUserState } from "../../store/slices/authSlice";
+import { setCart } from "../../store/slices/cartSlice";
+import { setWishlist } from "../../store/slices/wishlistSlice";
+
+import signInSchema from "./../../models/SignInSchema";
+
 const SignInForm = () => {
   const dispatch = useDispatch();
   // react form hook
@@ -17,7 +19,7 @@ const SignInForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-    control,
+    setError,
   } = useForm({
     resolver: yupResolver(signInSchema),
   });
@@ -27,21 +29,46 @@ const SignInForm = () => {
 
   const onSubmitHandler = async (data) => {
     console.log({ data });
-    const response = await axios.post(
-      "http://localhost:8000/users/login",
-      data
-    );
-    if (response.status === 200) {
-      const { token, user } = response.data;
-      const userInfo = { ...user, cart: undefined, wishlist: undefined };
-      // console.log(user.cart.products);
-      dispatch(setCart(user.cart[0].products));
-      dispatch(setWishlist(user.wishlist[0].products));
-      dispatch(login({ token, userInfo }));
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/users/login",
+        data
+      );
+      if (response.status === 200) {
+        dispatch(updateUserState(false));
+        const { token, user } = response.data;
+        const userInfo = { ...user, cart: undefined, wishlist: undefined };
+        // console.log(user.cart.products);
+        dispatch(setCart(user.cart[0].products));
+        dispatch(setWishlist(user.wishlist[0].products));
+        dispatch(login({ token, userInfo }));
+      }
+      console.log(response);
+      reset();
+    } catch (error) {
+      if (error.response?.status === 400) {
+        setError("error", {
+          type: "manual",
+          message: "Invalid Email Or Password",
+        });
+      } else if (error.response) {
+        const { data } = error.response;
+
+        if (data.message) {
+          setError("error", {
+            type: "manual",
+            message: data.message,
+          });
+        }
+      } else {
+        // Handle other errors here
+        setError("error", {
+          type: "manual",
+          message: "An error occurred while submitting the form",
+        });
+      }
     }
-    console.log(response);
-    // navigate("/");
-    reset();
   };
 
   return (
@@ -50,9 +77,9 @@ const SignInForm = () => {
       <div className="min-h-screen  bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
         <div className="relative py-3 sm:max-w-xl sm:mx-auto md:w-[40vw]">
           {/* // bg here for shadow */}
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-300 to-cyan-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+          <div className="absolute sm:w-[60vw] inset-0 bg-gradient-to-r from-cyan-300 to-cyan-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
           {/* // bg here for form */}
-          <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+          <div className="relative sm:w-[60vw]  px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
             <div className="max-w-md mx-auto">
               <div>
                 <h1 className="text-2xl font-semibold">
@@ -103,6 +130,9 @@ const SignInForm = () => {
                     </label>
                     <p className="text-red-500 mx-auto ">
                       {errors.password?.message}
+                    </p>
+                    <p className="text-red-500 mx-auto ">
+                      {errors.error?.message}
                     </p>
                   </div>
                   {/* submit input */}

@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { useDispatch } from "react-redux";
-import { removeFromWishlist } from "../store/slices/wishlistSlice";
-import { addToCart } from "../store/slices/cartSlice";
+import { removeFromWishlist } from "../../store/slices/wishlistSlice";
+import { addToCart } from "../../store/slices/cartSlice";
 
 const WishlistItem = ({ item }) => {
   const dispatch = useDispatch();
