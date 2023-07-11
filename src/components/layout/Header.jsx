@@ -16,15 +16,19 @@ const Header = () => {
   const { profile_pic } = useSelector((state) => state.auth.user);
   return (
     <nav
-      className={`bg-cyan-950 text-cyan-300 ${
+      className={`bg-primary-color text-[white] border-b border-line-primary ${
         isCollapsed ? "pb-3" : "pb-52"
       } pt-3 sm:pb-3`}
     >
       <div className="container">
         <div className="flex items-center relative">
           {/* logo  */}
-          <Link to="/" className="text-lg">
-            logo
+          <Link to="/" className="text-2xl">
+            V
+            <span className="text-btn-primary text-3xl inline-block rotate-[20deg] relative top-1">
+              9
+            </span>{" "}
+            GAMES
           </Link>
 
           {/* collapse button  */}
@@ -48,7 +52,7 @@ const Header = () => {
               isCollapsed ? "hidden" : ""
             } absolute w-100 top-5 sm:block sm:relative py-5 pl-5 sm:text-center sm:top-0 grow bg-inherit `}
           >
-            <ul className="sm:flex justify-center sm:space-x-2 md:space-x-10 items-center w-4/5 m-auto">
+            <ul className="sm:flex justify-center sm:space-x-2 md:space-x-10 items-center w-4/5 m-auto text-lg">
               <li className="hover:text-cyan-500 pt-2 sm:pt-0">
                 <Link to="/">Home</Link>
               </li>

@@ -13,7 +13,7 @@ const contentStyle = {
 const About = () => {
   return (
     ///////////////////////////
-    <div className="about " style={{ backgroundColor: "#424242" }}>
+    <div className="about">
       <Carousel
         className="w-4/5 border m-auto mt-20 h-auto"
         effect="fade"

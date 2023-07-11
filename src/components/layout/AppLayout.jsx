@@ -119,7 +119,7 @@ const AppLayout = () => {
   return (
     <div className="flex flex-col">
       <Header />
-      <main className="min-h-[80vh] flex flex-col">
+      <main className="min-h-[80vh] flex flex-col bg-secondary-color">
         {isLoading && <Loader />}
         {!isLoading && <Outlet />}
       </main>

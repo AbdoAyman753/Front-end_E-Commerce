@@ -21,7 +21,16 @@ export default {
         "2xl": "6rem",
       },
     },
-    extend: {},
+    extend: {
+      colors: {
+        "primary-color": "var(--primary-color)",
+        "secondary-color": "var(--secondary-color)",
+        "third-color": "var(--third-color)",
+        "btn-primary": "var(--btn-primary)",
+        "btn-Secondary": "var(--btn-Secondary)",
+        "line-primary": "var(--line-primary)",
+      },
+    },
   },
-  plugins: [require("flowbite/plugin"),require("daisyui")]
+  plugins: [require("flowbite/plugin"), require("daisyui")],
 };

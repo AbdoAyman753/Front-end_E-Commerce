@@ -8,7 +8,14 @@
 .swiper-slide-shadow-right {
   display: none;
 }
-
+:root {
+  --primary-color: #24252b;
+  --secondary-color: #24262c;
+  --third-color: #1e1f22;
+  --btn-primary: #d81f26;
+  --btn-Secondary: #fb0000;
+  --line-primary: #c80708;
+}
 /* 
 .card {
   width: 20rem;
