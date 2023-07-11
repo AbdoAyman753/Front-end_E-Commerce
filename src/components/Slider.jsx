@@ -24,10 +24,22 @@ const Cards = (/*{ recentGames }*/) => {
         </div>
         <div
           className="container  flex items-center justify-center box-border 
-    list-none	 mx-auto	py-20 px-10 scroll-smooth 
+    list-none	 mx-auto	py-10 px-10 scroll-smooth 
     overflow-auto  max-w-full h-fit hover:overflow-hidden  "
         >
           <Swiper
+            breakpoints={{
+              768: {
+                slidesPerView: 2,
+              },
+              850: {
+                slidesPerView: 3,
+              },
+              1200: {
+                slidesPerView: 4,
+              },
+            }}
+            spaceBetween={0}
             wrapperClass="swiper-wrapper"
             slideClass="swiper-slide"
             effect={"coverflow"}
@@ -38,7 +50,7 @@ const Cards = (/*{ recentGames }*/) => {
             }}
             centeredSlides={true}
             loop={true}
-            slidesPerView={3}
+            slidesPerView={2}
             coverflowEffect={{
               rotate: 0,
               stretch: 0,
@@ -48,13 +60,13 @@ const Cards = (/*{ recentGames }*/) => {
             }}
             pagination={{ el: "swiper-pagination", clickable: true }}
             modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
-            className="swiper-container  h-fit px-2 py-0 relative"
+            className="swiper-container  h-fit px-2 py-6 relative"
           >
             {games.length &&
               games.map((el) => (
                 <SwiperSlide
                   key={el._id}
-                  className="swiper-slide w-72 h-2/4 relative"
+                  className="swiper-slide h-2/4 relative"
                 >
                   <div className="card w-80 h-1/3 bg-blue-400		 rounded-3xl shadow-lg shadow-black py-8 px-4 flex items-center flex-col hover:shadow-amber-300 hover:scale-x-105	">
                     <div className="card_image w-64 h-80 mb-4">
