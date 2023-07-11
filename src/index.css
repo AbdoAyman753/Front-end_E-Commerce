@@ -8,8 +8,9 @@ body {
 }
 :root {
   --primary-color: #24252b;
-  --secondary-color: #24262c;
+  --secondary-color: #22778c;
   --third-color: #1e1f22;
+  --back-color: #24262c;
   --btn-primary: #d81f26;
   --btn-Secondary: #fb0000;
   --line-primary: #c80708;
