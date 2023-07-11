@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <nav
       className={`bg-primary-color text-[white] border-b border-line-primary ${
-        isCollapsed ? "pb-3" : "pb-52"
+        isCollapsed ? "pb-3" : "pb-56"
       } pt-3 sm:pb-3`}
     >
       <div className="container">
@@ -53,24 +53,49 @@ const Header = () => {
             } absolute w-100 top-5 sm:block sm:relative py-5 pl-5 sm:text-center sm:top-0 grow bg-inherit `}
           >
             <ul className="sm:flex justify-center sm:space-x-2 md:space-x-10 items-center w-4/5 m-auto text-lg">
-              <li className="hover:text-cyan-500 pt-2 sm:pt-0">
-                <Link to="/">Home</Link>
+              <li className="pt-2 sm:pt-0">
+                <Link
+                  to="/"
+                  className="hover:border-b-2 border-line-primary py-1 transition"
+                >
+                  Home
+                </Link>
               </li>
-              <li className="hover:text-cyan-500 pt-2 sm:pt-0">
-                <Link to="/store">Store</Link>
+              <li className="pt-2 sm:pt-0">
+                <Link
+                  to="/store"
+                  className="hover:border-b-2 border-line-primary py-1 transition"
+                >
+                  Store
+                </Link>
               </li>
-              <li className="hover:text-cyan-500 pt-2 sm:pt-0">
-                <Link to="/support">Support</Link>
+              <li className="pt-2 sm:pt-0">
+                <Link
+                  to="/support"
+                  className="hover:border-b-2 border-line-primary py-1 transition"
+                >
+                  Support
+                </Link>
               </li>
-              <li className="hover:text-cyan-500 pt-2 sm:pt-0">
-                <Link to="/about">About</Link>
+              <li className="pt-2 sm:pt-0">
+                <Link
+                  to="/about"
+                  className="hover:border-b-2 border-line-primary py-1 transition"
+                >
+                  About
+                </Link>
               </li>
               {isAuthenticated && !isAdmin && (
-                <li className="hover:text-cyan-500 pt-2 sm:pt-0">
-                  <Link to="/wishlist">
+                <li className="pt-2 sm:pt-0">
+                  <Link
+                    to="/wishlist"
+                    className="hover:border-b-2 border-line-primary py-1 transition"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      fill={`${wishlist.length > 0 ? "#22d3ee" : "none"}`}
+                      fill={`${
+                        wishlist.length > 0 ? "var(--btn-primary)" : "none"
+                      }`}
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
                       stroke="currentColor"
@@ -86,11 +111,11 @@ const Header = () => {
                 </li>
               )}
               {!isAdmin && (
-                <li className="hover:text-cyan-500 pt-2 sm:pt-0 relative">
+                <li className="  pt-2 sm:pt-0 relative">
                   <Link to="/cart">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      fill={cartNumber > 0 ? "#22d3ee" : "none"}
+                      fill={cartNumber > 0 ? "var(--btn-primary)" : "none"}
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
                       stroke="currentColor"
@@ -104,7 +129,7 @@ const Header = () => {
                     </svg>
                   </Link>
                   {cartNumber > 0 && (
-                    <span className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 w-4 h-4 rounded-full dark:bg-blue-900 dark:text-blue-300 absolute  top-[-2px] left-[15px] sm:top-[-11px] text-center">
+                    <span className="bg-blue-100 text-black text-xs font-medium mr-2 w-4 h-4 rounded-full dark:bg-blue-900 dark:text-blue-300 absolute  top-[-2px] left-[15px] sm:top-[-11px] text-center">
                       {cartNumber}
                     </span>
                   )}
@@ -135,7 +160,7 @@ const Header = () => {
                 </div>
               </Link>
               <Link onClick={logout}>
-                <Button text="logout" />
+                <Button text="logout" primary={false} />
               </Link>
             </div>
           )}
