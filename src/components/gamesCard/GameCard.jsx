@@ -26,7 +26,7 @@ const GameCard = ({
         {/* image */}
         <Link to={`/game/${game._id}`}>
           <img
-            className="object-fit h-64 w-full cursor-pointer hover:scale-105"
+            className="object-fit h-64 w-full bg-slate-600 cursor-pointer hover:scale-105"
             src={game.imgs_links[0]}
             alt={game.product_name}
           />
@@ -34,10 +34,12 @@ const GameCard = ({
       </div>
       {/* cardHeader */}
       <div className="px-4 py-1  ">
-        <div className="font-bold text-xl mb-1">{game.product_name}</div>
+        <div className="font-bold text-xl text-secondary-color  mb-1">
+          {game.product_name}
+        </div>
         <div className="flex justify-between">
           <p className="text-sm">
-            <span className="font-semibold">vendor :</span>
+            <span className="">vendor :</span>
             {game.vendor}
           </p>
           {/* new game */}
@@ -53,11 +55,14 @@ const GameCard = ({
       </div>
 
       {/* description */}
-      <div className="px-4 pb-1 h-28">
-        <p className="text-gray-700 text-base italic font-serif">
+      <div className="px-4 pb-1 h-[6rem]">
+        <p className="text-gray-300 text-base italic font-serif">
           {/* {game.description.split(" ").slice(0, 15).join(" ")}... */}
           {`${game.description.slice(0, 100)}...`}
-          <Link to={`/game/${game._id}`}>See More</Link>
+          <Link to={`/game/${game._id}`} className="underline  text-cyan-700">
+            {" "}
+            See More
+          </Link>
         </p>
       </div>
       {/* price */}
@@ -81,7 +86,7 @@ const GameCard = ({
       </div>
       {/* card footer  */}
 
-      <div className="flex justify-between  bg-sky-800 border-t-2 py-2 items-center">
+      <div className="flex justify-between  bg-secondary-color border-t-2 py-2 items-center">
         <span className="ps-4 text-gray-300 text-base italic font-serif">
           {game.category}
         </span>

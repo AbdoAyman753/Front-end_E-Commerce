@@ -169,26 +169,15 @@ const StorePage = () => {
 
   return (
     <>
-      {isAdmin && (
-        <AddGame
-          categories={categories}
-          handleAdminAddGame={handleAdminAddGame}
-        />
-      )}
       {/* store games + filter + search bar*/}
-      {games.length > 0 && filteredGames.length === 0 ? (
-        <div>
-          {/* search */}
-
-          <SearchBar
-            searchKeyword={searchKeyword}
-            setSearchKeyword={setSearchKeyword}
-          />
-
-          {/* <div className="flex   ">*/}
-
-          {/* all filter */}
-
+      {/* search */}
+      <div className="flex flex-col flex-wrap ">
+        <SearchBar
+          searchKeyword={searchKeyword}
+          setSearchKeyword={setSearchKeyword}
+        />
+        {/* filter */}
+        <div className="flex justify-between  flex-col">
           <SimpleGameFilter
             handleGategoryFilter={handleGategoryFilter}
             selectedCategory={selectedCategory}
@@ -200,109 +189,43 @@ const StorePage = () => {
             filteredGames={filteredGames}
             games={games}
           />
-
-          {/* sliderFilter */}
-
-          {/* <GameFilter
-
-            handleGategoryFilter={handleGategoryFilter}
-
-            selectedCategory={selectedCategory}
-
-            categories={categories}
-
-            setselectedCategory={setselectedCategory}
-
-            setCurrentPage={setCurrentPage}
-
-            handlePriceFilter={handlePriceFilter}
-
-            selectedPrice={selectedPrice}
-
-            filteredGames={filteredGames}
-
-            games={games}
-
-          /> */}
-
-          <div className="text-red-500 font-bold w-full text-center my-[20vh]">
-            No games match the selected filter condition.
-          </div>
+          {/* Add component for Admin */}
+          {isAdmin && (
+            <AddGame
+              categories={categories}
+              handleAdminAddGame={handleAdminAddGame}
+            />
+          )}
+          {games.length > 0 && filteredGames.length === 0 ? (
+            <div>
+              <div className="text-red-500 font-bold w-full text-center my-[20vh]">
+                No games match the selected filter condition.
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div>
+                {/* Games cards */}
+                <GamesCards
+                  handleAdminEditGame={handleAdminEditGame}
+                  handleAdminDeleteGame={handleAdminDeleteGame}
+                  filteredGames={filteredGames}
+                  categories={categories}
+                />
+              </div>
+              {/* pagination component*/}
+              <GamesPagination
+                handleNextPagination={handleNextPagination}
+                handlePagination={handlePagination}
+                handlePrevPagination={handlePrevPagination}
+                noOfPages={noOfPages}
+                pages={pages}
+                currentPage={currentPage}
+              />
+            </div>
+          )}
         </div>
-      ) : (
-        <div>
-          <div className="flex flex-raw flex-wrap xs:flex-row sm:flex-col">
-            {/* search */}
-
-            <SearchBar
-              searchKeyword={searchKeyword}
-              setSearchKeyword={setSearchKeyword}
-            />
-
-            <SimpleGameFilter
-              handleGategoryFilter={handleGategoryFilter}
-              selectedCategory={selectedCategory}
-              categories={categories}
-              setselectedCategory={setselectedCategory}
-              setCurrentPage={setCurrentPage}
-              handlePriceFilter={handlePriceFilter}
-              selectedPrice={selectedPrice}
-              filteredGames={filteredGames}
-              games={games}
-            />
-
-            {/* sliderFilter */}
-
-            {/* <div className="flex   ">
-
-         
-
-            <GameFilter
-
-              handleGategoryFilter={handleGategoryFilter}
-
-              selectedCategory={selectedCategory}
-
-              categories={categories}
-
-              setselectedCategory={setselectedCategory}
-
-              setCurrentPage={setCurrentPage}
-
-              handlePriceFilter={handlePriceFilter}
-
-              selectedPrice={selectedPrice}
-
-              filteredGames={filteredGames}
-
-              games={games}
-
-            /> */}
-
-            {/* Games cards */}
-
-            <GamesCards
-              handleAdminEditGame={handleAdminEditGame}
-              handleAdminDeleteGame={handleAdminDeleteGame}
-              filteredGames={filteredGames}
-              categories={categories}
-            />
-
-            {/* </div> */}
-          </div>
-
-          {/* pagination component*/}
-
-          <GamesPagination
-            handleNextPagination={handleNextPagination}
-            handlePagination={handlePagination}
-            handlePrevPagination={handlePrevPagination}
-            noOfPages={noOfPages}
-            pages={pages}
-            currentPage={currentPage}
-          />
-        </div>
-      )}
+      </div>
     </>
   );
 };

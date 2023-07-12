@@ -1,120 +1,113 @@
 import React from "react";
-
-// json-server --watch db.json
-
+import Button from "../ui/Button";
 const SimpleGameFilter = ({
   handleGategoryFilter,
-
   selectedCategory,
-
   categories,
-
   setCurrentPage,
-
   setselectedCategory,
-
   handlePriceFilter,
-
   selectedPrice,
-
   filteredGames,
-
   games,
 }) => {
   return (
     <>
       {games.length > 0 && (
-        <div className="mx-5 xs:mx-0">
-          <div className="  xs:ms-3 flex flex-col  sm:flex-row items-start justify-center mt-2">
-            <button
+        <div className=" mx-auto mt-10 md:mt-4  ">
+          {/* category filter  */}
+          <div className=" gap-3 flex flex-col md:flex md:flex-row  md:gap-1 md:mt-2 ">
+            <Button
+              primary={selectedCategory == "all" ? true : false}
               onClick={() => {
                 setselectedCategory("all");
                 setCurrentPage(1);
               }}
-              type="button"
               className={`  ${
                 selectedCategory == "all"
-                  ? "bg-sky-800  text-white hover:bg-sky-300  hover:text-sky-700  hover:outline-0 shadow-slate-900 shadow-md"
+                  ? " hover:text-slate-300  shadow-slate-700 shadow-md"
                   : ""
-              }  hover:border-sky-600 hover:outline hover:outline-1 hover:outline-slate-400 rounded-full  font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
+              }  xs:ms-3 md:ms-0 md:h-20  outline md:w-40 w-44 outline-btn-primary outline-1 hover:outline-white  font-medium  text-center mr-3 mb-3`}
             >
               All categories
-            </button>
+            </Button>
 
-            {categories.map((category, index) => (
-              <button
-                key={index}
-                type="button"
-                onClick={() => {
-                  handleGategoryFilter(category);
-                }}
-                className={`${
-                  selectedCategory === category
-                    ? "bg-sky-800  text-white hover:bg-sky-300  hover:text-sky-700  hover:outline-0 shadow-slate-900 shadow-md"
-                    : ""
-                } hover:border-sky-600 hover:outline hover:outline-1 hover:outline-slate-400 rounded-full  text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
-              >
-                {category}
-              </button>
-            ))}
+            <div className="  xs:ms-3 flex flex-col gap-3  items-start  md:grid  md:grid-cols-3 md:gap-1 flex-wrap md:justify-start">
+              {categories.map((category, index) => (
+                <Button
+                  primary={selectedCategory == category ? true : false}
+                  key={index}
+                  onClick={() => {
+                    handleGategoryFilter(category);
+                  }}
+                  className={`${
+                    selectedCategory === category
+                      ? " hover:text-slate-300 hover:outline-0 shadow-slate-700 shadow-md"
+                      : ""
+                  }  outline md:w-auto w-44 outline-btn-primary outline-1 hover:outline-white  font-medium  text-center mr-3 mb-3`}
+                >
+                  {category}
+                </Button>
+              ))}
+            </div>
           </div>
-
-          <div className="border-t-2 sm:border-none flex flex-col  xs:ms-3 sm:flex-row items-center justify-center py-2">
-            <button
+          {/* price filter  */}
+          <div className="border-t-2 border-slate-400 md:border-none flex flex-col gap-3 items-start  md:flex-row md:justify-start md:gap-1  py-2">
+            <Button
+              primary={selectedPrice === 0 ? true : false}
               onClick={() => {
                 handlePriceFilter(0);
               }}
-              type="button"
               className={`  ${
                 selectedPrice === 0
-                  ? "bg-sky-800  text-white hover:bg-sky-300  hover:text-sky-700  hover:outline-0 shadow-slate-900 shadow-md"
+                  ? "   hover:text-slate-300  hover:outline-0 shadow-slate-700 shadow-md"
                   : ""
-              }  hover:border-sky-600 hover:outline hover:outline-1 hover:outline-slate-400 rounded-full  text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
+              } md:me-6 xs:ms-3 md:ms-0 outline  md:w-40 w-44 outline-btn-primary outline-1 hover:outline-white  font-medium  text-center mr-3 mb-3`}
             >
               All Prices
-            </button>
+            </Button>
 
-            <button
-              type="button"
+            <Button
+              primary={selectedPrice === 1 ? true : false}
               onClick={() => {
                 handlePriceFilter(1);
               }}
               className={`${
                 selectedPrice === 1
-                  ? "bg-sky-800  text-white hover:bg-sky-300  hover:text-sky-700  hover:outline-0 shadow-slate-900 shadow-md"
+                  ? "   hover:text-slate-300  hover:outline-0 shadow-slate-700 shadow-md"
                   : ""
-              } hover:border-sky-600 hover:outline hover:outline-1 hover:outline-slate-400 rounded-full  text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
+              }  xs:ms-3 md:ms-0 outline  md:w-40 w-44 outline-btn-primary outline-1 hover:outline-white  font-medium  text-center mr-3 mb-3`}
             >
               1-10$
-            </button>
+            </Button>
 
-            <button
-              type="button"
+            <Button
+              primary={selectedPrice === 2 ? true : false}
               onClick={() => {
                 handlePriceFilter(2);
               }}
               className={`${
                 selectedPrice === 2
-                  ? "bg-sky-800  text-white hover:bg-sky-300  hover:text-sky-700  hover:outline-0 shadow-slate-900 shadow-md"
+                  ? "   hover:text-slate-300  hover:outline-0 shadow-slate-700 shadow-md"
                   : ""
-              } hover:border-sky-600 hover:outline hover:outline-1 hover:outline-slate-400 rounded-full  text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
+              }  xs:ms-3 md:ms-0 outline  md:w-40 w-44 outline-btn-primary outline-1 hover:outline-white  font-medium  text-center mr-3 mb-3`}
             >
               11-20${" "}
-            </button>
+            </Button>
 
-            <button
-              type="button"
+            <Button
+              primary={selectedPrice === 3 ? true : false}
               onClick={() => {
                 handlePriceFilter(3);
               }}
               className={`${
                 selectedPrice === 3
-                  ? "bg-sky-800  text-white hover:bg-sky-300  hover:text-sky-700  hover:outline-0 shadow-slate-900 shadow-md"
+                  ? "   hover:text-slate-300  hover:outline-0 shadow-slate-700 shadow-md"
                   : ""
-              } hover:border-sky-600 hover:outline hover:outline-1 hover:outline-slate-400 rounded-full  text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 `}
+              } xs:ms-3 md:ms-0 md outline  md:w-40 w-44 outline-btn-primary outline-1 hover:outline-white  font-medium  text-center mr-3 mb-3`}
             >
               above 20$
-            </button>
+            </Button>
           </div>
         </div>
       )}

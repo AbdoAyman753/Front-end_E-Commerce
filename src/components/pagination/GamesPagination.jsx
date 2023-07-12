@@ -48,7 +48,7 @@ const GamesPagination = ({
               key={page}
               className={`${
                 currentPage === page ? "bg-sky-500 text-white" : ""
-              }  mx-0.5 cursor-pointer block h-8 w-8 rounded border  border-gray-100 text-center leading-8 text-gray-900  `}
+              }  mx-0.5 cursor-pointer block h-8 w-8 rounded border  border-gray-100 text-center leading-8 text-slate-400  `}
             >
               {page}
             </span>

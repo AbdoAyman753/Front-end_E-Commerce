@@ -1,21 +1,15 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate } from "react-router";
-import axios from "axios";
-import gameSchema from "./../../models/GameSchema";
-import { toast } from "react-toastify";
 import AddEditForm from "./AddEditForm";
-import useAuthenticate from "../../utils/useAuthenticate";
-
 const AddGame = ({ categories, handleAdminAddGame }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <div className="text-center">
+      <div className=" text-center mt-10">
         <button
-          className="w-fit bg-emerald-500 hover:bg-emerald-600 hover:scale-110 text-white active:bg-emerald-600 font-bold uppercase text-sm px-3 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          className="outline md:w-auto w-44 outline-emerald-500 outline-1  font-medium text-center mr-3 mb-3
+          hover:bg-emerald-600 hover:scale-110 text-white active:bg-emerald-600 uppercase  px-3 py-2
+           rounded-lg shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
           type="button"
           onClick={() => setShowModal(true)}
         >
