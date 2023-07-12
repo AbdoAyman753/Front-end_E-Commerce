@@ -74,7 +74,7 @@ const DeleteGame = ({ game, handleAdminDeleteGame }) => {
                     {/*body*/}
                     <div className="relative px-6 py-2">
                       {/* // onSubmit={handleSubmit(onSubmitHandler)} */}
-                      <p className=" text-xl font-semibold">
+                      <p className=" text-xl text-center font-semibold">
                         <span className=" text-2xl font-bold me-1 text-red-600">
                           Are you sure
                         </span>

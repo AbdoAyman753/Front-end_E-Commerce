@@ -34,7 +34,7 @@ const GameCard = ({
       </div>
       {/* cardHeader */}
       <div className="px-4 py-1  ">
-        <div className="font-bold text-xl text-cyan-700 mb-1">
+        <div className="font-bold text-xl text-secondary-color  mb-1">
           {game.product_name}
         </div>
         <div className="flex justify-between">
@@ -86,7 +86,7 @@ const GameCard = ({
       </div>
       {/* card footer  */}
 
-      <div className="flex justify-between  bg-btn-primary border-t-2 py-2 items-center">
+      <div className="flex justify-between  bg-secondary-color border-t-2 py-2 items-center">
         <span className="ps-4 text-gray-300 text-base italic font-serif">
           {game.category}
         </span>

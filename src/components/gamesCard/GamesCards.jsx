@@ -9,10 +9,10 @@ const GamesCards = ({
 }) => {
   return (
     <>
-      <div className="md:px-[8vw] mx-auto   my-10 justify-items-center  grid grid-rows-1  gap-4   md:grid-cols-2 lg:grid-cols-3">
+      <div className="lg:px-[8vw] md:px-[3vw] mx-auto    my-10 justify-center flex flex-wrap lg:gap-10  ">
         {filteredGames.map((game) => (
           <div
-            className=" w-60 xs:w-72 text-white border-2 border-slate-400 rounded-3xl  flex flex-col justify-between overflow-hidden hover:shadow-lg hover:shadow-slate-400/50   "
+            className=" w-60 xs:w-72 my-5 sm:mx-auto mx-10  text-white border-2 border-slate-400 rounded-3xl  flex flex-col justify-between overflow-hidden hover:shadow-lg hover:shadow-slate-400/50   "
             key={game._id}
           >
             <GameCard

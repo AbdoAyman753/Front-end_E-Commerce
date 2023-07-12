@@ -100,21 +100,21 @@ const SearchBar = ({ searchKeyword, setSearchKeyword }) => {
   return (
     <>
       <form
-        className=" mx-auto ms-5 mt-5"
+        className=" mx-auto ms-5 mt-5 "
         onSubmit={handleSubmit(onSubmitHandler)}
       >
         <div className="flex">
           <div className="relative w-full ">
             <input
               type="text"
-              className="p-2.5 w-40 xs:w-[90vw]   text-sm text-gray-900 bg-gray-50 rounded-r-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+              className="p-2.5 w-40 w-[90vw]   text-sm text-gray-900 bg-gray-50 rounded-r-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
               placeholder="Search for games or description"
               required
               autoFocus
               {...register("search")}
               onChange={handleSearchChange}
             />
-            <div className="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-sky-700 rounded-r-lg border border-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+            <div className="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-secondary-color rounded-r-lg border border-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
               <svg
                 aria-hidden="true"
                 className="w-5 h-5"

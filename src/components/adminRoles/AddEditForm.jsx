@@ -313,11 +313,11 @@ const AddEditForm = ({
         {mode === "edit" ? (
           <>
             {/* images of game */}
-            <div className="flex flex-wrap gap-1">
+            <div className="flex gap-1">
               {imgsLinks?.map((image, index) => (
                 <div
                   key={index}
-                  className="relative w-[6.5vw] h-8 cursor-pointer"
+                  className="relative w-16 h-10 cursor-pointer"
                   onMouseEnter={() => handleImageMouseEnter(index)}
                   onMouseLeave={handleImageMouseLeave}
                 >
@@ -372,9 +372,9 @@ const AddEditForm = ({
           <p className="text-red-500 mx-auto">{errors.error?.message}</p>
         </div>
         {/*footer*/}
-        <div className="flex items-center justify-evenly p-2  ">
+        <div className="flex flex-col gap-3 items-center justify-evenly p-2  sm:flex-row ">
           <button
-            className="text-white bg-red-500  hover:bg-red-700 font-bold uppercase px-6 py-3 text-sm  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            className="text-white  bg-btn-primary order-last sm:order-none    hover:bg-btn-Secondary tracking-widest  px-6 py-3 text-sm  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
             type="button"
             onClick={() => {
               setShowModal(false);
@@ -384,14 +384,14 @@ const AddEditForm = ({
               }
             }}
           >
-            Close
+            CLOSE
           </button>
           <button
-            className="bg-emerald-500 text-white  hover:bg-emerald-600 active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            className="bg-emerald-600 w-fit text-white  hover:bg-emerald-500 active:bg-emerald-600 tracking-widest   text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
             type="submit"
             onClick={handleSubmit(onSubmitHandler)}
           >
-            Save Changes
+            SAVE CHANGES
           </button>
         </div>
       </form>
