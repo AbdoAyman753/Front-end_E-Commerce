@@ -75,12 +75,6 @@ const Cart = () => {
           >
             {isLoading ? "Loading..." : "Order"}
           </Button>
-          {/* <button
-            onClick={handleOrder}
-            className="border rounded-full bg-cyan-700 text-white px-3 py-1 mr-2"
-          >
-            {isLoading ? "Loading..." : "Order"}
-          </button> */}
           <Button
             onClick={() => dispatch(clearCart())}
             primary={false}
@@ -88,12 +82,6 @@ const Cart = () => {
           >
             Clear Cart
           </Button>
-          {/* <button
-            onClick={() => dispatch(clearCart())}
-            className="border rounded-full bg-slate-200 text-slate-400 px-2 py-1 hover:bg-cyan-700 hover:text-white transition-all"
-          >
-            Clear Cart
-          </button> */}
         </>
       )}
     </div>
