@@ -2,10 +2,11 @@ import { Carousel } from "antd";
 import pubg from "../assets/img/pubg.jpg";
 import ocean from "../assets/img/ocean.jpg";
 import fifa23 from "../assets/img/fifa23.jpg";
-import knight from "../assets/img/knight.png"
-import starship from "../assets/img/starship.webp"
-import glory from "../assets/img/glory.webp"
-import spyro from "../assets/img/spyro.jpg"
+import knight from "../assets/img/knight.png";
+import starship from "../assets/img/starship.webp";
+import glory from "../assets/img/glory.webp";
+import spyro from "../assets/img/spyro.jpg";
+import { useLayoutEffect } from "react";
 const contentStyle = {
   color: "#fff",
   textAlign: "center",
@@ -13,8 +14,10 @@ const contentStyle = {
 };
 
 const About = () => {
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  });
   return (
-
     ////////////////////////////////CAROUSEL///////////////////////////////////////
 
     <div className="about">
@@ -44,8 +47,6 @@ const About = () => {
         <div style={contentStyle}>
           <img className="w-full h-96" src={spyro}></img>
         </div>
-       
-       
       </Carousel>
 
       {/* //////////////////BOX//////////////////// */}
@@ -94,27 +95,27 @@ const About = () => {
       {/* //////////////////GAMES PHOTOS//////////////////// */}
 
       <div className="about_imgs ">
-                <img
-                  className="about_game w-2/5 box-content overflow-clip float-right mr-10"
-                  src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_hardware.png"
-                ></img>
-                <img
-                  className="about_game_img1 w-2/5 box-content overflow-clip "
-                  src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_hardware_pt1.png"
-                ></img>
-                <img
-                  className="about_game_img2 w-2/5 box-content overflow-clip mb-5 ml-6"
-                  src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_hardware_pt2.png"
-                ></img>
-              
-                <img
-                  className="about_game_img3 w-2/5 box-content overflow-clip float-right mr-6"
-                  src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_steamworks.png "
-                ></img>
-                <img
-                  className="about_game_img3 w-2/5 box-content overflow-clip mb-8 "
-                  src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_steamworks_pt1.png"
-                ></img>
+        <img
+          className="about_game w-2/5 box-content overflow-clip float-right mr-10"
+          src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_hardware.png"
+        ></img>
+        <img
+          className="about_game_img1 w-2/5 box-content overflow-clip "
+          src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_hardware_pt1.png"
+        ></img>
+        <img
+          className="about_game_img2 w-2/5 box-content overflow-clip mb-5 ml-6"
+          src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_hardware_pt2.png"
+        ></img>
+
+        <img
+          className="about_game_img3 w-2/5 box-content overflow-clip float-right mr-6"
+          src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_steamworks.png "
+        ></img>
+        <img
+          className="about_game_img3 w-2/5 box-content overflow-clip mb-8 "
+          src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_steamworks_pt1.png"
+        ></img>
       </div>
     </div>
   );
