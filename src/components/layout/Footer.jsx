@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <footer className="footer footer-center p-10 bg-third-color text-white border-t-[3px] border-line-primary">
       <div className="grid grid-flow-col gap-4">
-        <a className="link link-hover">About us</a>
-        <a className="link link-hover">Contact</a>
-        <a className="link link-hover">Jobs</a>
-        <a className="link link-hover">Press kit</a>
+        <span className="link link-hover">
+          <Link to="/about">About us</Link>{" "}
+        </span>
+        <span className="link link-hover">
+          <Link to="/support">Contact</Link>
+        </span>
+        <span className="link link-hover">
+          {" "}
+          <Link to="/store">Store</Link>{" "}
+        </span>
       </div>
       <div>
         <div className="grid grid-flow-col gap-4">
@@ -47,7 +54,13 @@ const Footer = () => {
         </div>
       </div>
       <div>
-        <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+        <p>
+          Copyright © 2023 - All right reserved by V
+          <span className="text-btn-primary text-lg inline-block rotate-[20deg] relative top-1">
+            9
+          </span>{" "}
+          Games Team
+        </p>
       </div>
     </footer>
   );

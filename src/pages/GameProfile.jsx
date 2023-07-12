@@ -68,9 +68,9 @@ const GameProfile = () => {
   return (
     <>
       <div className="mx-[5vw] my-10">
-        <div className="flex flex-col gap-3 bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+        <div className="flex flex-col gap-3 bg-slate-700 border border-gray-200 rounded-lg shadow md:flex-row  dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
           {/* image slider */}
-          <div className="p-4">
+          <div className="p-4  border-white">
             <div className="mx-auto ">
               {selectedImage ? (
                 <img
@@ -100,9 +100,13 @@ const GameProfile = () => {
           </div>
           {/* card body */}
           <div className="flex flex-col justify-evenly md:w-[50vw]">
-            <h3 className="font-bold">{game?.product_name}</h3>
-            <p className="">{game?.description}</p>
-            <p className="text-right me-5 text-xl ">{game?.price} $</p>
+            <h3 className=" font-extrabold text-4xl text-white   tracking-wider font-mono">
+              {game?.product_name}
+            </h3>
+            <p className=" text-slate-400">{game?.description}</p>
+            <p className="text-right me-5 text-xl text-red-500 ">
+              {game?.price} $
+            </p>
             {/* footer */}
             <div className="flex   gap-2  justify-end me-5 ">
               {/* send gift */}
