@@ -48,6 +48,7 @@ const AppLayout = () => {
       try {
         getUser();
       } catch (error) {
+        setIsLoading(false);
         // console.log(error.message);
       }
     }

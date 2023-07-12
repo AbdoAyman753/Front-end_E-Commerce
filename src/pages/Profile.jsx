@@ -9,7 +9,7 @@ const Profile = () => {
   return (
     <div className="container">
       <div className="sm:flex">
-        <div className="sm:w-1/3 py-6 mr-5">
+        <div className="sm:w-1/3 py-6 sm:mr-5 rounded-md">
           <ProfileSidebar userImg={user.profile_pic} />
         </div>
         <div className="flex-1">

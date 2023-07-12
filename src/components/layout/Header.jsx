@@ -156,7 +156,7 @@ const Header = () => {
               <Link to="user">
                 <div className=" w-10 h-10">
                   <img
-                    className="w-full h-full rounded-full"
+                    className="w-full h-full rounded-full ring-2 ring-secondary-color"
                     src={profile_pic}
                     alt=""
                   />

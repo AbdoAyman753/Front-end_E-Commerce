@@ -15,7 +15,7 @@ const UserOrders = () => {
   return (
     <>
       {orders?.length > 0 && (
-        <div className=" w-full mt-3 sm:ml-2 mb-4">
+        <div className=" w-full mt-6 mb-4">
           <div className="relative overflow-x-auto">
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 border">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

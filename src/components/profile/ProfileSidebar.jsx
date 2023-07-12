@@ -15,12 +15,15 @@ function ProfileSidebar({ userImg }) {
   const { isAdmin } = useAuthenticate();
 
   return (
-    <Sidebar aria-label="Default sidebar example" className="w-full h-[78vh]">
+    <Sidebar
+      aria-label="Default sidebar example"
+      className="w-full h-[78vh] rounded"
+    >
       <Sidebar.Items>
         <Sidebar.ItemGroup>
           <div className="w-20 h-20 m-2 rounded-full">
             <img
-              className="w-full h-full ring-2 ring-cyan-300 dark:ring-cyan-500 rounded-full"
+              className="w-full h-full ring-2 ring-btn-Secondary rounded-full"
               src={userImg}
               alt=""
             />
