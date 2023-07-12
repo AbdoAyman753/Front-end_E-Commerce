@@ -4,7 +4,7 @@ import { useOutletContext } from "react-router";
 const UserInfo = () => {
   const user = useOutletContext();
   return (
-    <div className="ml-5 pt-36">
+    <div className="mb-10 sm:pt-36">
       {/* <ul>
         <li>
           name: <span className="ml-1">{user.name}</span>
