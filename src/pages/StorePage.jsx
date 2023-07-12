@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { useEffect, useState } from "react";
 import Loader from "../components/ui/Loader";
 import axios from "axios";
@@ -15,6 +15,12 @@ import useAuthenticate from "../utils/useAuthenticate";
 import GamesCards from "./../components/gamesCard/GamesCards";
 
 const StorePage = () => {
+  //ـــــــــــــــــــــــــــــــــ Hooks ـــــــــــــــــــــــــــــــــــــ
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  });
+  const { isAdmin } = useAuthenticate();
+
   //_______________________________________ states___________________________________
   const [games, setGames] = useState([]);
   const [categories, setCategory] = useState([]);
@@ -26,8 +32,6 @@ const StorePage = () => {
   // filteruseState
   const [selectedCategory, setselectedCategory] = useState("all");
   const [selectedPrice, setSelectedPrice] = useState(0);
-
-  const { isAdmin } = useAuthenticate();
 
   // pagination useState
   let [currentPage, setCurrentPage] = useState(1);

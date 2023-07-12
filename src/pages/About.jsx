@@ -6,6 +6,10 @@ import knight from "../assets/img/knight.png";
 import starship from "../assets/img/starship.webp";
 import glory from "../assets/img/glory.webp";
 import spyro from "../assets/img/spyro.jpg";
+
+
+import { useLayoutEffect } from "react";
+
 const contentStyle = {
   color: "#fff",
   textAlign: "center",
@@ -13,6 +17,9 @@ const contentStyle = {
 };
 
 const About = () => {
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  });
   return (
     ////////////////////////////////CAROUSEL///////////////////////////////////////
 
@@ -97,7 +104,9 @@ const About = () => {
 
       {/* //////////////////GAMES PHOTOS//////////////////// */}
 
+
       <div className="about_imgs mt-5 ">
+
         <img
           className="about_game w-2/5 box-content overflow-clip float-right mr-10"
           src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_hardware.png"
@@ -110,6 +119,7 @@ const About = () => {
           className="about_game_img2 w-2/5 box-content overflow-clip mb-5 ml-6"
           src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_hardware_pt2.png"
         ></img>
+
         {/* <div className="relative">
           <img
             className="about_game_img1 absolute top-0 left-0 w-2/5 box-content overflow-clip "
@@ -120,10 +130,17 @@ const About = () => {
             src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_hardware_pt2.png"
           ></img>
         </div> */}
+
         <img
           className="about_game_img3 w-2/5 box-content overflow-clip float-right mr-6"
           src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_steamworks.png "
         ></img>
+
+        <img
+          className="about_game_img3 w-2/5 box-content overflow-clip mb-8 "
+          src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_steamworks_pt1.png"
+        ></img>
+
       </div>
     </div>
   );
@@ -131,4 +148,3 @@ const About = () => {
 
 export default About;
 
-/////////////
