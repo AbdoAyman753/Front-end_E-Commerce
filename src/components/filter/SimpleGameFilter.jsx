@@ -14,9 +14,9 @@ const SimpleGameFilter = ({
   return (
     <>
       {games.length > 0 && (
-        <div className=" mx-auto mt-10 md:mt-4  ">
+        <div className=" mx-auto mt-10 md:mt-4 flex flex-col xs:flex-row md:flex-col  ">
           {/* category filter  */}
-          <div className=" gap-3 flex flex-col md:flex md:flex-row  md:gap-1 md:mt-2 ">
+          <div className=" gap-3 flex flex-col md:flex md:flex-row  md:gap-1  ">
             <Button
               primary={selectedCategory == "all" ? true : false}
               onClick={() => {
@@ -52,7 +52,7 @@ const SimpleGameFilter = ({
             </div>
           </div>
           {/* price filter  */}
-          <div className="border-t-2 border-slate-400 md:border-none flex flex-col gap-3 items-start  md:flex-row md:justify-start md:gap-1  py-2">
+          <div className="border-t-2 border-slate-400 xs:border-none  flex flex-col gap-3 items-start  md:flex-row md:justify-start md:gap-1  xs:py-0 py-2">
             <Button
               primary={selectedPrice === 0 ? true : false}
               onClick={() => {

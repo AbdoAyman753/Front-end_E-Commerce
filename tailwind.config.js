@@ -9,6 +9,7 @@ export default {
   theme: {
     screens: {
       xs: "475px",
+      xxs: "275px",
       ...defaultTheme.screens,
     },
     container: {
