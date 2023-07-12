@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import faq from "../../assets/img/faq.jpg";
+
 const FAQ = [
   {
     id: 1,
@@ -64,36 +66,37 @@ const Faq = () => {
   const arrow = isCollapsed ? closed : opened;
 
   return (
-    <div className="bg-cyan-600 text-white mx-2 sm:w-3/4 sm:mx-auto md:w-1/2 px-4 py-3 select-none border-4 border-cyan-700 mb-8">
-      <h2
-        className="text-lg  flex cursor-pointer "
-        onClick={() => setIsCollapsed((prev) => !prev)}
-      >
-        Most Asked Questions <span className="ml-auto">{arrow}</span>
-      </h2>
-      {!isCollapsed && (
-        <ul className="mt-4">
-          {FAQ.map((el) => (
-            <li
-              key={el.id}
-              className="w-11/12 mx-auto mb-3 p-2 border-4 border-cyan-700"
-            >
-              <p className="flex justify-between">
-                {el.question}{" "}
-                <span
-                  className="cursor-pointer"
-                  onClick={() =>
-                    setActive((prev) => (prev == el.id ? 0 : el.id))
-                  }
-                >
-                  {active == el.id ? opened : closed}
-                </span>
-              </p>
-              {active == el.id && <p className="pl-4 pt-3">{el.answer}</p>}
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="relative h-[87vh] pt-20">
+      <div className="absolute w-full h-full top-0 left-0 bg-black opacity-60 z-10"></div>
+      <img src={faq} alt="" className="absolute w-full h-full top-0 left-0" />
+      <div className="bg-primary-color text-white mx-2 sm:w-3/4 sm:mx-auto md:w-1/2 px-4 py-3 select-none border-4 border-slate-600 mb-8 relative z-10">
+        <h2
+          className="text-lg  flex cursor-pointer "
+          onClick={() => setIsCollapsed((prev) => !prev)}
+        >
+          Most Asked Questions <span className="ml-auto">{arrow}</span>
+        </h2>
+        {!isCollapsed && (
+          <ul className="mt-4">
+            {FAQ.map((el) => (
+              <li key={el.id} className="w-11/12 mx-auto mb-3 p-2 border-4 ">
+                <p className="flex justify-between">
+                  {el.question}{" "}
+                  <span
+                    className="cursor-pointer"
+                    onClick={() =>
+                      setActive((prev) => (prev == el.id ? 0 : el.id))
+                    }
+                  >
+                    {active == el.id ? opened : closed}
+                  </span>
+                </p>
+                {active == el.id && <p className="pl-4 pt-3">{el.answer}</p>}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import Contact from "../components/support/Contact";
 
 const Support = () => {
   return (
-    <div className="grow pt-14">
+    <div className="grow">
       <Faq />
       <Contact />
     </div>
