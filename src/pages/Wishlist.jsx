@@ -41,7 +41,9 @@ const Wishlist = () => {
           <div className="w-1/3 m-auto mt-16">
             <img className="w-full" src="/empty-wishlist.png" alt="" />
           </div>
-          <p className="text-center text-lg">your wishlist is empty!</p>
+          <p className="text-center text-lg text-white">
+            your wishlist is empty!
+          </p>
         </>
       )}
       {wishlist.length > 0 && (

@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { updateUserName } from "../../store/slices/authSlice";
 import { toast } from "react-toastify";
 import Button from "../ui/Button";
+import URL from "../../utils/URL";
 
 const EditProfile = () => {
   const user = useOutletContext();
@@ -22,15 +23,11 @@ const EditProfile = () => {
 
   const handleOnSubmit = async (data) => {
     setIsLoading(true);
-    const response = await axios.patch(
-      `http://localhost:8000/users/${userId}/`,
-      data,
-      {
-        headers: {
-          Authorization: token,
-        },
-      }
-    );
+    const response = await axios.patch(`${URL}/users/${userId}/`, data, {
+      headers: {
+        Authorization: token,
+      },
+    });
     setIsLoading(false);
     if (response.status === 200) {
       dispatch(updateUserName(data.username));

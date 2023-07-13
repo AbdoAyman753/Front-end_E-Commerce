@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import useAuthenticate from "../../utils/useAuthenticate";
 import Button from "../ui/Button";
+import URL from "../../utils/URL";
 
 const EditPassword = () => {
   const {
@@ -20,7 +21,7 @@ const EditPassword = () => {
     setIsLoading(true);
     try {
       const response = await axios.patch(
-        `http://localhost:8000/users/${userId}/changePassword`,
+        `${URL}/users/${userId}/changePassword`,
         data,
         {
           headers: {
@@ -123,11 +124,7 @@ const EditPassword = () => {
           </div>
         </div>
 
-        <Button
-          type="submit"
-        >
-          {isLoading ? "loading..." : "Save"}
-        </Button>
+        <Button type="submit">{isLoading ? "loading..." : "Save"}</Button>
       </form>
     </div>
   );

@@ -10,6 +10,7 @@ import { setCart } from "../../store/slices/cartSlice";
 import { setWishlist } from "../../store/slices/wishlistSlice";
 
 import signInSchema from "./../../models/SignInSchema";
+import URL from "../../utils/URL";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
@@ -29,10 +30,7 @@ const SignInForm = () => {
 
   const onSubmitHandler = async (data) => {
     try {
-      const response = await axios.post(
-        "http://localhost:8000/users/login",
-        data
-      );
+      const response = await axios.post(`${URL}/users/login`, data);
       if (response.status === 200) {
         dispatch(updateUserState(false));
         const { token, user } = response.data;

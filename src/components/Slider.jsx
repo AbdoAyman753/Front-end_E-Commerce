@@ -5,12 +5,13 @@ import { Navigation, Pagination, EffectCoverflow, Autoplay } from "swiper";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import URL from "../utils/URL";
 
 const Cards = (/*{ recentGames }*/) => {
   const [games, setGames] = useState("");
 
   const fitchRecentGames = async () => {
-    const { data } = await axios.get("http://localhost:8000/products/newest");
+    const { data } = await axios.get(`${URL}/products/newest`);
     setGames(data.newestTenProducts);
   };
   useEffect(() => {

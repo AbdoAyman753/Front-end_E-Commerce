@@ -11,6 +11,7 @@ import SearchBar from "../components/searchBar/SearchBar";
 import AddGame from "../components/adminRoles/AddGame";
 import useAuthenticate from "../utils/useAuthenticate";
 import GamesCards from "./../components/gamesCard/GamesCards";
+import URL from "../utils/URL";
 
 const StorePage = () => {
   //ـــــــــــــــــــــــــــــــــ Hooks ـــــــــــــــــــــــــــــــــــــ
@@ -147,7 +148,7 @@ const StorePage = () => {
   useEffect(() => {
     const fetchGames = async () => {
       // const { data, categoryList } = await axios.get(
-      const { data } = await axios.get("http://localhost:8000/products");
+      const { data } = await axios.get(`${URL}/products`);
       const { Products, categoryList } = data;
       setIsLoading(false);
       setGames(Products);

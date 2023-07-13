@@ -10,7 +10,8 @@ const dateOptions = {
 const UserOrders = () => {
   let { orders } = useOutletContext();
 
-  if (orders.length < 1) return <h2>empty</h2>;
+  if (orders.length < 1)
+    return <h2 className="text-white mt-10">empty orders</h2>;
   return (
     <>
       {orders?.length > 0 && (

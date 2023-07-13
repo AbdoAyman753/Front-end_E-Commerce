@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import URL from "../../utils/URL";
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -26,14 +27,11 @@ const AppLayout = () => {
     // if user => get user with its cart and wishlsit
     const getUser = async () => {
       setIsLoading(true);
-      const response = await axios.get(
-        `http://localhost:8000/users/user-info`,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
+      const response = await axios.get(`${URL}/users/user-info`, {
+        headers: {
+          Authorization: token,
+        },
+      });
       setIsLoading(false);
       if (response.status === 200) {
         dispatch(updateUserState(false));
@@ -63,7 +61,7 @@ const AppLayout = () => {
 
     const sendCartToServer = async () => {
       const cartResponse = await axios.patch(
-        "http://localhost:8000/carts/updateCart",
+        `${URL}/carts/updateCart`,
         { products: cartIds },
         {
           headers: {
@@ -94,7 +92,7 @@ const AppLayout = () => {
 
     const sendWishlistToServer = async () => {
       const wishlistResponse = await axios.patch(
-        "http://localhost:8000/wishlists/",
+        `${URL}/wishlists/`,
         { products: wishlistIds },
         {
           headers: {

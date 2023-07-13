@@ -59,7 +59,7 @@ const Cart = () => {
               loading="lazy"
             />
           </div>
-          <p className="text-center text-lg">your cart is empty!</p>
+          <p className="text-center text-lg text-white">your cart is empty!</p>
         </>
       )}
       {cart.length > 0 && (

@@ -10,6 +10,7 @@ import DeleteGame from "./../components/adminRoles/DeleteGame";
 import EditGame from "./../components/adminRoles/EditGame";
 import useAuthenticate from "./../utils/useAuthenticate";
 import { Toggles } from "./../utils/TogglesContext";
+import URL from "../utils/URL";
 const GameProfile = () => {
   const { isAuthenticated } = useAuthenticate();
   const { isAdmin } = useAuthenticate();
@@ -23,9 +24,7 @@ const GameProfile = () => {
   useEffect(() => {
     const fetchGame = async () => {
       try {
-        const { data } = await axios.get(
-          `http://localhost:8000/products/${id}`
-        );
+        const { data } = await axios.get(`${URL}/products/${id}`);
         setGame(data);
         setSelectedImage(data?.imgs_links);
         setIsLoading(false);

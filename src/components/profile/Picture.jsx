@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { updateUserPicture } from "../../store/slices/authSlice";
 import { toast } from "react-toastify";
 import Button from "../ui/Button";
+import URL from "../../utils/URL";
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
@@ -37,7 +38,7 @@ const Picture = () => {
       formData.append("image", file);
 
       const response = await axios.patch(
-        `http://localhost:8000/users/${userId}/profile_pic`,
+        `${URL}/users/${userId}/profile_pic`,
         formData,
         {
           headers: {

@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import signUpSchema from "./../../models/SignUpSchema";
+import URL from "../../utils/URL";
 const SignUpForm = () => {
   const {
     register,
@@ -21,7 +22,7 @@ const SignUpForm = () => {
 
   const onSubmitHandler = async (data) => {
     try {
-      const response = await axios.post("http://localhost:8000/users/", data);
+      const response = await axios.post(`${URL}/users/`, data);
 
       if (response.status === 201) {
         navigate("/sign-in");
