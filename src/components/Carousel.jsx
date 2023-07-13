@@ -64,6 +64,7 @@ const Cards = () => {
               className="img_swiper w-full	h-96 rounded-3xl	object-cover"
               src={card1}
               alt="card1"
+              loading="lazy"
             />
           </SwiperSlide>
           <SwiperSlide className="swiper_slide w-4/5 h-96 relative">
@@ -71,6 +72,7 @@ const Cards = () => {
               className="img_swiper w-full	h-96 rounded-3xl	object-cover"
               src={card2}
               alt="card2"
+              loading="lazy"
             />
           </SwiperSlide>
           <SwiperSlide className="swiper_slide w-4/5 h-96 relative">
@@ -78,6 +80,7 @@ const Cards = () => {
               className="img_swiper w-full	h-96 rounded-3xl	object-cover"
               src={card3}
               alt="card3"
+              loading="lazy"
             />
           </SwiperSlide>
           <SwiperSlide className="swiper_slide w-4/5 h-96 relative">
@@ -85,6 +88,7 @@ const Cards = () => {
               className="img_swiper w-full	h-96 rounded-3xl	object-cover"
               src={card4}
               alt="card4"
+              loading="lazy"
             />
           </SwiperSlide>
           <SwiperSlide className="swiper_slide w-4/5 h-96 relative">
@@ -92,6 +96,7 @@ const Cards = () => {
               className="img_swiper w-full	h-96 rounded-3xl	object-cover"
               src={card5}
               alt="card5"
+              loading="lazy"
             />
           </SwiperSlide>
           <SwiperSlide className="swiper_slide w-4/5 h-96 relative">
@@ -99,6 +104,7 @@ const Cards = () => {
               className="img_swiper w-full	h-96 rounded-3xl	object-cover"
               src={card7}
               alt="card7"
+              loading="lazy"
             />
           </SwiperSlide>
           <SwiperSlide className="swiper_slide w-4/5 h-96 relative">
@@ -106,6 +112,7 @@ const Cards = () => {
               className="img_swiper w-full	h-96 rounded-3xl	object-cover"
               src={card9}
               alt="card9"
+              loading="lazy"
             />
           </SwiperSlide>
           <SwiperSlide className="swiper_slide w-4/5 h-96 relative">
@@ -113,6 +120,7 @@ const Cards = () => {
               className="img_swiper w-full	h-96 rounded-3xl	object-cover"
               src={card10}
               alt="card10"
+              loading="lazy"
             />
           </SwiperSlide>
         </Swiper>

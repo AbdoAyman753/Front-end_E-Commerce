@@ -20,7 +20,6 @@ const WishlistToggle = ({ game }) => {
     handleInWishList,
   } = useContext(Toggles);
   const dispatch = useDispatch();
-  // const [isInWishList, setIsInWishList] = useState(false);
   const [isInLibrary, setIsInLibrary] = useState(false);
   const { user } = useSelector((state) => state.auth);
 

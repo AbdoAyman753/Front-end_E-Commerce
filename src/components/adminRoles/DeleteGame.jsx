@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import useAuthenticate from "../../utils/useAuthenticate";
+import URL from "../../utils/URL";
 
 const DeleteGame = ({ game, handleAdminDeleteGame }) => {
   const [showModal, setShowModal] = useState(false);
@@ -16,7 +17,7 @@ const DeleteGame = ({ game, handleAdminDeleteGame }) => {
 
     const deleteProduct = async () => {
       const result = await axios.delete(
-        `http://localhost:8000/products/${game._id}`,
+        `${URL}/products/${game._id}`,
         {
           headers: {
             Authorization: token,

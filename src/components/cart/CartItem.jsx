@@ -13,12 +13,6 @@ const CartItem = ({ item }) => {
         <Button onClick={() => dispatch(removeFromCart(item._id))}>
           Delete
         </Button>
-        {/* <button
-          onClick={() => dispatch(removeFromCart(item._id))}
-          className="border-2 border-red-700 bg-red-700 text-white text-sm rounded-full px-2 ml-3 hover:scale-105 transition-all"
-        >
-          Delete
-        </button> */}
       </div>
     </div>
   );

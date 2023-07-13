@@ -6,6 +6,7 @@ import gameSchema from "./../../models/GameSchema";
 import useAuthenticate from "../../utils/useAuthenticate";
 import { toast } from "react-toastify";
 import axios from "axios";
+import URL from "../../utils/URL";
 const AddEditForm = ({
   setShowModal,
   categories,
@@ -84,7 +85,7 @@ const AddEditForm = ({
         try {
           // send edited game
           const result = await axios.patch(
-            `http://localhost:8000/products/${game._id}`,
+            `${URL}/products/${game._id}`,
             formData,
             {
               headers: {
@@ -163,16 +164,12 @@ const AddEditForm = ({
       // post data to Api and test response
       const addProduct = async () => {
         try {
-          const result = await axios.post(
-            "http://localhost:8000/products",
-            formData,
-            {
-              headers: {
-                Authorization: token,
-                "Content-Type": "multipart/form-data",
-              },
-            }
-          );
+          const result = await axios.post(`${URL}/products`, formData, {
+            headers: {
+              Authorization: token,
+              "Content-Type": "multipart/form-data",
+            },
+          });
           // if response is ok
           if (200 <= result.status < 300) {
             setShowModal(false);
@@ -325,6 +322,7 @@ const AddEditForm = ({
                     className="w-full h-full object-cover"
                     src={image}
                     alt={`image${index}`}
+                    loading="lazy"
                   />
                   {hoveredImageIndex === index && (
                     <button
