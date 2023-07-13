@@ -28,7 +28,6 @@ const GameCard = ({
           <img
             className="object-fit h-64 w-full bg-slate-600 cursor-pointer hover:scale-105"
             src={game.imgs_links[0]}
-            loading="lazy"
             alt={game.product_name}
           />
         </Link>
@@ -48,7 +47,7 @@ const GameCard = ({
           Date.now() - new Date(game.created_at) <= 1000 * 60 * 60 * 24 * 2 ? (
             <div className="flex flex-col justify-center items-center">
               <span className="">
-                <img className="w-9 animate-bounce" src="fire2.gif" alt="" loading="lazy"/>
+                <img className="w-9 animate-bounce" src="fire2.gif" alt="" />
               </span>
             </div>
           ) : null}
@@ -112,26 +111,7 @@ const GameCard = ({
               />
             </span>
           )}
-          {/* gift icon*/}
-          {isAuthenticated && !isAdmin && (
-            <span className=" rounded-full cursor-pointer   text-sm font-semibold text-white hover:scale-110   ">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-7 h-7  hover:stroke-sky-300  "
-              >
-                <title>Buy Gift</title>
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
-                />
-              </svg>
-            </span>
-          )}
+
           <Toggles.Provider
             value={{
               isInWishList,
