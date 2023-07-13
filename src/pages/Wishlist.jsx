@@ -61,12 +61,6 @@ const Wishlist = () => {
           >
             Clear Wishlist
           </Button>
-          {/* <button
-            onClick={() => dispatch(clearWishlist())}
-            className="border rounded-full bg-slate-200 text-slate-400 px-2 py-1 hover:bg-cyan-700 hover:text-white transition-all"
-          >
-            Clear Wishlist
-          </button> */}
         </>
       )}
     </div>

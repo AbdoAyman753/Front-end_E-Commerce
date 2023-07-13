@@ -68,7 +68,12 @@ const Faq = () => {
   return (
     <div className="relative h-[87vh] pt-20">
       <div className="absolute w-full h-full top-0 left-0 bg-black opacity-60 z-10"></div>
-      <img src={faq} alt="" className="absolute w-full h-full top-0 left-0" />
+      <img
+        src={faq}
+        alt=""
+        loading="lazy"
+        className="absolute w-full h-full top-0 left-0"
+      />
       <div className="bg-primary-color text-white mx-2 sm:w-3/4 sm:mx-auto md:w-1/2 px-4 py-3 select-none border-4 border-slate-600 mb-8 relative z-10">
         <h2
           className="text-lg  flex cursor-pointer "

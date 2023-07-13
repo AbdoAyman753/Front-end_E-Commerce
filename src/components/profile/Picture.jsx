@@ -84,12 +84,6 @@ const Picture = () => {
       >
         {isLoading ? "Loading..." : "Change"}
       </Button>
-      {/* <button
-        onClick={handleChangePicture}
-        className="border rounded-full  bg-cyan-800 text-sm text-white w-auto h-10 p-2"
-      >
-        {isLoading ? "Loading..." : "Change"}
-      </button> */}
     </div>
   );
 };

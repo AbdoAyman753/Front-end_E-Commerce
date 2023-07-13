@@ -14,6 +14,7 @@ const UserGames = () => {
               className="w-full h-80"
               src={product.imgs_links[i]}
               alt="game"
+              loading="lazy"
             />
           </div>
           <div className="p-3">

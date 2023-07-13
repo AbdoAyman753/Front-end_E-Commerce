@@ -20,8 +20,6 @@ const SignUpForm = () => {
   const navigate = useNavigate();
 
   const onSubmitHandler = async (data) => {
-    console.log({ data });
-
     try {
       const response = await axios.post("http://localhost:8000/users/", data);
 

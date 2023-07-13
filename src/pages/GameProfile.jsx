@@ -21,13 +21,11 @@ const GameProfile = () => {
   const [isLoading, setIsLoading] = useState(true);
   // fetch game from Api and stop loading when finish
   useEffect(() => {
-    console.log(id);
     const fetchGame = async () => {
       try {
         const { data } = await axios.get(
           `http://localhost:8000/products/${id}`
         );
-        console.log(data);
         setGame(data);
         setSelectedImage(data?.imgs_links);
         setIsLoading(false);
@@ -77,6 +75,7 @@ const GameProfile = () => {
                   className="md:w-[50vw] w-full h-52 rounded-md"
                   src={selectedImage}
                   alt=""
+                  loading="lazy"
                 />
               ) : (
                 "Select an image"
@@ -88,6 +87,7 @@ const GameProfile = () => {
                   key={index}
                   src={image}
                   alt=""
+                  loading="lazy"
                   className={`w-[12.8vw] md:w-[8vw] h-20 me-1 mt-1 cursor-pointer ${
                     selectedImage === image
                       ? "scale-125 shadow-black shadow-md rounded-md border-gray-300 border-2"

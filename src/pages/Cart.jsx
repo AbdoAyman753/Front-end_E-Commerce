@@ -33,7 +33,6 @@ const Cart = () => {
   const navigate = useNavigate();
 
   const handleOrder = () => {
-    console.log(isAuthenticated);
     if (isAuthenticated) {
       setIsLoading(true);
       order(cart, total, token);
@@ -53,7 +52,12 @@ const Cart = () => {
       {cart.length == 0 && (
         <>
           <div className="w-1/5 m-auto mt-16">
-            <img className="w-full" src="/emptycart.png" alt="" />
+            <img
+              className="w-full"
+              src="/emptycart.png"
+              alt=""
+              loading="lazy"
+            />
           </div>
           <p className="text-center text-lg">your cart is empty!</p>
         </>
@@ -75,12 +79,6 @@ const Cart = () => {
           >
             {isLoading ? "Loading..." : "Order"}
           </Button>
-          {/* <button
-            onClick={handleOrder}
-            className="border rounded-full bg-cyan-700 text-white px-3 py-1 mr-2"
-          >
-            {isLoading ? "Loading..." : "Order"}
-          </button> */}
           <Button
             onClick={() => dispatch(clearCart())}
             primary={false}
@@ -88,12 +86,6 @@ const Cart = () => {
           >
             Clear Cart
           </Button>
-          {/* <button
-            onClick={() => dispatch(clearCart())}
-            className="border rounded-full bg-slate-200 text-slate-400 px-2 py-1 hover:bg-cyan-700 hover:text-white transition-all"
-          >
-            Clear Cart
-          </button> */}
         </>
       )}
     </div>

@@ -18,7 +18,6 @@ const AddProduct = ({ categories, games, handleAdminAddGame }) => {
     resolver: yupResolver(gameSchema),
   });
   const onSubmitHandler = (data) => {
-    // console.log({ data });
     setShowModal(false);
     const images = [...data.attachment];
     const newImages = images.map((file) => file.name);
@@ -30,13 +29,11 @@ const AddProduct = ({ categories, games, handleAdminAddGame }) => {
       recently_added: true,
       imgs_links: newImages,
     };
-    // console.log(newGame);
     const addProduct = async () => {
       const result = await axios.post(
         "http://localhost:3000/products",
         newGame
       );
-      // console.log(result);
       if (result.status >= 200 && result.status < 300) {
         handleAdminAddGame(newGame);
         navigate("/store");

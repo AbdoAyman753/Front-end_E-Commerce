@@ -7,7 +7,6 @@ import starship from "../assets/img/starship.webp";
 import glory from "../assets/img/glory.webp";
 import spyro from "../assets/img/spyro.jpg";
 
-
 import { useLayoutEffect } from "react";
 
 const contentStyle = {
@@ -30,25 +29,25 @@ const About = () => {
         autoplay="true"
       >
         <div style={contentStyle}>
-          <img className="w-full h-96" src={ocean}></img>
+          <img className="w-full h-96" src={ocean} loading="lazy"></img>
         </div>
         <div style={contentStyle}>
-          <img className="w-full h-96 " src={pubg}></img>
+          <img className="w-full h-96 " src={pubg} loading="lazy"></img>
         </div>
         <div style={contentStyle}>
-          <img className="w-full h-96" src={fifa23}></img>
+          <img className="w-full h-96" src={fifa23} loading="lazy"></img>
         </div>
         <div style={contentStyle}>
-          <img className="w-full h-96" src={knight}></img>
+          <img className="w-full h-96" src={knight} loading="lazy"></img>
         </div>
         <div style={contentStyle}>
-          <img className="w-full h-96" src={glory}></img>
+          <img className="w-full h-96" src={glory} loading="lazy"></img>
         </div>
         <div style={contentStyle}>
-          <img className="w-full h-96" src={starship}></img>
+          <img className="w-full h-96" src={starship} loading="lazy"></img>
         </div>
         <div style={contentStyle}>
-          <img className="w-full h-96" src={spyro}></img>
+          <img className="w-full h-96" src={spyro} loading="lazy"></img>
         </div>
       </Carousel>
 
@@ -65,6 +64,7 @@ const About = () => {
             <img
               className="about_box_img w-3/5 border-0 box-content overflow-clip  "
               src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_community.png"
+              loading="lazy"
             ></img>
             <div
               className="about_text  text-3xl text-white ml-2.5 font-serif	"
@@ -104,47 +104,50 @@ const About = () => {
 
       {/* //////////////////GAMES PHOTOS//////////////////// */}
 
-
       <div className="about_imgs mt-5 ">
-
         <img
           className="about_game w-2/5 box-content overflow-clip float-right mr-10"
           src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_hardware.png"
+          loading="lazy"
         ></img>
         <img
           className="about_game_img1 w-2/5 box-content overflow-clip "
           src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_hardware_pt1.png"
+          loading="lazy"
         ></img>
         <img
           className="about_game_img2 w-2/5 box-content overflow-clip mb-5 ml-6"
           src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_hardware_pt2.png"
+          loading="lazy"
         ></img>
 
         {/* <div className="relative">
           <img
             className="about_game_img1 absolute top-0 left-0 w-2/5 box-content overflow-clip "
             src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_hardware_pt1.png"
+            loading="lazy"
           ></img>
           <img
             className="about_game_img2 absolute top-0 left-0 w-2/5 box-content overflow-clip mb-5 ml-6"
             src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_hardware_pt2.png"
+            loading="lazy"
           ></img>
         </div> */}
 
         <img
           className="about_game_img3 w-2/5 box-content overflow-clip float-right mr-6"
           src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_steamworks.png "
+          loading="lazy"
         ></img>
 
         <img
           className="about_game_img3 w-2/5 box-content overflow-clip mb-8 "
           src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_steamworks_pt1.png"
+          loading="lazy"
         ></img>
-
       </div>
     </div>
   );
 };
 
 export default About;
-

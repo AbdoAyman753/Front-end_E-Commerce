@@ -325,6 +325,7 @@ const AddEditForm = ({
                     className="w-full h-full object-cover"
                     src={image}
                     alt={`image${index}`}
+                    loading="lazy"
                   />
                   {hoveredImageIndex === index && (
                     <button

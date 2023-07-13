@@ -16,7 +16,6 @@ const CartToggle = ({ game }) => {
   } = useContext(Toggles);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  // const [isInCart, setIsInCart] = useState(false);
   const [isInLibrary, setIsInLibrary] = useState(false);
 
   const handleAddToCart = () => {

@@ -5,9 +5,7 @@ import axios from "axios";
 import { pagination } from "../utils/Pagination";
 import GameFilter from "../components/filter/GameFilter";
 import GamesPagination from "../components/pagination/GamesPagination";
-// import { useDispatch } from "react-redux";
-// import { addToCart } from "../store/slices/cartSlice";
-// import { addToWishlist } from "../store/slices/wishlistSlice";
+
 import SimpleGameFilter from "../components/filter/SimpleGameFilter";
 import SearchBar from "../components/searchBar/SearchBar";
 import AddGame from "../components/adminRoles/AddGame";
@@ -131,9 +129,7 @@ const StorePage = () => {
     // clone
     const newGames = [...games];
     const index = newGames.findIndex((game) => game._id == editGame._id);
-    // console.log(newGames[index]);
     newGames[index] = { ...newGames[index], ...editGame };
-    console.log(newGames);
     // setstate
     setGames(newGames);
   };
@@ -156,7 +152,6 @@ const StorePage = () => {
       setIsLoading(false);
       setGames(Products);
       setCategory(categoryList);
-      console.log(Products, categoryList);
     };
     fetchGames();
   }, []);
