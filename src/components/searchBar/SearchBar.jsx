@@ -26,7 +26,9 @@ const SearchBar = ({ searchKeyword, setSearchKeyword }) => {
 
   return (
     <>
+
       <form className="  mt-5  " onSubmit={handleSubmit}>
+
         <div className="flex">
           <div className="relative w-full ">
             <input
