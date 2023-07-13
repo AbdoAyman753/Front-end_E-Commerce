@@ -23,7 +23,7 @@ const About = () => {
   }, []);
   return (
     <div className="about container">
-      ////////////////////////////////CAROUSEL///////////////////////////////////////
+      {/* ////////////////////////////////CAROUSEL/////////////////////////////////////// */}
       <Carousel
         className=" border m-auto mt-20 h-auto"
         effect="fade"
@@ -103,31 +103,25 @@ const About = () => {
         </div>
       </div>
       {/* //////////////////GAMES PHOTOS//////////////////// */}
-
       <div className="about_imgs mt-5 mx-auto mb-20">
         {/* 1st section */}
-        <div className="flex flex-col md:gap-0 gap-4 md:flex-row md:justify-betwwen items-center">
+        <div className="flex flex-col md:gap-4 gap-4 md:flex-row md:justify-between items-center">
           <img
-            className="about_game w-3/5 box-content overflow-clip top-0 right-0  mr-10"
+            className="about_game w-1/2 box-content overflow-clip top-0 right-0"
             src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_hardware.png"
-
           ></img>
-          <div>
-            <h2 className="flex justify-center gap-1">
-              <span className="text-red-600 text-3xl font-semibold">
-                Experience{" "}
-              </span>
-              <div className="text-white text-3xl font-semibold  w-32 animate-bounce">
+          <div className="   flex flex-col justify-center flex-wrap  ">
+            <h2 className="flex justify-center gap-1 xs:text-2xl">
+              <span className="text-red-600  font-semibold">Experience </span>
+              {/* <div className="text-white  font-semibold  w-32 animate-bounce">
                 <Logo />
-              </div>{" "}
-              <span className="text-red-600 text-3xl font-semibold ">
-                Hardware
-              </span>
+              </div>{" "} */}
+              <span className="text-red-600  font-semibold ">Hardware</span>
             </h2>
-            <p className="text-white">
+            <div className="text-white flex flex-wrap text-center">
               We created the V9 Deck and the Valve Index headset to make gaming
               on the PC even better.
-            </p>
+            </div>
           </div>
         </div>
         {/* 2nd section */}
@@ -146,7 +140,6 @@ const About = () => {
             src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_steamworks.png "
           ></img>
         </div>
-
       </div>
     </div>
   );
