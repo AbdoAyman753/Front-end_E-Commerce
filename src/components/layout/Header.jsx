@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import useAuthenticate from "../../utils/useAuthenticate";
 import useLogout from "../../utils/useLogout";
+import Logo from "../ui/Logo";
 
 const Header = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -23,12 +24,8 @@ const Header = () => {
       <div className="container">
         <div className="flex items-center relative">
           {/* logo  */}
-          <Link to="/" className="text-2xl">
-            V
-            <span className="text-btn-primary text-3xl inline-block rotate-[20deg] relative top-1">
-              9
-            </span>{" "}
-            GAMES
+          <Link to="/">
+            <Logo />
           </Link>
 
           {/* collapse button  */}
