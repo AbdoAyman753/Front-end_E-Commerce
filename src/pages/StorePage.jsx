@@ -175,7 +175,7 @@ const StorePage = () => {
     <>
       {/* store games + filter + search bar*/}
       {/* search */}
-      <div className="flex flex-col flex-wrap ">
+      <div className=" container flex flex-col flex-wrap ">
         <SearchBar
           searchKeyword={searchKeyword}
           setSearchKeyword={setSearchKeyword}

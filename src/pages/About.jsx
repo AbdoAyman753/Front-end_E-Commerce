@@ -9,6 +9,7 @@ import spyro from "../assets/img/spyro.jpg";
 
 import { useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
+import Logo from "./../components/ui/Logo";
 
 const contentStyle = {
   color: "#fff",
@@ -21,11 +22,10 @@ const About = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    ////////////////////////////////CAROUSEL///////////////////////////////////////
-
-    <div className="about">
+    <div className="about container">
+      ////////////////////////////////CAROUSEL///////////////////////////////////////
       <Carousel
-        className="w-4/5 border m-auto mt-20 h-auto"
+        className=" border m-auto mt-20 h-auto"
         effect="fade"
         autoplay="true"
       >
@@ -51,11 +51,9 @@ const About = () => {
           <img className="w-full h-96" src={spyro}></img>
         </div>
       </Carousel>
-
       {/* //////////////////BOX//////////////////// */}
-
       <div className="photo flex items-center justify-center mt-20 mb-20 ">
-        <div className="about_community rounded-lg w-4/5	border-solid border p-3 ">
+        <div className="about_community rounded-lg 	border-solid border p-3 ">
           <div className="about_content pt-8">
             <h2 className="about_title animate-pulse font-extrabold text-4xl text-line-primary	 normal-case tracking-normal text-center mb-10 font-mono">
               Join Our Community
@@ -77,18 +75,12 @@ const About = () => {
           </div>
         </div>
       </div>
-
       {/* ///////////////THE VIDEO////////////// */}
-
-      <div className="about_video w-[80vw] overflow-hidden md:gap-0 gap-4 flex flex-col md:flex-row mt-2  justify-between  mx-auto  items-center">
-        <div className=" text-white ms-3 md:order-none order-last ">
+      <div className="about_video  overflow-hidden md:gap-0 gap-4 flex flex-col md:flex-row mt-2  justify-between  mx-auto  items-center">
+        <div className=" text-white ms-3 md:order-none order-last md:w-2/5">
           <h1 className="text-center md:text-left">
-            <div className="text-white text-3xl font-semibold animate-bounce">
-              V
-              <span className="text-btn-primary text-3xl inline-block rotate-[20deg] relative top-1">
-                9
-              </span>{" "}
-              GAMES
+            <div className="text-white font-semibold animate-bounce">
+              <Logo />
             </div>{" "}
           </h1>
           <p className=" text-3xl ">
@@ -98,7 +90,7 @@ const About = () => {
         </div>
         <div className="about_monitor_video  md:w-4/5">
           <video
-            className="video w-full h-auto object-contain box-content overflow-clip "
+            className="video w-full h-auto  object-contain box-content overflow-clip "
             autoPlay
             muted
             loop
@@ -109,10 +101,8 @@ const About = () => {
           </video>
         </div>
       </div>
-
       {/* //////////////////GAMES PHOTOS//////////////////// */}
-
-      <div className="about_imgs mt-5 mx-auto w-[80vw] mb-20">
+      <div className="about_imgs mt-5 mx-auto mb-20">
         {/* 1st section */}
         <div className="flex flex-col md:gap-0 gap-4 md:flex-row md:justify-betwwen items-center">
           <img
@@ -124,31 +114,28 @@ const About = () => {
               <span className="text-red-600 text-3xl font-semibold">
                 Experience{" "}
               </span>
-              <div className="text-white text-3xl font-semibold animate-bounce">
-                V
-                <span className="text-btn-primary text-3xl inline-block rotate-[20deg] relative top-1">
-                  9
-                </span>{" "}
-                GAMES
+              <div className="text-white text-3xl font-semibold  w-32 animate-bounce">
+                <Logo />
               </div>{" "}
               <span className="text-red-600 text-3xl font-semibold ">
                 Hardware
               </span>
             </h2>
             <p className="text-white">
-              We created the Steam Deck and the Valve Index headset to make
-              gaming on the PC even better.
+              We created the V9 Deck and the Valve Index headset to make gaming
+              on the PC even better.
             </p>
           </div>
         </div>
         {/* 2nd section */}
         <div className="flex flex-col md:gap-0 gap-4 mt-10 md:flex-row md:justify-betwwen items-center ">
           <div className="text-white md:order-none order-last ">
-            <h2 className="text-white text-3xl  ">Release your Game</h2>
+            <h2 className="text-white text-3xl text-center md:text-left  ">
+              Release your Game
+            </h2>
             <p className="text-white">
-              V9 Games is the set of tools and services that help game
-              developers and publishers get the most out of distributing games
-              on Steam.
+              V9 Games is services that help game developers and publishers get
+              the most out of distributing games.
             </p>
           </div>
           <img
