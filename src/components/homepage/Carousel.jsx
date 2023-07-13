@@ -6,7 +6,7 @@ import { Navigation, Pagination, EffectCoverflow, Autoplay } from "swiper";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import Button from "../ui/Button";
 
 const Cards = () => {
   const [games, setGames] = useState([]);
@@ -44,15 +44,15 @@ overflow-auto  max-w-full h-fit hover:overflow-hidden  "
             0: {
               slidesPerView: 1,
             },
-            400:{
-              slidesPerView:1,
+            400: {
+              slidesPerView: 1,
             },
             639: {
               slidesPerView: 2,
             },
-            865:{
-              slidesPerView:3,
-            }
+            865: {
+              slidesPerView: 3,
+            },
           }}
           spaceBetween={30}
           wrapperClass="swiper-wrapper"
@@ -60,11 +60,9 @@ overflow-auto  max-w-full h-fit hover:overflow-hidden  "
           // effect={"coverflow"}
           grabCursor={true}
           autoplay={{
-            delay: 1500,
+            delay: 2000,
             disableOnInteraction: false,
-
           }}
-
           centeredSlides={true}
           loop={true}
           // slidesPerView={3}
@@ -104,16 +102,14 @@ overflow-auto  max-w-full h-fit hover:overflow-hidden  "
                 >
                   {/* <div className="card_image w-64  mb-4"></div> */}
                   {hoverCard == el._id && (
-                    <div className="card_content flex items-center flex-col justify-between w-full rounded-b-xl border-t-2 border-line-cyan border-shadow py-1 bg-slate-600  shadow-sm transition delay-150 duration-300 h-2/6">
-                      <span className="card_title text-2xl font-medium relative mb-2">
+                    <div className="card_content flex items-center flex-col justify-around w-full rounded-b-xl border-t-2 border-slate-600 border-shadow py-2 bg-slate-500  shadow-sm h-2/6">
+                      <span className="card_title text-2xl font-medium relative ">
                         {el.product_name}
                       </span>
 
-                      <button className="card_btn bg-btn-primary hover:bg-btn-secondry hover:shadow-sm hover:scale-105 rounded p-1 mb-2 ">
-                        <Link className="text-white " to={`/game/${el._id}`}>
-                          See More
-                        </Link>
-                      </button>
+                      <Button className="card_btn shadow-md  hover:shadow-lg hover:scale-105 mb-2  ">
+                        <Link to={`/game/${el._id}`}>See More</Link>
+                      </Button>
                     </div>
                   )}
                 </div>
