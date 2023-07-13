@@ -64,7 +64,7 @@ const GameProfile = () => {
 
   return (
     <>
-      <div className="mx-[5vw] my-10">
+      <div className="container my-10">
         <div className="flex flex-col gap-3 bg-slate-700 border border-gray-200 rounded-lg shadow md:flex-row  dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
           {/* image slider */}
           <div className="p-4  border-white">
@@ -108,47 +108,6 @@ const GameProfile = () => {
             </p>
             {/* footer */}
             <div className="flex   gap-2  justify-end me-5 ">
-              {/* send gift */}
-              {/* {isAdmin && (
-                <span className="  rounded-full cursor-pointer   text-sm font-semibold text-white hover:scale-110   ">
-                  <EditGame
-                    categories={categories}
-                    handleAdminEditGame={handleAdminEditGame}
-                    id={game.id}
-                    game={game}
-                  />
-                </span>
-              )}
-              {/* delete icon
-              {isAdmin && (
-                <span className=" rounded-full cursor-pointer   text-sm font-semibold text-white hover:scale-110   ">
-                  <DeleteGame
-                    game={game}
-                    handleAdminDeleteGame={handleAdminDeleteGame}
-                  />
-                </span>
-              )}{" "}
-              */}
-              {/* gift icon*/}
-              {isAuthenticated && !isAdmin && (
-                <span className=" rounded-full cursor-pointer   text-sm font-semibold text-white hover:scale-110   ">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-7 h-7  hover:stroke-sky-300  "
-                  >
-                    <title>Buy Gift</title>
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
-                    />
-                  </svg>
-                </span>
-              )}
               <Toggles.Provider
                 value={{
                   isInWishList,

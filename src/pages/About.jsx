@@ -103,31 +103,39 @@ const About = () => {
         </div>
       </div>
       {/* //////////////////GAMES PHOTOS//////////////////// */}
-      <div className="about_imgs mt-5 mx-auto mb-20">
+
+      <div className="about_imgs mt-5 mb-20">
         {/* 1st section */}
-        <div className="flex flex-col md:gap-4 gap-4 md:flex-row md:justify-between items-center">
+        <div className="flex flex-col md:gap-2 gap-4 mt-10 md:flex-row md:justify-center items-center ">
           <img
-            className="about_game w-1/2 box-content overflow-clip top-0 right-0"
+            className="about_game_img3  w-3/5 md:w-[35vw]   overflow-clip "
             src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_hardware.png"
-          ></img>
-          <div className="   flex flex-col justify-center flex-wrap  ">
-            <h2 className="flex justify-center gap-1 xs:text-2xl">
-              <span className="text-red-600  font-semibold">Experience </span>
-              {/* <div className="text-white  font-semibold  w-32 animate-bounce">
+          />
+          <div className="text-white md:order-none order-last ">
+            <h2 className="text-white text-3xl   flex gap-1 md:justify-start justify-center ">
+              <span className="text-btn-primary text-3xl font-semibold ">
+                Experience
+              </span>
+              <div className="text-white font-semibold w-32 animate-bounce">
                 <Logo />
-              </div>{" "} */}
-              <span className="text-red-600  font-semibold ">Hardware</span>
+              </div>
+              <span className="text-btn-primary text-3xl font-semibold ">
+                Hardware
+              </span>
             </h2>
-            <div className="text-white flex flex-wrap text-center">
+            <p className="text-white">
               We created the V9 Deck and the Valve Index headset to make gaming
               on the PC even better.
-            </div>
+            </p>
+
           </div>
         </div>
         {/* 2nd section */}
         <div className="flex flex-col md:gap-0 gap-4 mt-10 md:flex-row md:justify-betwwen items-center ">
           <div className="text-white md:order-none order-last ">
-            <h2 className="text-white text-3xl text-center md:text-left  ">
+
+            <h2 className="text-btn-primary text-3xl text-center md:text-left ">
+
               Release your Game
             </h2>
             <p className="text-white">
@@ -138,7 +146,9 @@ const About = () => {
           <img
             className="about_game_img3 w-3/5  overflow-clip "
             src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_steamworks.png "
-          ></img>
+
+          />
+
         </div>
       </div>
     </div>

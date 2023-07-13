@@ -28,7 +28,6 @@ const GameCard = ({
           <img
             className="object-fit h-64 w-full bg-slate-600 cursor-pointer hover:scale-105"
             src={game.imgs_links[0]}
-            loading="lazy"
             alt={game.product_name}
           />
         </Link>
@@ -48,7 +47,7 @@ const GameCard = ({
           Date.now() - new Date(game.created_at) <= 1000 * 60 * 60 * 24 * 2 ? (
             <div className="flex flex-col justify-center items-center">
               <span className="">
-                <img className="w-9 animate-bounce" src="fire2.gif" alt="" loading="lazy"/>
+                <img className="w-9 animate-bounce" src="fire2.gif" alt="" />
               </span>
             </div>
           ) : null}
