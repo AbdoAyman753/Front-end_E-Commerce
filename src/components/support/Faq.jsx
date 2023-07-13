@@ -21,7 +21,7 @@ const FAQ = [
   {
     id: 4,
     question: "How can I contact support team?",
-    answer: "Contact us on xxxx@ay7aga.com",
+    answer: "Contact us on xxxx@gmail.com",
   },
 ];
 
