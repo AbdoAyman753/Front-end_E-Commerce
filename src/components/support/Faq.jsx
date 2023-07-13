@@ -5,23 +5,23 @@ import faq from "../../assets/img/faq.jpg";
 const FAQ = [
   {
     id: 1,
-    question: "what is ...?",
-    answer: "its nsjsjsjhdh j hdjhjhdj  hdjhjh jhd dhj hjdh sbhdhgh kjdjhfjhj ",
+    question: "How can I create an account on v9Games?",
+    answer: "Click on sign up and fill your information in the form",
   },
   {
     id: 2,
-    question: "what is ...?",
-    answer: "its nsjsjsjhdh j hdjhjhdj  hdjhjh jhd dhj hjdh sbhdhgh kjdjhfjhj ",
+    question: "How can I purchase a game?",
+    answer: "From the store add the game to your cart the order it",
   },
   {
     id: 3,
-    question: "what is ...?",
-    answer: "its nsjsjsjhdh j hdjhjhdj  hdjhjh jhd dhj hjdh sbhdhgh kjdjhfjhj ",
+    question: "How can I update my password?",
+    answer: "Go to edit password section in your profile and updated it",
   },
   {
     id: 4,
-    question: "what is ...?",
-    answer: "its nsjsjsjhdh j hdjhjhdj  hdjhjh jhd dhj hjdh sbhdhgh kjdjhfjhj ",
+    question: "How can I contact support team?",
+    answer: "Contact us on xxxx@gmail.com",
   },
 ];
 

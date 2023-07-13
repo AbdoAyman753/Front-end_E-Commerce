@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-import "./Carousel.css";
 
 const Cards = () => {
   const [games, setGames] = useState([]);
