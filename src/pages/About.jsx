@@ -127,12 +127,15 @@ const About = () => {
               We created the V9 Deck and the Valve Index headset to make gaming
               on the PC even better.
             </p>
+
           </div>
         </div>
         {/* 2nd section */}
         <div className="flex flex-col md:gap-0 gap-4 mt-10 md:flex-row md:justify-betwwen items-center ">
           <div className="text-white md:order-none order-last ">
+
             <h2 className="text-btn-primary text-3xl text-center md:text-left ">
+
               Release your Game
             </h2>
             <p className="text-white">
@@ -143,7 +146,9 @@ const About = () => {
           <img
             className="about_game_img3 w-3/5  overflow-clip "
             src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_steamworks.png "
+
           />
+
         </div>
       </div>
     </div>
