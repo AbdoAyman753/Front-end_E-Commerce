@@ -14,7 +14,7 @@ import GamesCards from "./../components/gamesCard/GamesCards";
 import URL from "../utils/URL";
 
 const StorePage = () => {
-  //ـــــــــــــــــــــــــــــــــ Hooks ـــــــــــــــــــــــــــــــــــــ
+  //ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ Hooks ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   });
@@ -170,8 +170,8 @@ const StorePage = () => {
   return (
     <>
       {/* store games + filter + search bar*/}
-      {/* search */}
-      <div className="flex flex-col flex-wrap ">
+      <div className=" container flex flex-col flex-wrap ">
+        {/* search */}
         <SearchBar
           searchKeyword={searchKeyword}
           setSearchKeyword={setSearchKeyword}

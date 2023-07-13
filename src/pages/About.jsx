@@ -23,32 +23,32 @@ const About = () => {
   }, []);
   return (
     <div className="about container">
-      ////////////////////////////////CAROUSEL///////////////////////////////////////
+      {/* ////////////////////////////////CAROUSEL/////////////////////////////////////// */}
       <Carousel
         className=" border m-auto mt-20 h-auto"
         effect="fade"
         autoplay="true"
       >
         <div style={contentStyle}>
-          <img className="w-full h-96" src={ocean}></img>
+          <img className="w-full h-96" src={ocean} loading="lazy"></img>
         </div>
         <div style={contentStyle}>
-          <img className="w-full h-96 " src={pubg}></img>
+          <img className="w-full h-96 " src={pubg} loading="lazy"></img>
         </div>
         <div style={contentStyle}>
-          <img className="w-full h-96" src={fifa23}></img>
+          <img className="w-full h-96" src={fifa23} loading="lazy"></img>
         </div>
         <div style={contentStyle}>
-          <img className="w-full h-96" src={knight}></img>
+          <img className="w-full h-96" src={knight} loading="lazy"></img>
         </div>
         <div style={contentStyle}>
-          <img className="w-full h-96" src={glory}></img>
+          <img className="w-full h-96" src={glory} loading="lazy"></img>
         </div>
         <div style={contentStyle}>
-          <img className="w-full h-96" src={starship}></img>
+          <img className="w-full h-96" src={starship} loading="lazy"></img>
         </div>
         <div style={contentStyle}>
-          <img className="w-full h-96" src={spyro}></img>
+          <img className="w-full h-96" src={spyro} loading="lazy"></img>
         </div>
       </Carousel>
       {/* //////////////////BOX//////////////////// */}
@@ -63,6 +63,7 @@ const About = () => {
             <img
               className="about_box_img w-3/5 border-0 box-content overflow-clip  "
               src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_community.png"
+              loading="lazy"
             ></img>
             <div
               className="about_text  text-3xl text-white ml-2.5 font-serif	"
@@ -102,22 +103,23 @@ const About = () => {
         </div>
       </div>
       {/* //////////////////GAMES PHOTOS//////////////////// */}
-      <div className="about_imgs mt-5 mx-auto mb-20">
+
+      <div className="about_imgs mt-5 mb-20">
         {/* 1st section */}
-        <div className="flex flex-col md:gap-0 gap-4 md:flex-row md:justify-betwwen items-center">
+        <div className="flex flex-col md:gap-2 gap-4 mt-10 md:flex-row md:justify-center items-center ">
           <img
-            className="about_game w-3/5 box-content overflow-clip top-0 right-0  mr-10"
+            className="about_game_img3  w-3/5 md:w-[35vw]   overflow-clip "
             src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_hardware.png"
-          ></img>
-          <div>
-            <h2 className="flex justify-center gap-1">
-              <span className="text-red-600 text-3xl font-semibold">
-                Experience{" "}
+          />
+          <div className="text-white md:order-none order-last ">
+            <h2 className="text-white text-3xl   flex gap-1 md:justify-start justify-center ">
+              <span className="text-btn-primary text-3xl font-semibold ">
+                Experience
               </span>
-              <div className="text-white text-3xl font-semibold  w-32 animate-bounce">
+              <div className="text-white font-semibold w-32 animate-bounce">
                 <Logo />
-              </div>{" "}
-              <span className="text-red-600 text-3xl font-semibold ">
+              </div>
+              <span className="text-btn-primary text-3xl font-semibold ">
                 Hardware
               </span>
             </h2>
@@ -130,7 +132,7 @@ const About = () => {
         {/* 2nd section */}
         <div className="flex flex-col md:gap-0 gap-4 mt-10 md:flex-row md:justify-betwwen items-center ">
           <div className="text-white md:order-none order-last ">
-            <h2 className="text-white text-3xl text-center md:text-left  ">
+            <h2 className="text-btn-primary text-3xl text-center md:text-left ">
               Release your Game
             </h2>
             <p className="text-white">
@@ -141,7 +143,7 @@ const About = () => {
           <img
             className="about_game_img3 w-3/5  overflow-clip "
             src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_steamworks.png "
-          ></img>
+          />
         </div>
       </div>
     </div>
