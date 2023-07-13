@@ -11,7 +11,6 @@ const Header = () => {
   const cartNumber = useSelector((state) => state.cart.cart.length);
 
   const { wishlist } = useSelector((state) => state.wishlist);
-  const dispatch = useDispatch();
   const { isAuthenticated, isAdmin } = useAuthenticate();
   const logout = useLogout();
   const { profile_pic } = useSelector((state) => state.auth.user);
@@ -156,6 +155,7 @@ const Header = () => {
                     className="w-full h-full rounded-full ring-2 ring-secondary-color"
                     src={profile_pic}
                     alt=""
+                    loading="lazy"
                   />
                 </div>
               </Link>

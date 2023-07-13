@@ -10,6 +10,7 @@ import { setCart } from "../../store/slices/cartSlice";
 import { setWishlist } from "../../store/slices/wishlistSlice";
 
 import signInSchema from "./../../models/SignInSchema";
+import URL from "../../utils/URL";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
@@ -28,23 +29,16 @@ const SignInForm = () => {
   const navigate = useNavigate();
 
   const onSubmitHandler = async (data) => {
-    console.log({ data });
-
     try {
-      const response = await axios.post(
-        "http://localhost:8000/users/login",
-        data
-      );
+      const response = await axios.post(`${URL}/users/login`, data);
       if (response.status === 200) {
         dispatch(updateUserState(false));
         const { token, user } = response.data;
         const userInfo = { ...user, cart: undefined, wishlist: undefined };
-        // console.log(user.cart.products);
         dispatch(setCart(user.cart[0].products));
         dispatch(setWishlist(user.wishlist[0].products));
         dispatch(login({ token, userInfo }));
       }
-      console.log(response);
       reset();
     } catch (error) {
       if (error.response?.status === 400) {

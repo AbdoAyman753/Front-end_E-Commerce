@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { updateUserName } from "../../store/slices/authSlice";
 import { toast } from "react-toastify";
 import Button from "../ui/Button";
+import URL from "../../utils/URL";
 
 const EditProfile = () => {
   const user = useOutletContext();
@@ -22,15 +23,11 @@ const EditProfile = () => {
 
   const handleOnSubmit = async (data) => {
     setIsLoading(true);
-    const response = await axios.patch(
-      `http://localhost:8000/users/${userId}/`,
-      data,
-      {
-        headers: {
-          Authorization: token,
-        },
-      }
-    );
+    const response = await axios.patch(`${URL}/users/${userId}/`, data, {
+      headers: {
+        Authorization: token,
+      },
+    });
     setIsLoading(false);
     if (response.status === 200) {
       dispatch(updateUserName(data.username));
@@ -66,42 +63,8 @@ const EditProfile = () => {
             </div>
             <span className="text-red-500">{errors.username?.message}</span>
           </div>
-          {/* <div>
-            <div>
-              <label
-                htmlFor="email"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Email
-              </label>
-              <input
-                type="text"
-                id="email"
-                className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  w-full sm:w-auto${
-                  errors.email?.message
-                    ? "border-red-300 focus:ring-red-400 focus:border-red-400"
-                    : "focus:ring-blue-500 focus:border-blue-500"
-                }`}
-                defaultValue={user.email}
-                {...register("email", {
-                  required: "email is required",
-                  pattern: {
-                    value: /^[\w-]+@([\w-]+\.)+[\w-]{2,4}$/,
-                    message: "enter valid email",
-                  },
-                })}
-              />
-            </div>
-            <span className="text-red-500">{errors.email?.message}</span>
-          </div> */}
         </div>
         <Button type="submit">{isLoading ? "loading..." : "Save"}</Button>
-        {/* <button
-          type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          {isLoading ? "loading..." : "Save"}
-        </button> */}
       </form>
     </div>
   );

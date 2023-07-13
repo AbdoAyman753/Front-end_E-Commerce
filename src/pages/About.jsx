@@ -30,25 +30,25 @@ const About = () => {
         autoplay="true"
       >
         <div style={contentStyle}>
-          <img className="w-full h-96" src={ocean}></img>
+          <img className="w-full h-96" src={ocean} loading="lazy"></img>
         </div>
         <div style={contentStyle}>
-          <img className="w-full h-96 " src={pubg}></img>
+          <img className="w-full h-96 " src={pubg} loading="lazy"></img>
         </div>
         <div style={contentStyle}>
-          <img className="w-full h-96" src={fifa23}></img>
+          <img className="w-full h-96" src={fifa23} loading="lazy"></img>
         </div>
         <div style={contentStyle}>
-          <img className="w-full h-96" src={knight}></img>
+          <img className="w-full h-96" src={knight} loading="lazy"></img>
         </div>
         <div style={contentStyle}>
-          <img className="w-full h-96" src={glory}></img>
+          <img className="w-full h-96" src={glory} loading="lazy"></img>
         </div>
         <div style={contentStyle}>
-          <img className="w-full h-96" src={starship}></img>
+          <img className="w-full h-96" src={starship} loading="lazy"></img>
         </div>
         <div style={contentStyle}>
-          <img className="w-full h-96" src={spyro}></img>
+          <img className="w-full h-96" src={spyro} loading="lazy"></img>
         </div>
       </Carousel>
       {/* //////////////////BOX//////////////////// */}
@@ -63,6 +63,7 @@ const About = () => {
             <img
               className="about_box_img w-3/5 border-0 box-content overflow-clip  "
               src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_community.png"
+              loading="lazy"
             ></img>
             <div
               className="about_text  text-3xl text-white ml-2.5 font-serif	"
@@ -102,12 +103,14 @@ const About = () => {
         </div>
       </div>
       {/* //////////////////GAMES PHOTOS//////////////////// */}
+
       <div className="about_imgs mt-5 mx-auto mb-20">
         {/* 1st section */}
         <div className="flex flex-col md:gap-0 gap-4 md:flex-row md:justify-betwwen items-center">
           <img
             className="about_game w-3/5 box-content overflow-clip top-0 right-0  mr-10"
             src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_hardware.png"
+
           ></img>
           <div>
             <h2 className="flex justify-center gap-1">
@@ -143,6 +146,7 @@ const About = () => {
             src="https://cdn.cloudflare.steamstatic.com/store/about/cta_hero_steamworks.png "
           ></img>
         </div>
+
       </div>
     </div>
   );

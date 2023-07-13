@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import { Link } from "react-router-dom";
-import { clearCart } from "../store/slices/cartSlice";
 
 const icon = (
   <svg
@@ -21,12 +19,6 @@ const icon = (
 );
 
 const PaymentSuccess = () => {
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   console.log("clear");
-  //   dispatch(clearCart());
-  // }, [dispatch]);
   return (
     <div className="flex-1 flex flex-col items-center justify-center">
       <p className="flex text-xl">Payment done successfully {icon}</p>
