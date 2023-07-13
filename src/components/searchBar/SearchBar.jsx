@@ -99,15 +99,12 @@ const SearchBar = ({ searchKeyword, setSearchKeyword }) => {
 
   return (
     <>
-      <form
-        className=" mx-auto ms-5 mt-5 "
-        onSubmit={handleSubmit(onSubmitHandler)}
-      >
+      <form className="  mt-5  " onSubmit={handleSubmit(onSubmitHandler)}>
         <div className="flex">
           <div className="relative w-full ">
             <input
               type="text"
-              className="p-2.5 w-40 w-[90vw]   text-sm text-gray-900 bg-gray-50 rounded-r-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+              className="p-2.5  w-full   text-sm text-gray-900 bg-gray-50 rounded-r-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
               placeholder="Search for games or description"
               required
               autoFocus

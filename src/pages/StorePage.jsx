@@ -17,7 +17,7 @@ const StorePage = () => {
   //ـــــــــــــــــــــــــــــــــ Hooks ـــــــــــــــــــــــــــــــــــــ
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
-  });
+  }, []);
   const { isAdmin } = useAuthenticate();
 
   //_______________________________________ states___________________________________
@@ -171,7 +171,7 @@ const StorePage = () => {
     <>
       {/* store games + filter + search bar*/}
       {/* search */}
-      <div className="flex flex-col flex-wrap ">
+      <div className=" container flex flex-col flex-wrap ">
         <SearchBar
           searchKeyword={searchKeyword}
           setSearchKeyword={setSearchKeyword}
