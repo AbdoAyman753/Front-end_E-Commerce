@@ -14,7 +14,7 @@ const Cart = lazy(() => import("./pages/Cart"));
 const Wishlist = lazy(() => import("./pages/Wishlist"));
 const Profile = lazy(() => import("./pages/Profile"));
 const UserInfo = lazy(() => import("./components/profile/UserInfo"));
-const UserGames = lazy(() => import("./components/profile/UserInfo"));
+const UserGames = lazy(() => import("./components/profile/UserGames"));
 const UserOrders = lazy(() => import("./components/profile/UserOrders"));
 const EditProfile = lazy(() => import("./components/profile/editProfile"));
 const EditPassword = lazy(() => import("./components/profile/EditPassword"));
