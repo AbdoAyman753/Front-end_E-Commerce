@@ -1,9 +1,11 @@
 import React from "react";
-import Carousel from "../components/Carousel";
-import Slider from "../components/Slider";
+import Carousel from "../components/homepage/Carousel";
+import Slider from "../components/homepage/Slider";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import HomeImg from "../components/homepage/HomeImg";
 import URL from "../utils/URL";
+
 const Home = () => {
   // const [games, setGames] = useState("");
 
@@ -16,8 +18,9 @@ const Home = () => {
   // }, []);
   return (
     <>
+      <HomeImg />
       <Carousel />
-      <Slider /*recentGames={games}*/ />
+      <Slider/>
     </>
   );
 };
