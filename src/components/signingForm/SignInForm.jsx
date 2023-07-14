@@ -70,10 +70,10 @@ const SignInForm = () => {
     <>
       {/*bg here for theme */}
       <div className='signin'>
-        <div className='signin-container max639:flex max639:justify-center	'>
-          <div className='form-content sm:w-2/5 w-4/5 sm:left-[15%] xl:py-5 lg:py-4 md:py-3- md:px-5 sm:px-4 px-3 sm:py-2 py-1 '>
+        <div className='signin-container  flex justify-center	'>
+          <div className='form-content 2xl:w-3/12 xl:w-2/6 sm:w-2/5 w-4/5 sm:left-[15%] xl:py-5 lg:py-4 md:py-3- md:px-5 sm:px-4 px-3 sm:py-2 py-1 '>
             <div>
-              <h1 className='form-title font-semibold sm:mb-5 mb-1 lg:text-3xl md:text-2xl sm:text-xl text-lg max639:mt-[10px] max639:mb-[8px]'>
+              <h1 className='form-title font-semibold sm:mb-5 mb-1 lg:text-3xl md:text-2xl sm:text-xl text-lg mt-[10px] mb-[8px]'>
                 Welcome Back
               </h1>
             </div>
@@ -99,7 +99,7 @@ const SignInForm = () => {
                   >
                     Email Address
                   </label>
-                  <p className='text-red-500 mx-auto lg:text-base  sm:text-sm text-[10px]'>
+                  <p className='text-red-500 mx-auto lg:text-base sm:text-sm text-[10px]'>
                     {errors.email?.message}
                   </p>
                 </div>
@@ -128,7 +128,7 @@ const SignInForm = () => {
                 </div>
                 {/* submit input */}
                 <div className='relative form-login-btn'>
-                  <button className='bg-btn-primary hover:bg-btn-Secondary rounded-lg max639:px-2 max639:py-0.75 sm:px-3 sm:py-2 lg:text-[16px] md:text-[14px] sm:text-[12px] text-[10px] text-white transition-all '>
+                  <button className='bg-btn-primary hover:bg-btn-Secondary rounded-lg md:px-3 md:py-1.25 sm:px-2.5 sm:py-1 px-2 py-0.75 lg:text-[16px] md:text-[14px] sm:text-[12px] text-[10px] text-white transition-all '>
                     Log In
                   </button>
                 </div>

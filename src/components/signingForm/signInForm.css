@@ -21,7 +21,6 @@
   backdrop-filter: blur(10px);
   border-radius: 10px;
   overflow: hidden;
-  display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -49,10 +48,6 @@
   flex-direction: column;
   padding: 1rem 0 0.5rem;
   font-size: 1vw;
-}
-
-.form-input {
-  background-color: red;
 }
 
 .form-input textarea {
