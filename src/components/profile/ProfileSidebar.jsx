@@ -26,6 +26,7 @@ function ProfileSidebar({ userImg }) {
               className="w-full h-full ring-2 ring-btn-Secondary rounded-full"
               src={userImg}
               alt=""
+              loading="lazy"
             />
           </div>
           <Sidebar.Item

@@ -5,20 +5,19 @@ import axios from "axios";
 import { pagination } from "../utils/Pagination";
 import GameFilter from "../components/filter/GameFilter";
 import GamesPagination from "../components/pagination/GamesPagination";
-// import { useDispatch } from "react-redux";
-// import { addToCart } from "../store/slices/cartSlice";
-// import { addToWishlist } from "../store/slices/wishlistSlice";
+
 import SimpleGameFilter from "../components/filter/SimpleGameFilter";
 import SearchBar from "../components/searchBar/SearchBar";
 import AddGame from "../components/adminRoles/AddGame";
 import useAuthenticate from "../utils/useAuthenticate";
 import GamesCards from "./../components/gamesCard/GamesCards";
+import URL from "../utils/URL";
 
 const StorePage = () => {
-  //ـــــــــــــــــــــــــــــــــ Hooks ـــــــــــــــــــــــــــــــــــــ
+  //ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ Hooks ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
-  });
+  }, []);
   const { isAdmin } = useAuthenticate();
 
   //_______________________________________ states___________________________________
@@ -131,9 +130,7 @@ const StorePage = () => {
     // clone
     const newGames = [...games];
     const index = newGames.findIndex((game) => game._id == editGame._id);
-    // console.log(newGames[index]);
     newGames[index] = { ...newGames[index], ...editGame };
-    console.log(newGames);
     // setstate
     setGames(newGames);
   };
@@ -151,12 +148,11 @@ const StorePage = () => {
   useEffect(() => {
     const fetchGames = async () => {
       // const { data, categoryList } = await axios.get(
-      const { data } = await axios.get("http://localhost:8000/products");
+      const { data } = await axios.get(`${URL}/products`);
       const { Products, categoryList } = data;
       setIsLoading(false);
       setGames(Products);
       setCategory(categoryList);
-      console.log(Products, categoryList);
     };
     fetchGames();
   }, []);
@@ -174,8 +170,10 @@ const StorePage = () => {
   return (
     <>
       {/* store games + filter + search bar*/}
-      {/* search */}
-      <div className="flex flex-col flex-wrap ">
+
+      <div className=" container flex flex-col flex-wrap ">
+        {/* search */}
+
         <SearchBar
           searchKeyword={searchKeyword}
           setSearchKeyword={setSearchKeyword}

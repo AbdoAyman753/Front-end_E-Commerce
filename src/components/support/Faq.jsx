@@ -5,23 +5,23 @@ import faq from "../../assets/img/faq.jpg";
 const FAQ = [
   {
     id: 1,
-    question: "what is ...?",
-    answer: "its nsjsjsjhdh j hdjhjhdj  hdjhjh jhd dhj hjdh sbhdhgh kjdjhfjhj ",
+    question: "How can I create an account on v9Games?",
+    answer: "Click on sign up and fill your information in the form",
   },
   {
     id: 2,
-    question: "what is ...?",
-    answer: "its nsjsjsjhdh j hdjhjhdj  hdjhjh jhd dhj hjdh sbhdhgh kjdjhfjhj ",
+    question: "How can I purchase a game?",
+    answer: "From the store add the game to your cart the order it",
   },
   {
     id: 3,
-    question: "what is ...?",
-    answer: "its nsjsjsjhdh j hdjhjhdj  hdjhjh jhd dhj hjdh sbhdhgh kjdjhfjhj ",
+    question: "How can I update my password?",
+    answer: "Go to edit password section in your profile and updated it",
   },
   {
     id: 4,
-    question: "what is ...?",
-    answer: "its nsjsjsjhdh j hdjhjhdj  hdjhjh jhd dhj hjdh sbhdhgh kjdjhfjhj ",
+    question: "How can I contact support team?",
+    answer: "Contact us on xxxx@gmail.com",
   },
 ];
 
@@ -68,7 +68,12 @@ const Faq = () => {
   return (
     <div className="relative h-[87vh] pt-20">
       <div className="absolute w-full h-full top-0 left-0 bg-black opacity-60 z-10"></div>
-      <img src={faq} alt="" className="absolute w-full h-full top-0 left-0" />
+      <img
+        src={faq}
+        alt=""
+        loading="lazy"
+        className="absolute w-full h-full top-0 left-0"
+      />
       <div className="bg-primary-color text-white mx-2 sm:w-3/4 sm:mx-auto md:w-1/2 px-4 py-3 select-none border-4 border-slate-600 mb-8 relative z-10">
         <h2
           className="text-lg  flex cursor-pointer "

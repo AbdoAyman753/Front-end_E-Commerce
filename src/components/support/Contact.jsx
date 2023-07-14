@@ -38,6 +38,7 @@ const Contact = () => {
         <img
           src={imgContact}
           alt=""
+          loading="lazy"
           className="hidden sm:inline-block absolute z-20 top-0 left-0 w-full h-full"
         />
         <div className="container relative z-30 pt-10">
@@ -57,6 +58,7 @@ const Contact = () => {
                 <img
                   src={contact.src}
                   alt=""
+                  loading="lazy"
                   className="rounded-full w-full h-full"
                 />
               </a>

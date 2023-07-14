@@ -30,8 +30,6 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) =>
     builder.addCase(logout.fulfilled, (state) => {
-      // localStorage.removeItem("token");
-      // localStorage.removeItem("userId");
       state.token = "";
       state.user = {};
     }),
@@ -39,51 +37,6 @@ const authSlice = createSlice({
 export const logout = createAsyncThunk(
   "auth/logout",
   async function (_, { dispatch }) {
-    // try {
-    //   axios.patch("http://localhost:3000/cart", cart);
-    //   await axios.put("http://localhost:3000/wishlist", wishlist);
-    // } catch (err) {
-    //   console.log(err.message);
-    // }
-
-    ///////
-    // const token = localStorage.getItem("token");
-    // const cart = JSON.parse(localStorage.getItem("cart"));
-    // const wishlist = JSON.parse(localStorage.getItem("wishlist"));
-
-    // const cartIds = cart
-    //   ? cart.map((product) => {
-    //       return product._id;
-    //     })
-    //   : [];
-
-    // const wishlistIds = wishlist
-    //   ? wishlist.map((product) => {
-    //       return product._id;
-    //     })
-    //   : [];
-
-    // const sendCartAndWishlistToServer = async () => {};
-    // const cartResponse = axios.patch(
-    //   "http://localhost:8000/carts/updateCart",
-    //   { products: cartIds },
-    //   {
-    //     headers: {
-    //       Authorization: token,
-    //     },
-    //   }
-    // );
-    // const wishlistResponse = axios.patch(
-    //   "http://localhost:8000/wishlists/",
-    //   { products: wishlistIds },
-    //   {
-    //     headers: {
-    //       Authorization: token,
-    //     },
-    //   }
-    // );
-    // await sendCartAndWishlistToServer();
-    ///////
     localStorage.removeItem("token");
     dispatch(clearCart());
     dispatch(clearWishlist());
