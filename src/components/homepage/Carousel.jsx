@@ -30,7 +30,7 @@ const Cards = () => {
   };
   return (
     <div className="container flex flex-col justify-center items-center mt-9 w-full ">
-      <div className="text-white text-left  text-2xl font-bold w-full pl-10 ">
+      <div className="text-white text-left  text-2xl font-bold w-full ">
         Recommended
       </div>
       <div
