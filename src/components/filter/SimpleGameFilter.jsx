@@ -44,7 +44,7 @@ const SimpleGameFilter = ({
                     selectedCategory === category
                       ? " hover:text-slate-300 hover:outline-0 shadow-slate-700 shadow-md"
                       : ""
-                  }  outline md:w-auto w-44 outline-btn-primary outline-1 hover:outline-white  font-medium  text-center mr-3 mb-3`}
+                  }  outline md:md:w-40 w-44 outline-btn-primary outline-1 hover:outline-white  font-medium  text-center mr-3 mb-3`}
                 >
                   {category}
                 </Button>
