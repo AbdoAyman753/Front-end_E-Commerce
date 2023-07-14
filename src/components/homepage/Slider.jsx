@@ -73,7 +73,7 @@ const Cards = (/*{ recentGames }*/) => {
               >
                 <div
                   style={{ backgroundImage: `url(${el.imgs_links[0]})` }}
-                  className=" bg-no-repeat flex flex-col items-center justify-end bg-cover	bg-center card w-full h-96 bg-slate-900	 rounded-xl shadow-md shadow-black  hover:shadow-slate-400 hover:scale-x-105	"
+                  className=" bg-no-repeat flex flex-col items-center justify-end bg-cover	bg-center card w-full h-96 bg-slate-900	 rounded-xl shadow-md shadow-black  hover:shadow-slate-100"
                 >
                   {/* <div className="card_image w-64  mb-4"></div> */}
 
