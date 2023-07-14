@@ -14,11 +14,9 @@
 
 .form-content {
   position: absolute;
-  /* left: 50px; */
   top: 50%;
   transform: translateY(-50%);
   z-index: 3;
-  /* width: 40%; */
   background-color: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
   border-radius: 10px;
@@ -42,7 +40,6 @@
 }
 
 .form-title {
-  /* font-size: 3vw; */
   color: #fff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
@@ -68,14 +65,9 @@
 }
 
 .lable {
-  /* font-size: 2vw; */
   color: #fff;
   opacity: 0.8;
 }
-
-/* input {
-  font-size: 5px !important;
-} */
 
 .form-login-btn {
   margin: 0 !important;
