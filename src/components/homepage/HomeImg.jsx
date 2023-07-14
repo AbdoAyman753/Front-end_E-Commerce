@@ -7,7 +7,7 @@ const HomeImg = () => {
 			className='img_home h-[86vh] bg-no-repeat w-full bg-cover'
 			style={{ backgroundImage: `url(${home})` }}
 		>
-			<div className='font-extrabold text-8xl text-white font-mono z-10 flex justify-center mt-20'>
+			<div className='font-extrabold text-8xl text-white font-mono z-10 flex justify-center mt-48'>
 				<div className='flex-col justify-center items-center'>
 					<p>Welcome</p>
 					<Link to='/store'>
