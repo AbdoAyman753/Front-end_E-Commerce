@@ -1,15 +1,16 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate } from "react-router";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { login, updateUserState } from "../../store/slices/authSlice";
-import { setCart } from "../../store/slices/cartSlice";
-import { setWishlist } from "../../store/slices/wishlistSlice";
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from 'react-router';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { login, updateUserState } from '../../store/slices/authSlice';
+import { setCart } from '../../store/slices/cartSlice';
+import { setWishlist } from '../../store/slices/wishlistSlice';
+import './signInForm.css'; // Custome CSS Style
 
-import signInSchema from "./../../models/SignInSchema";
+import signInSchema from './../../models/SignInSchema';
 
 const SignInForm = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const SignInForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/users/login",
+        'http://localhost:8000/users/login',
         data
       );
       if (response.status === 200) {
@@ -48,24 +49,24 @@ const SignInForm = () => {
       reset();
     } catch (error) {
       if (error.response?.status === 400) {
-        setError("error", {
-          type: "manual",
-          message: "Invalid Email Or Password",
+        setError('error', {
+          type: 'manual',
+          message: 'Invalid Email Or Password',
         });
       } else if (error.response) {
         const { data } = error.response;
 
         if (data.message) {
-          setError("error", {
-            type: "manual",
+          setError('error', {
+            type: 'manual',
             message: data.message,
           });
         }
       } else {
         // Handle other errors here
-        setError("error", {
-          type: "manual",
-          message: "An error occurred while submitting the form",
+        setError('error', {
+          type: 'manual',
+          message: 'An error occurred while submitting the form',
         });
       }
     }
@@ -73,77 +74,80 @@ const SignInForm = () => {
 
   return (
     <>
-      {/*// bg here for theme */}
-      <div className="min-h-screen  bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-        <div className="relative py-3 sm:max-w-xl sm:mx-auto md:w-[40vw]">
-          {/* // bg here for shadow */}
-          <div className="absolute sm:w-[60vw] inset-0 bg-gradient-to-r from-cyan-300 to-cyan-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
-          {/* // bg here for form */}
-          <div className="relative sm:w-[60vw]  px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-            <div className="max-w-md mx-auto">
-              <div>
-                <h1 className="text-2xl font-semibold">
-                  Login To Your Account
-                </h1>
-              </div>
-              {/* form */}
-              <form
-                onSubmit={handleSubmit(onSubmitHandler)}
-                className="divide-y divide-gray-200"
-              >
-                <div className="py-8 text-base leading-6 space-y-5 text-gray-700 sm:text-lg sm:leading-7">
-                  {/* email input */}
-                  <div className="relative">
-                    <input
-                      autoComplete="off"
-                      id="email"
-                      {...register("email", { required: true })}
-                      type="text"
-                      className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                      placeholder="Email address"
-                    />
-                    <label
-                      htmlFor="email"
-                      className="absolute left-0 -top-5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-4 peer-focus:text-gray-600 peer-focus:text-sm"
-                    >
-                      Email Address
-                    </label>
-                    <p className="text-red-500 mx-auto">
-                      {errors.email?.message}
-                    </p>
-                  </div>
-                  {/* password input */}
-                  <div className="relative">
-                    <input
-                      autoComplete="off"
-                      id="password"
-                      {...register("password", { required: true })}
-                      type="password"
-                      className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                      placeholder="Password"
-                    />
-                    <label
-                      htmlFor="password"
-                      className="absolute left-0 -top-5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-4 peer-focus:text-gray-600 peer-focus:text-sm"
-                    >
-                      Password
-                    </label>
-                    <p className="text-red-500 mx-auto ">
-                      {errors.password?.message}
-                    </p>
-                    <p className="text-red-500 mx-auto ">
-                      {errors.error?.message}
-                    </p>
-                  </div>
-                  {/* submit input */}
-                  <div className="relative">
-                    <button className="bg-blue-500 text-white rounded-md px-2 py-1">
-                      Submit
-                    </button>
-                  </div>
-                </div>
-              </form>
+      {/*bg here for theme */}
+      <div className='signin'>
+        <div className='signin-container max639:flex max639:justify-center	'>
+          <div className='form-content sm:w-2/5 w-4/5 sm:left-[15%] xl:py-5 lg:py-4 md:py-3- md:px-5 sm:px-4 px-3 sm:py-2 py-1 '>
+            <div>
+              <h1 className='form-title font-semibold sm:mb-5 mb-1 lg:text-3xl md:text-2xl sm:text-xl text-lg max639:mt-[10px] max639:mb-[8px]'>
+                Welcome Back
+              </h1>
             </div>
+            {/* form */}
+            <form
+              onSubmit={handleSubmit(onSubmitHandler)}
+              className='divide-y divide-gray-200'
+            >
+              <div className='form-fields text-base leading-6 space-y-5  sm:text-lg sm:leading-7 sm:gap-4 gap-2'>
+                {/* email input */}
+                <div className='relative'>
+                  <input
+                    autoComplete='off'
+                    id='email'
+                    {...register('email', { required: true })}
+                    type='text'
+                    className='form-input peer placeholder-transparent md:h-10 sm:h-8 h-6 md:text-xl sm:text-base  w-full focus:outline-none bg-transparent text-white placeholder-gray-300 backdrop-blur-md border border-gray-300 rounded-md shadow-md sm:text-base text-sm'
+                    placeholder='Email address'
+                  />
+                  <label
+                    htmlFor='email'
+                    className='lable email-lable absolute left-0 md:-top-8 sm:-top-7 -top-6 lg:text-base  sm:text-sm text-[10px]'
+                  >
+                    Email Address
+                  </label>
+                  <p className='text-red-500 mx-auto lg:text-base  sm:text-sm text-[10px]'>
+                    {errors.email?.message}
+                  </p>
+                </div>
+                {/* password input */}
+                <div className='relative'>
+                  <input
+                    autoComplete='off'
+                    id='password'
+                    {...register('password', { required: true })}
+                    type='password'
+                    className='form-input peer placeholder-transparent md:h-10 sm:h-8 h-6 w-full focus:outline-none bg-transparent text-white placeholder-gray-300 backdrop-blur-md border border-gray-300 rounded-md shadow-md md:text-base  sm:text-sm text-[10px]'
+                    placeholder='Password'
+                  />
+                  <label
+                    htmlFor='password'
+                    className='lable pass-lable absolute left-0 md:-top-8 sm:-top-7 -top-6 lg:text-base  sm:text-sm text-[10px]'
+                  >
+                    Password
+                  </label>
+                  <p className='text-red-500 mx-auto lg:text-base  sm:text-sm text-[10px]'>
+                    {errors.password?.message}
+                  </p>
+                  <p className='text-red-500 mx-auto lg:text-base  sm:text-sm text-[10px]'>
+                    {errors.error?.message}
+                  </p>
+                </div>
+                {/* submit input */}
+                <div className='relative form-login-btn'>
+                  <button className='bg-btn-primary hover:bg-btn-Secondary rounded-lg max639:px-2 max639:py-0.75 sm:px-3 sm:py-2 lg:text-[16px] md:text-[14px] sm:text-[12px] text-[10px] text-white transition-all '>
+                    Log In
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div className='img-container'>
+            <img
+              className='bg-image'
+              src='src/assets/img/formBG.jpg'
+              alt='The Man From Watch Dogs Catch His Phone'
+            />
           </div>
         </div>
       </div>
