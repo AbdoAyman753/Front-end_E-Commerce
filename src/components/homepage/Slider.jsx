@@ -19,9 +19,11 @@ const Cards = (/*{ recentGames }*/) => {
   }, []);
   return (
     <div className="container flex flex-col justify-center items-center mt-9 w-full">
-      <div className="text-white text-left  text-2xl font-bold w-full  ">
-        Recently Added Games
-      </div>
+      {games.length > 0 && (
+        <div className="text-white text-left  text-2xl font-bold w-full  ">
+          Recently Added Games
+        </div>
+      )}
       <div
         className="flex items-center justify-center box-border 
     list-none	 mx-auto	pt-2 pb-10 px-10 scroll-smooth 
