@@ -19,11 +19,6 @@ const GameCard = ({
   return (
     <>
       <div className="relative">
-        {/* white circle
-                <div className="absolute   text-red mt-6 left-1/2 -translate-x-1/2 -translate-y-1/2  ">
-                  <div className="w-[5vh] h-[5vh] bg-white  rounded-full shadow-inner shadow-black/80"></div>
-                </div> */}
-        {/* image */}
         <Link to={`/game/${game._id}`}>
           <img
             className="object-fit h-64 w-full bg-slate-600 cursor-pointer hover:scale-105"
@@ -44,7 +39,8 @@ const GameCard = ({
           </p>
           {/* new game */}
           {game.created_at &&
-          Date.now() - new Date(game.created_at) <= 1000 * 60 * 60 * 24 * 2 ? (
+          // new game valid from 1 hour
+          Date.now() - new Date(game.created_at) <= 1000 * 60 * 60 * 1 ? (
             <div className="flex flex-col justify-center items-center">
               <span className="">
                 <img className="w-9 animate-bounce" src="fire2.gif" alt="" />
