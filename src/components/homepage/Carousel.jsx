@@ -16,7 +16,6 @@ const Cards = () => {
     const { data } = await axios.get(
       "http://localhost:8000/products/expensive"
     );
-    console.log(data);
     setGames(data.mostExpensiveProducts);
   };
   useEffect(() => {

@@ -11,6 +11,8 @@ import EditGame from "./../components/adminRoles/EditGame";
 import useAuthenticate from "./../utils/useAuthenticate";
 import { Toggles } from "./../utils/TogglesContext";
 import URL from "../utils/URL";
+import { Link } from "react-router-dom";
+
 const GameProfile = () => {
   const { isAuthenticated } = useAuthenticate();
   const { isAdmin } = useAuthenticate();
@@ -20,6 +22,23 @@ const GameProfile = () => {
   const [game, setGame] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  // backtostore
+  const ICON = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="w-4 h-4 mr-1"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+      />
+    </svg>
+  );
   // fetch game from Api and stop loading when finish
   useEffect(() => {
     const fetchGame = async () => {
@@ -65,13 +84,19 @@ const GameProfile = () => {
   return (
     <>
       <div className="container my-10">
-        <div className="flex flex-col gap-3 bg-slate-700 border border-gray-200 rounded-lg shadow md:flex-row  dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+        <Link
+          to="/store"
+          className="mb-2 flex items-center text-btn-primary hover:translate-x-[-2px] hover:text-btn-Secondary transition-all"
+        >
+          <span>{ICON}</span>Back to store
+        </Link>
+        <div className="flex flex-col gap-3 p-3    bg-slate-700 border border-gray-200 rounded-lg shadow lg:flex-row  dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
           {/* image slider */}
           <div className="p-4  border-white">
             <div className="mx-auto ">
               {selectedImage ? (
                 <img
-                  className="md:w-[50vw] w-full h-52 rounded-md"
+                  className="lg:w-[50vw] w-full h-52 rounded-md"
                   src={selectedImage}
                   alt=""
                   loading="lazy"
@@ -80,14 +105,14 @@ const GameProfile = () => {
                 "Select an image"
               )}
             </div>
-            <div className="flex md:w-[50vw]  h-28 overflow-x-auto">
+            <div className="flex lg:w-[50vw] h-36 md:h-28 overflow-x-auto py-2 overflow-y-hidden">
               {game?.imgs_links.map((image, index) => (
                 <img
                   key={index}
                   src={image}
                   alt=""
                   loading="lazy"
-                  className={`w-[12.8vw] md:w-[8vw] h-20 me-1 mt-1 cursor-pointer ${
+                  className={`  cursor-pointer ${
                     selectedImage === image
                       ? "scale-125 shadow-black shadow-md rounded-md border-gray-300 border-2"
                       : ""
@@ -98,10 +123,13 @@ const GameProfile = () => {
             </div>
           </div>
           {/* card body */}
-          <div className="flex flex-col justify-evenly md:w-[50vw]">
-            <h3 className=" font-extrabold text-4xl text-white   tracking-wider font-mono">
-              {game?.product_name}
-            </h3>
+          <div className="flex flex-col justify-evenly lg:w-[50vw]">
+            <div>
+              <h3 className=" font-extrabold text-4xl text-white   tracking-wider font-mono">
+                {game?.product_name}
+              </h3>
+              <h4 className="text-slate-300">vendor: {game?.vendor}</h4>
+            </div>
             <p className=" text-slate-400">{game?.description}</p>
             <p className="text-right me-5 text-xl text-red-500 ">
               {game?.price} $

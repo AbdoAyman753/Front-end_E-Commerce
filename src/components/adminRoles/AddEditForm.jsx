@@ -58,7 +58,7 @@ const AddEditForm = ({
     setImgsLinks(newImgsLinks);
   };
   const onSubmitHandler = (data) => {
-    // edit game case
+    // _______________________________edit game case_______________________________
     if (mode == "edit") {
       const images = [...data.attachment];
       const newImages = images.map((file) => file.name);
@@ -125,15 +125,6 @@ const AddEditForm = ({
               type: "manual",
               message: "Game Must have only 8 Images",
             });
-          } else if (error.response) {
-            const { data } = error.response;
-
-            if (data.message) {
-              setError("error", {
-                type: "manual",
-                message: data.message,
-              });
-            }
           } else {
             // Handle other errors here
             setError("error", {
@@ -145,7 +136,7 @@ const AddEditForm = ({
       };
       editProduct();
     }
-    // Add game case
+    // _______________________________Add game case_______________________________
     else {
       const images = [...data.attachment];
       const newImages = images.map((file) => file.name);
@@ -186,15 +177,6 @@ const AddEditForm = ({
               type: "manual",
               message: "Must Provide 1 to 8 Images Of Added Game",
             });
-          } else if (error.response) {
-            const { data } = error.response;
-
-            if (data.message) {
-              setError("error", {
-                type: "manual",
-                message: data.message,
-              });
-            }
           } else {
             // Handle other errors here
             setError("error", {
