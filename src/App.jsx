@@ -4,6 +4,7 @@ import "./App.css";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { Suspense, lazy } from "react";
 
+const ErrorPage = lazy(() => import("./pages/ErrorPage"));
 const Loader = lazy(() => import("./components/ui/Loader"));
 const AppLayout = lazy(() => import("./components/layout/AppLayout"));
 const Support = lazy(() => import("./pages/Support"));
@@ -71,6 +72,7 @@ function App() {
               </NotAuthentication>
             }
           />
+          <Route path="*" element={<ErrorPage />} />
           <Route
             path="sign-up"
             element={
