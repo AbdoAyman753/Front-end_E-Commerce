@@ -16,15 +16,11 @@ const DeleteGame = ({ game, handleAdminDeleteGame }) => {
     setShowModal(false);
 
     const deleteProduct = async () => {
-      const result = await axios.delete(
-        `${URL}/products/${game._id}`,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
-      console.log(result);
+      const result = await axios.delete(`${URL}/products/${game._id}`, {
+        headers: {
+          Authorization: token,
+        },
+      });
       if (result.status >= 200 && result.status < 300) {
         handleAdminDeleteGame(game._id);
         toast.error("Game Deleted Sucessfully 😊");
