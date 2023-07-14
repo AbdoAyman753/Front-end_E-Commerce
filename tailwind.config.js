@@ -1,37 +1,39 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require("tailwindcss/defaultTheme");
+const defaultTheme = require('tailwindcss/defaultTheme');
 export default {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
+    './index.html',
+    './src/**/*.{js,ts,jsx,tsx}',
+    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     screens: {
-      xs: "475px",
+      xxs: '160px',
+      xs: '475px',
+      max639: { max: '639px' },
       ...defaultTheme.screens,
     },
     container: {
       center: true,
       padding: {
-        DEFAULT: "1rem",
-        sm: "2rem",
-        lg: "4rem",
-        xl: "5rem",
-        "2xl": "6rem",
+        DEFAULT: '1rem',
+        sm: '2rem',
+        lg: '4rem',
+        xl: '5rem',
+        '2xl': '6rem',
       },
     },
     extend: {
       colors: {
-        "primary-color": "var(--primary-color)",
-        "secondary-color": "var(--secondary-color)",
-        "back-color": "var(--back-color)",
-        "third-color": "var(--third-color)",
-        "btn-primary": "var(--btn-primary)",
-        "btn-Secondary": "var(--btn-Secondary)",
-        "line-primary": "var(--line-primary)",
+        'primary-color': 'var(--primary-color)',
+        'secondary-color': 'var(--secondary-color)',
+        'back-color': 'var(--back-color)',
+        'third-color': 'var(--third-color)',
+        'btn-primary': 'var(--btn-primary)',
+        'btn-Secondary': 'var(--btn-Secondary)',
+        'line-primary': 'var(--line-primary)',
       },
     },
   },
-  plugins: [require("flowbite/plugin"), require("daisyui")],
+  plugins: [require('flowbite/plugin'), require('daisyui')],
 };
