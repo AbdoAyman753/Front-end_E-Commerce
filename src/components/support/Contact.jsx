@@ -59,7 +59,7 @@ const Contact = () => {
                   src={contact.src}
                   alt=""
                   loading="lazy"
-                  className="rounded-full w-full h-full hover:scale-110"
+                  className="rounded-full w-full h-full hover:scale-110 transition"
                 />
               </a>
             ))}
