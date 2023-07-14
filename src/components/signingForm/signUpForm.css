@@ -1,4 +1,4 @@
-.signin {
+.signup {
   height: 100%;
   flex-grow: 1;
   display: flex;
@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-.signin-container {
+.signup-container {
   min-width: 85%;
   min-height: 30vw;
   position: relative;

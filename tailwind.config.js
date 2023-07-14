@@ -8,9 +8,7 @@ export default {
   ],
   theme: {
     screens: {
-      xxs: '160px',
       xs: '475px',
-      max639: { max: '639px' },
       ...defaultTheme.screens,
     },
     container: {
