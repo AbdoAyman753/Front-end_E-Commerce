@@ -21,7 +21,7 @@ const GameCard = ({
       <div className="relative">
         <Link to={`/game/${game._id}`}>
           <img
-            className="object-fit h-64 w-full bg-slate-600 cursor-pointer hover:scale-105"
+            className="object-fit h-64 w-full bg-slate-600 cursor-pointer hover:scale-105 transition"
             src={game.imgs_links[0]}
             alt={game.product_name}
           />
