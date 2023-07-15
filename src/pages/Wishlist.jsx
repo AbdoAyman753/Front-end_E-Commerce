@@ -48,8 +48,8 @@ const Wishlist = () => {
       )}
       {wishlist.length > 0 && (
         <>
-          <div className="border border-cyan-500 my-8">
-            <div className="flex justify-between bg-cyan-600 text-white p-3">
+          <div className="border border-secondary-color my-8">
+            <div className="flex justify-between bg-secondary-color text-white p-3">
               <p>Your wishlist, User</p>
             </div>
             {wishlist?.map((item) => (
@@ -59,7 +59,7 @@ const Wishlist = () => {
           <Button
             onClick={() => dispatch(clearWishlist())}
             primary={false}
-            className="bg-slate-200 text-btn-primary px-2 py-1 hover:text-white border-none"
+            className="px-2 py-1 text-btn-primary hover:text-white bg-red-400 border-none"
           >
             Clear Wishlist
           </Button>

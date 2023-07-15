@@ -8,11 +8,11 @@ import Button from "../ui/Button";
 const WishlistItem = ({ item }) => {
   const dispatch = useDispatch();
   return (
-    <div className="flex border border-cyan-600 p-2 text-white">
+    <div className="flex border border-secondary-color p-2 text-white">
       <span>{item.product_name}</span>
       <div className="ml-auto">
         <Button
-          className="border-cyan-700 bg-cyan-700"
+          className="border-cyan-700 bg-cyan-700 mr-3 hover:bg-cyan-800"
           onClick={() => {
             dispatch(addToCart(item));
             dispatch(removeFromWishlist(item._id));
