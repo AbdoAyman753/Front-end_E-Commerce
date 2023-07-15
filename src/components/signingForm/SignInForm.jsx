@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login, updateUserState } from "../../store/slices/authSlice";
 import { setCart } from "../../store/slices/cartSlice";
 import { setWishlist } from "../../store/slices/wishlistSlice";
@@ -15,6 +15,7 @@ import URL from "../../utils/URL";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
+  let { cart } = useSelector((state) => state.cart);
   // react form hook
   const {
     register,
@@ -35,10 +36,33 @@ const SignInForm = () => {
       if (response.status === 200) {
         dispatch(updateUserState(false));
         const { token, user } = response.data;
+        const library = user.library[0].products;
+
         const userInfo = { ...user, cart: undefined, wishlist: undefined };
-        dispatch(setCart(user.cart[0].products));
         dispatch(setWishlist(user.wishlist[0].products));
         dispatch(login({ token, userInfo }));
+
+        if (cart.length > 0) {
+          // remove games that user owned from cart
+          dispatch(updateUserState(true));
+          cart = cart.filter((product) => {
+            const game = library.find((el) => el._id === product._id);
+            if (!game) return product;
+          });
+          // remove duplicate games
+          const newCart = [...cart, ...user.cart[0].products].reduce(
+            (accumulator, current) => {
+              if (!accumulator.find((item) => item._id === current._id)) {
+                accumulator.push(current);
+              }
+              return accumulator;
+            },
+            []
+          );
+          dispatch(setCart(newCart));
+        } else {
+          dispatch(setCart(user.cart[0].products));
+        }
       }
       reset();
     } catch (error) {
