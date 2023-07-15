@@ -18,6 +18,7 @@ const AddEditForm = ({
   const [hoveredImageIndex, setHoveredImageIndex] = useState(null);
   const [imgsLinks, setImgsLinks] = useState(game?.imgs_links);
   const { token } = useAuthenticate();
+  const [isLoading, setIsLoading] = useState(false);
   //usenavigate
   const navigate = useNavigate();
   const {
@@ -83,6 +84,7 @@ const AddEditForm = ({
       // patch data and test response
       const editProduct = async () => {
         try {
+          setIsLoading(true);
           // send edited game
           const result = await axios.patch(
             `${URL}/products/${game._id}`,
@@ -98,7 +100,7 @@ const AddEditForm = ({
           if (200 <= result.status < 300) {
             // close modal
             setShowModal(false);
-
+            setIsLoading(false);
             const editGame = {
               product_name: data.title,
               description: data.description,
@@ -119,6 +121,7 @@ const AddEditForm = ({
           }
           // error cases
         } catch (error) {
+          setIsLoading(false);
           // if (error.response?.status === 400) {
           if (totalImages.length > 8) {
             setError("attachment", {
@@ -155,6 +158,7 @@ const AddEditForm = ({
       // post data to Api and test response
       const addProduct = async () => {
         try {
+          setIsLoading(true);
           const result = await axios.post(`${URL}/products`, formData, {
             headers: {
               Authorization: token,
@@ -163,6 +167,7 @@ const AddEditForm = ({
           });
           // if response is ok
           if (200 <= result.status < 300) {
+            setIsLoading(false);
             setShowModal(false);
             const newGame = result.data.createdProduct;
             toast.success("Game Added Successfully");
@@ -171,6 +176,7 @@ const AddEditForm = ({
             reset();
           }
         } catch (error) {
+          setIsLoading(false);
           // handle error cases
           if (error.response?.status === 400) {
             setError("attachment", {
@@ -371,7 +377,7 @@ const AddEditForm = ({
             type="submit"
             onClick={handleSubmit(onSubmitHandler)}
           >
-            SAVE CHANGES
+            {!isLoading ? "SAVE CHANGES" : "Loading..."}
           </button>
         </div>
       </form>
