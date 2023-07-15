@@ -40,7 +40,7 @@ const GameCard = ({
           {/* new game */}
           {game.created_at &&
           // new game valid from 1 hour
-          Date.now() - new Date(game.created_at) <= 1000 * 60 * 60 * 1 ? (
+          Date.now() - new Date(game.created_at) <= 1000 * 60 * 60 * 24 ? (
             <div className="flex flex-col justify-center items-center">
               <span className="">
                 <img className="w-9 animate-bounce" src="fire2.gif" alt="" />
