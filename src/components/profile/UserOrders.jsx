@@ -34,7 +34,9 @@ const UserOrders = () => {
                     key={order._id}
                     className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                   >
-                    <td className="px-6 py-4">${order.totalPrice}</td>
+                    <td className="px-6 py-4">
+                      ${order.totalPrice.toFixed(2)}
+                    </td>
                     <td className="px-6 py-4">
                       {new Date(order.createdAt).toLocaleDateString(
                         "en-EG",
