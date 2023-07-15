@@ -111,7 +111,7 @@ const AddEditForm = ({
             // show the edited data once the admin cliclk submit
             handleAdminEditGame(editGame);
             // show toastify with done
-            toast.success("Game updated Sucessfully 😊");
+            toast.success("Game updated Sucessfully");
             // navigate to store
             navigate("/store");
             // clear form data
@@ -165,7 +165,7 @@ const AddEditForm = ({
           if (200 <= result.status < 300) {
             setShowModal(false);
             const newGame = result.data.createdProduct;
-            toast.success("Game Added Successfully 😊");
+            toast.success("Game Added Successfully");
             handleAdminAddGame(newGame);
             // navigate("/store");
             reset();

@@ -23,7 +23,7 @@ const DeleteGame = ({ game, handleAdminDeleteGame }) => {
       });
       if (result.status >= 200 && result.status < 300) {
         handleAdminDeleteGame(game._id);
-        toast.error("Game Deleted Sucessfully 😊");
+        toast.error("Game Deleted Sucessfully");
         navigate("/store");
       }
     };
